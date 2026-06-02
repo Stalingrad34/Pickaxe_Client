@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a296f361309146948400b46ffb07ce8e, type: 3}
+  m_Name: ConnectConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Infrastructure.GameConfig
+  isLocal: 0
+  remoteServer:
+    IP: stalingrad-games.ru/slap
+    Port: 
+    UseSecureProtocol: 1
+  localServer:
+    IP: localhost
+    Port: 2567
+    UseSecureProtocol: 0
+  remoteRatingUrl: https://stalingrad-games.ru/slap_sql/rating.php
+  localRatingUrl: http://localhost:8080/stalingrad-games/slap_sql/rating.php
+  remoteGetStateUrl: https://stalingrad-games.ru/slap_sql/getState.php
+  localGetStateUrl: http://localhost:8080/stalingrad-games/slap_sql/getState.php
+  remoteSaveStateUrl: https://stalingrad-games.ru/slap_sql/setState.php
+  localSaveStateUrl: http://localhost:8080/stalingrad-games/slap_sql/setState.php
+  gameConfigUrl: https://stalingrad-games.ru/slap_sql/config.php
+  weaponsConfigUrl: https://stalingrad-games.ru/slap_sql/weapons.php
