@@ -66,7 +66,7 @@ namespace Game.Scripts.KinematicCharacterController.ExampleCharacter.Scripts
             _currentDistance = DefaultDistance;
             TargetDistance = _currentDistance;
 
-            _targetVerticalAngle = 0f;
+            _targetVerticalAngle = DefaultVerticalAngle;
 
             PlanarDirection = Vector3.forward;
         }

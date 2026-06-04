@@ -14,7 +14,7 @@ namespace Game.Scripts.Infrastructure.States
         
         public static void Init()
         {
-            States.Add(typeof(TestState), new TestState());
+            States.Add(typeof(GameState), new GameState());
         }
         
         public static void Enter<TState>() where TState: class, IEnterState

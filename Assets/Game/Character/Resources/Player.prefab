@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2977176137159288847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1577907662771052931}
+  m_Layer: 7
+  m_Name: CameraPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1577907662771052931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2977176137159288847}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4800224494859065541}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6887803587429157781
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54,7 +85,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2092966976574214992, guid: d56338f25892e6d4094e5f2efdc6397d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1577907662771052931}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6500311980659525006, guid: d56338f25892e6d4094e5f2efdc6397d, type: 3}
       insertIndex: -1
@@ -196,11 +230,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.KinematicCharacterController.Core.KinematicCharacterProcessor
   Motor: {fileID: 4265095328713766294}
-  MaxStableMoveSpeed: 10
+  MaxStableMoveSpeed: 5.5
   StableMovementSharpness: 15
   OrientationSharpness: 10
   orientationMethod: 1
-  MaxAirMoveSpeed: 15
+  MaxAirMoveSpeed: 6
   AirAccelerationSpeed: 15
   Drag: 0.1
   AllowJumpingWhenSliding: 0
@@ -213,7 +247,7 @@ MonoBehaviour:
   BonusOrientationSharpness: 10
   Gravity: {x: 0, y: -30, z: 0}
   MeshRoot: {fileID: 1491297255587569062}
-  CameraFollowPoint: {fileID: 4800224494859065541}
+  CameraFollowPoint: {fileID: 1577907662771052931}
   CrouchedCapsuleHeight: 1
   _jumpedThisFrame: 0
 --- !u!114 &6574759997081220657

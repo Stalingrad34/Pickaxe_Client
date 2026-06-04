@@ -51,7 +51,7 @@ namespace Game.Scripts.Infrastructure
             AudioController.Instance.Init();
             
             StateMachine.Init();
-            StateMachine.EnterAsync<TestState>().Forget();
+            StateMachine.EnterAsync<GameState>().Forget();
         }
     }
 }

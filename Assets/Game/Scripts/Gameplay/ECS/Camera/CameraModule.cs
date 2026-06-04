@@ -11,6 +11,7 @@ namespace Game.Scripts.Gameplay.ECS.Camera
     {
       systems
         .AddSystem(new RotateCameraSystem())
+        .AddSystem(new ZoomCameraSystem())
         .AddSystem(new UpdateCameraSystem());
     }
 
