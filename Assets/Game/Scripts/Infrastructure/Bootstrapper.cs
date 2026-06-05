@@ -37,14 +37,14 @@ namespace Game.Scripts.Infrastructure
             
             //multiplayerManager.Init(connectConfig);
             
-            ServiceProvider.Register(new LocalizationService());
+            /*ServiceProvider.Register(new LocalizationService());
             ServiceProvider.Register(multiplayerManager);
             ServiceProvider.Register(new DatabaseService(connectConfig));
             ServiceProvider.Register(new RatingService(connectConfig));
-            ServiceProvider.Register(new SettingsProvider());
             ServiceProvider.Register(new AnalyticsService());
             ServiceProvider.Register(new InAppService());
-            ServiceProvider.Register(new ConfigProvider(connectConfig));
+            ServiceProvider.Register(new ConfigProvider(connectConfig));*/
+            ServiceProvider.Register(new SettingsProvider());
             
             await ServiceProvider.InitServices();
             

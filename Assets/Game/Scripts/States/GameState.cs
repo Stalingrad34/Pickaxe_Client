@@ -22,8 +22,8 @@ namespace Game.Scripts.States
       {
         Id = "player",
         Speed = 2,
-        PlayerSpeed = ServiceProvider.Get<ConfigProvider>().Game.Speed,
-        JumpForce = ServiceProvider.Get<ConfigProvider>().Game.JumpForce,
+        //PlayerSpeed = ServiceProvider.Get<ConfigProvider>().Game.Speed,
+        //JumpForce = ServiceProvider.Get<ConfigProvider>().Game.JumpForce,
         PlayerName = "Player",
         StartAngleY = 0,
         Position = Vector3.back * 30,
