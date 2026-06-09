@@ -36,7 +36,6 @@ namespace Game.Scripts.Gameplay.ECS.Input.Systems
           control.MouseHorizontal = joystick.RotateJoystick.delta.x * sensitivity;
           control.MouseVertical = joystick.RotateJoystick.delta.y * sensitivity;
           control.MouseScroll = -_inputAction.Player.Zoom.ReadValue<Vector2>().y;
-          control.MouseLeftClicked = joystick.ActionButton.WasPressed;
         }
       }
     }

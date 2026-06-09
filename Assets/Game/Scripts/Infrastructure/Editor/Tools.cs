@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using Game.Scripts.Infrastructure.Editor;
+using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -19,6 +20,12 @@ namespace Game.Scripts.Editor
       PlayerPrefs.DeleteAll();
       EditorSceneManager.OpenScene("Assets/Game/Scenes/Bootstrap.unity");
       EditorApplication.isPlaying = true;
+    }
+    
+    [MenuItem("Tools/Cheats", false, 3)]
+    static void OpenCheats()
+    {
+      CheatsWindow.OpenWindow();
     }
   }
 }

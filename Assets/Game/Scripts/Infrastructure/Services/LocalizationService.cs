@@ -22,7 +22,7 @@ namespace Game.Scripts.Infrastructure.Services
 
     public async UniTask<string> GetLocalizedText(string key)
     {
-      var table = await LocalizationSettings.StringDatabase.GetTableAsync("Table1");
+      var table = await LocalizationSettings.StringDatabase.GetTableAsync("Localization");
       if (table == null)
       {
         return key;

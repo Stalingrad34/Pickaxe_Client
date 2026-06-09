@@ -1,5 +1,7 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
+using Game.Scripts.Gameplay.Pickaxe;
 using Game.Scripts.Infrastructure.Extensions;
 using UniRx;
 
@@ -8,11 +10,12 @@ namespace Game.Scripts.Infrastructure.Services.Database
   public class DatabaseService : IInitializableService
   {
     public readonly ReactiveProperty<string> PlayerName = new();
-    public readonly ReactiveProperty<string> Weapon = new();
-    public readonly ReactiveProperty<string> Face = new();
-    public readonly ReactiveProperty<string> Body = new();
-    public readonly ReactiveProperty<int> Slaps = new();
-    public readonly ReactiveCollection<string> Inventory = new();
+    public readonly ReactiveProperty<ulong> Money = new();
+    public readonly ReactiveProperty<ulong> Ore = new();
+    public readonly ReactiveProperty<ulong> ProcessingMoney = new();
+    public readonly ReactiveProperty<ulong> ProcessingOre = new();
+    public readonly ReactiveProperty<ulong> PickaxesNominal = new();
+    public readonly ReactiveCollection<PickaxeData> Pickaxes = new(new List<PickaxeData>());
     
     private IDatabaseProcessor _databaseProcessor;
     private bool _canSave;
@@ -34,17 +37,17 @@ namespace Game.Scripts.Infrastructure.Services.Database
 
     private IDatabaseProcessor GetDatabaseProcessor()
     {
-      return new MySqlDatabaseProcessor(_connectConfig);
+      return new PrefsDatabaseProcessor();//new MySqlDatabaseProcessor(_connectConfig);
     }
 
     private void InitSaveProcessor()
     {
-      PlayerName.Subscribe(_ => _canSave = true);
-      Weapon.Subscribe(_ => _canSave = true);
-      Face.Subscribe(_ => _canSave = true);
-      Body.Subscribe(_ => _canSave = true);
-      Slaps.Subscribe(_ => _canSave = true);
-      Inventory.SubscribeAdd((_, _) => _canSave = true);
+      Money.Subscribe(_ => _canSave = true);
+      Ore.Subscribe(_ => _canSave = true);
+      ProcessingMoney.Subscribe(_ => _canSave = true);
+      ProcessingOre.Subscribe(_ => _canSave = true);
+      PickaxesNominal.Subscribe(_ => _canSave = true);
+      Pickaxes.SubscribeAdd((_, _) => _canSave = true);
       
       StartSaveProcessor().Forget();
     }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4262064492014667573}
   - component: {fileID: 7988679301682342709}
   - component: {fileID: 6184510442820141147}
-  - component: {fileID: 1211100094435795761}
+  - component: {fileID: 1024107477832276549}
   m_Layer: 0
   m_Name: FloorButton
   m_TagString: Untagged
@@ -1798,7 +1798,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4055913416288326853}
   m_Mesh: {fileID: 0}
---- !u!64 &1211100094435795761
+--- !u!64 &1024107477832276549
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

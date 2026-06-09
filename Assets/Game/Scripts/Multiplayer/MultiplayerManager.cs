@@ -50,9 +50,9 @@ namespace Game.Scripts.Multiplayer
         {"position", position},
         {"rotation", rotation},
         {"speed", 1},
-        {"weapon", database.Weapon.Value},
+        /*{"weapon", database.Weapon.Value},
         {"body", database.Body.Value},
-        {"face", database.Face.Value},
+        {"face", database.Face.Value},*/
         {"name", database.PlayerName.Value},
       };
       _room = await Instance.client.JoinOrCreate<State>(roomName, data).AsUniTask();

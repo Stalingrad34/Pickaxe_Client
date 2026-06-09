@@ -64,24 +64,24 @@ namespace Game.Scripts.Infrastructure.Services.Database
       
       Debug.Log(response.message);
       
-      database.PlayerName.Value = response.data.Name;
+      /*database.PlayerName.Value = response.data.Name;
       database.Weapon.Value = response.data.Weapon;
       database.Face.Value = response.data.Face;
       database.Body.Value = response.data.Body;
       database.Slaps.Value = response.data.Slaps;
-      database.Inventory.AddRange(response.data.Inventory);
+      database.Inventory.AddRange(response.data.Inventory);*/
     }
 
     public async UniTask Save(DatabaseService database)
     {
       var state = new PlayerStateDto()
       {
-        Name = database.PlayerName.Value,
+        /*Name = database.PlayerName.Value,
         Weapon = database.Weapon.Value,
         Face = database.Face.Value,
         Body = database.Body.Value,
         Slaps = database.Slaps.Value,
-        Inventory = new  List<string>(database.Inventory)
+        Inventory = new  List<string>(database.Inventory)*/
       };
       
       var data = new Dictionary<string, string>

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Game.Scripts.Gameplay.Data.Units;
+using Game.Scripts.Gameplay.Pickaxe;
+using Game.Scripts.Gameplay.Units;
 using Game.Scripts.Infrastructure.Custom;
 using Game.Scripts.Multiplayer;
 using Game.Scripts.UI;
@@ -26,6 +27,11 @@ namespace Game.Scripts.Infrastructure
         public static EnemyView GetEnemyView(string prefabPath)
         {
             return GetResource<EnemyView>($"{UNITS_PATH}/{prefabPath}");
+        }
+        
+        public static PickaxeConfig GetPickaxeData(string path)
+        {
+            return GetResource<PickaxeConfig>(path);
         }
         
         public static UnitView GetCharacterView(string prefabPath)

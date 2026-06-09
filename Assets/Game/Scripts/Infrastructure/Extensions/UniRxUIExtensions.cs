@@ -1,6 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Triggers;
+using Game.Scripts.Gameplay;
 using Game.Scripts.Infrastructure.Custom;
 using Game.Scripts.UI;
 using Game.Scripts.Widgets;
@@ -14,6 +15,11 @@ namespace Game.Scripts.Infrastructure.Extensions
 {
     public static class UniRxUIExtensions
     {
+        public static IDisposable SubscribeMoney(this IObservable<ulong> source, TextMeshProUGUI text)
+        {
+            return source.SubscribeWithState(text, (x, t) => t.text = $"${MoneyFormatter.Format((long)x)}");
+        }
+        
         public static IDisposable SubscribeToTMP(this IObservable<string> source, TextMeshProUGUI text)
         {
             return source.SubscribeWithState(text, (x, t) => t.text = x);

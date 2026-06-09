@@ -1,5 +1,7 @@
 ﻿using BitGames.Bits;
 using Cysharp.Threading.Tasks;
+using Game.Scripts.Gameplay.OreMining;
+using Game.Scripts.Gameplay.OreProcessing;
 using Game.Scripts.Infrastructure.Services;
 using Game.Scripts.Infrastructure.Services.Config;
 using Game.Scripts.Infrastructure.Services.Database;
@@ -37,14 +39,18 @@ namespace Game.Scripts.Infrastructure
             
             //multiplayerManager.Init(connectConfig);
             
-            /*ServiceProvider.Register(new LocalizationService());
+            /*
             ServiceProvider.Register(multiplayerManager);
-            ServiceProvider.Register(new DatabaseService(connectConfig));
+            
             ServiceProvider.Register(new RatingService(connectConfig));
             ServiceProvider.Register(new AnalyticsService());
             ServiceProvider.Register(new InAppService());
             ServiceProvider.Register(new ConfigProvider(connectConfig));*/
+            ServiceProvider.Register(new LocalizationService());
             ServiceProvider.Register(new SettingsProvider());
+            ServiceProvider.Register(new OreMiningService());
+            ServiceProvider.Register(new OreProcessingService());
+            ServiceProvider.Register(new DatabaseService(connectConfig));
             
             await ServiceProvider.InitServices();
             

@@ -1,4 +1,4 @@
-﻿using Game.Scripts.Gameplay.Data.Units;
+﻿using Game.Scripts.Gameplay.Units;
 
 namespace Game.Scripts.Gameplay.ECS.Spawn.Components
 {

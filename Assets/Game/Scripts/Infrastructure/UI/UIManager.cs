@@ -11,8 +11,7 @@ namespace Game.Scripts.UI
 {
     public class UIManager : MonoBehaviour
     {
-        public static Camera GameCamera => _instance.gameCamera; 
-        public static Camera RawCamera => _instance.rawCamera; 
+        public static Camera GameCamera => _instance._gameCamera; 
         private static UIManager _instance;
         
         private static readonly Vector3 CharacterRawPos = new (1.13f, -1.22f, 4.1f);
@@ -23,14 +22,13 @@ namespace Game.Scripts.UI
         [SerializeField] private Transform popupRoot;
         [SerializeField] private Camera uiCamera;
         [SerializeField] private Camera guiCamera;
-        [SerializeField] private Camera rawCamera;
-        [SerializeField] private Camera gameCamera;
         [SerializeField] private CanvasGroup blackScreenFade;
         [SerializeField] private NotificationView infoMessageView;
         [SerializeField] private NotificationView warningMessageView;
 
         private readonly Dictionary<Type, PopupViewBase> _popups = new ();
         private readonly Dictionary<GUIModel, GUIViewBase> _gui = new ();
+        private Camera _gameCamera;
         private Sequence _sequence;
 
         public float duration = 1;
@@ -62,25 +60,18 @@ namespace Game.Scripts.UI
 
         public static void SetCameraPosition(Vector3 position)
         {
-            _instance.gameCamera.transform.position = position;
+            GameCamera.transform.position = position;
         }
         
         public static void SetCameraPositionTween(Vector3 position, Action onComplete = null)
         {
-            Tween.Position(_instance.gameCamera.transform, position, 1, Ease.OutSine)
+            Tween.Position(GameCamera.transform, position, 1, Ease.OutSine)
                 .OnComplete(() => onComplete?.Invoke());
         }
         
         public static void SetCameraRotation(Vector3 rotation)
         {
-            _instance.gameCamera.transform.rotation = Quaternion.Euler(rotation);
-        }
-
-        public static void SetCharacterRaw(Transform character)
-        {
-            character.SetParent(_instance.rawCamera.transform);
-            character.localPosition = CharacterRawPos;
-            character.localRotation = Quaternion.Euler(0, 180, 0);
+            GameCamera.transform.rotation = Quaternion.Euler(rotation);
         }
 
         public static TView ShowGUI<TView, TModel>(TModel model) where TView : GUIView<TModel> where TModel : GUIModel
@@ -198,10 +189,10 @@ namespace Game.Scripts.UI
 
         public static void SetCameraStack(Camera main)
         {
+            _instance._gameCamera = main;
             var cameraData = main.GetUniversalAdditionalCameraData();
             cameraData.cameraStack.Add(_instance.guiCamera);
             cameraData.cameraStack.Add(_instance.uiCamera);
-            cameraData.cameraStack.Add(_instance.rawCamera);
         }
     }
 }

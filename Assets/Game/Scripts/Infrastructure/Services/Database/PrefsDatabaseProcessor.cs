@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Game.Scripts.Gameplay.Pickaxe;
+using Newtonsoft.Json;
 using Sirenix.Utilities;
 using UnityEngine;
 
@@ -8,23 +10,28 @@ namespace Game.Scripts.Infrastructure.Services.Database
   public class PrefsDatabaseProcessor : IDatabaseProcessor
   {
     private string NAME_KEY = "name";
-    private string WEAPON_KEY = "weapon";
-    private string FACE_KEY = "face";
-    private string BODY_KEY = "body";
-    private string SLAPS_KEY = "slaps";
-    private string PURCHASES_KEY = "purchases";
+    private string MONEY_KEY = "money";
+    private string ORE_KEY = "ore";
+    private string PROCESSING_MONEY_KEY = "processing_money";
+    private string PROCESSING_ORE_KEY = "processing_ore";
+    private string PICKAXES_KEY = "pickaxes";
+    private string PICKAXES_NOMINAL_KEY = "pickaxes_nominal";
     
     public async UniTask Load(DatabaseService database)
     {
       database.PlayerName.Value = PlayerPrefs.GetString(NAME_KEY, GetRandomName());
-      database.Weapon.Value = PlayerPrefs.GetString(WEAPON_KEY, "Newspaper");
-      database.Face.Value = PlayerPrefs.GetString(FACE_KEY, "Face1");
-      database.Body.Value = PlayerPrefs.GetString(BODY_KEY, "Body1");
-      database.Slaps.Value = PlayerPrefs.GetInt(SLAPS_KEY, 0);
-      
-      var purchases = PlayerPrefs.GetString(PURCHASES_KEY, "").Split(',');
-      if (purchases.Any())
-        database.Inventory.AddRange(purchases);
+      database.Money.Value = ulong.TryParse(PlayerPrefs.GetString(MONEY_KEY, "0"), out var m) ? m : 0;
+      database.Ore.Value = ulong.TryParse(PlayerPrefs.GetString(ORE_KEY, "0"), out var o) ? o : 0;
+      database.ProcessingMoney.Value = ulong.TryParse(PlayerPrefs.GetString(PROCESSING_MONEY_KEY, "0"), out var pm) ? pm : 0;
+      database.ProcessingOre.Value = ulong.TryParse(PlayerPrefs.GetString(PROCESSING_ORE_KEY, "0"), out var po) ? po : 0;
+      database.PickaxesNominal.Value = ulong.TryParse(PlayerPrefs.GetString(PICKAXES_NOMINAL_KEY, "0"), out var pn) ? pn : 0;
+
+      var pickaxesPrefs = PlayerPrefs.GetString(PICKAXES_KEY, string.Empty);
+      if (!string.IsNullOrEmpty(pickaxesPrefs))
+      {
+        var json = JsonConvert.DeserializeObject<List<PickaxeData>>(pickaxesPrefs);
+        database.Pickaxes.AddRange(json);
+      }
       
       await UniTask.Yield();
     }
@@ -32,23 +39,14 @@ namespace Game.Scripts.Infrastructure.Services.Database
     public async UniTask Save(DatabaseService database)
     {
       PlayerPrefs.SetString(NAME_KEY, database.PlayerName.Value);
-      PlayerPrefs.SetString(WEAPON_KEY, database.Weapon.Value);
-      PlayerPrefs.SetString(FACE_KEY, database.Face.Value);
-      PlayerPrefs.SetString(BODY_KEY, database.Body.Value);
-      PlayerPrefs.SetInt(SLAPS_KEY, database.Slaps.Value);
+      PlayerPrefs.SetString(MONEY_KEY, database.Money.ToString());
+      PlayerPrefs.SetString(ORE_KEY, database.Ore.ToString());
+      PlayerPrefs.SetString(PROCESSING_MONEY_KEY, database.ProcessingMoney.ToString());
+      PlayerPrefs.SetString(PROCESSING_ORE_KEY, database.ProcessingOre.ToString());
+      PlayerPrefs.SetString(PICKAXES_NOMINAL_KEY, database.PickaxesNominal.ToString());
       
-      var purchases = string.Empty;
-      var isFirst = true;
-      foreach (var purchase in database.Inventory)
-      {
-        if (!isFirst)
-          purchases += ",";
-        
-        purchases += purchase;
-        isFirst = false;
-      }
-      
-      PlayerPrefs.SetString(PURCHASES_KEY, purchases);
+      var json = JsonConvert.SerializeObject(database.Pickaxes);
+      PlayerPrefs.SetString(PICKAXES_KEY, json);
       
       await UniTask.Yield();
     }

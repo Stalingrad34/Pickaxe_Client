@@ -1,7 +1,7 @@
-﻿using Game.Scripts.Gameplay.Data.Units;
-using Game.Scripts.Gameplay.ECS.Common;
+﻿using Game.Scripts.Gameplay.ECS.Common;
 using Game.Scripts.Gameplay.ECS.EntityConvert.Aspects;
 using Game.Scripts.Gameplay.ECS.Spawn.Aspects;
+using Game.Scripts.Gameplay.Units;
 using Leopotam.EcsProto;
 using UnityEngine;
 

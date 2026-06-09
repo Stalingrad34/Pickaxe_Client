@@ -1,8 +1,9 @@
 ﻿using Cysharp.Threading.Tasks;
-using Game.Scripts.Gameplay.Data.Units;
 using Game.Scripts.Gameplay.ECS;
+using Game.Scripts.Gameplay.Units;
 using Game.Scripts.Infrastructure.Services;
 using Game.Scripts.Infrastructure.Services.Config;
+using Game.Scripts.Infrastructure.Services.Database;
 using Game.Scripts.Infrastructure.States;
 using Game.Scripts.UI;
 using Game.Scripts.UI.GUI;
@@ -16,7 +17,10 @@ namespace Game.Scripts.States
     public async UniTask Enter()
     {
       await SceneManager.LoadSceneAsync("Game/Scenes/Game");
-      UIManager.ShowGUI<MainGUIView, MainGUIModel>(new MainGUIModel());
+      UIManager.SetCameraStack(Camera.main);
+
+      var database = ServiceProvider.Get<DatabaseService>();
+      UIManager.ShowGUI<MainGUIView, MainGUIModel>(new MainGUIModel(database));
       
       var data = new UnitData()
       {

@@ -11,7 +11,6 @@ namespace Game.Scripts.Gameplay.ECS.EntityConvert.Converters
   {
     [SerializeField] private Joystick axisJoystick;
     [SerializeField] private RotateJoystick rotateJoystick;
-    [SerializeField] private CustomButton slapButton;
     [SerializeField] private CustomButton jumpButton;
     
     public void Convert(ProtoEntity entity, IProtoSystems systems)
@@ -19,7 +18,6 @@ namespace Game.Scripts.Gameplay.ECS.EntityConvert.Converters
       ref var component = ref systems.GetAspect<InputAspect>().Joysticks.Add(entity);
       component.AxisJoystick = axisJoystick;
       component.RotateJoystick = rotateJoystick;
-      component.ActionButton = slapButton;
       component.JumpButton = jumpButton;
     }
   }

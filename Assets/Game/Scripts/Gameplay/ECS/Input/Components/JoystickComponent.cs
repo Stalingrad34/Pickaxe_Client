@@ -8,7 +8,6 @@ namespace Game.Scripts.Gameplay.ECS.Input.Components
   {
     public Joystick AxisJoystick;
     public RotateJoystick RotateJoystick;
-    public CustomButton ActionButton;
     public CustomButton JumpButton;
   }
 }
