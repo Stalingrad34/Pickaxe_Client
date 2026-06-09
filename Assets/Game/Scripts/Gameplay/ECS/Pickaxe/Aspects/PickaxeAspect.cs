@@ -5,7 +5,7 @@ namespace Game.Scripts.Gameplay.ECS.Pickaxe.Aspects
 {
   public class PickaxeAspect : IProtoAspect
   {
-    public ProtoPool<SpawnPickaxeEvent> SpawnPickaxePool;
+    public ProtoPool<SpawnPickaxeEvent> SpawnPickaxeEvents;
     private ProtoWorld _world;
     
     public void Init(ProtoWorld world)
@@ -13,8 +13,8 @@ namespace Game.Scripts.Gameplay.ECS.Pickaxe.Aspects
       _world = world;
       _world.AddAspect(this);
       
-      SpawnPickaxePool = new ProtoPool<SpawnPickaxeEvent>();
-      _world.AddPool(SpawnPickaxePool);
+      SpawnPickaxeEvents = new ProtoPool<SpawnPickaxeEvent>();
+      _world.AddPool(SpawnPickaxeEvents);
     }
 
     public void PostInit()

@@ -23,7 +23,7 @@ namespace Game.Scripts.Gameplay.ECS.Spawn.Systems
     {
       foreach (var entity in _entities)
       {
-        var spawnEvent = _spawn.SpawnEvents.Get(entity);
+        var spawnEvent = _spawn.SpawnCharacterEvents.Get(entity);
         
         var characterView = AssetProvider.GetCharacterView(spawnEvent.PrefabPath);
         characterView.Setup(spawnEvent.Data, _mainCamera);

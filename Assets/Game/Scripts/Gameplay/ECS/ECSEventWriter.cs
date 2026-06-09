@@ -1,5 +1,5 @@
-﻿using Game.Scripts.Gameplay.ECS.Common;
-using Game.Scripts.Gameplay.ECS.EntityConvert.Aspects;
+﻿using Game.Scripts.Gameplay.ECS.EntityConvert.Aspects;
+using Game.Scripts.Gameplay.ECS.Pickaxe.Aspects;
 using Game.Scripts.Gameplay.ECS.Spawn.Aspects;
 using Game.Scripts.Gameplay.Units;
 using Leopotam.EcsProto;
@@ -9,20 +9,19 @@ namespace Game.Scripts.Gameplay.ECS
 {
   public class ECSEventWriter
   {
-    private readonly EventsAspect _events;
     private readonly SpawnAspect _spawn;
+    private readonly PickaxeAspect _pickaxeAspect;
     private readonly EntityConvertAspect _entityConvert;
 
     public ECSEventWriter(ProtoWorld world)
     {
-      _events = world.GetAspect<EventsAspect>();
       _spawn = world.GetAspect<SpawnAspect>();
       _entityConvert = world.GetAspect<EntityConvertAspect>();
     }
 
     public void SpawnCharacter(UnitData unitData, string prefabName)
     {
-      ref var evt = ref _spawn.SpawnEvents.NewEntity(out _);
+      ref var evt = ref _spawn.SpawnCharacterEvents.NewEntity(out _);
       evt.Data = unitData;
       evt.PrefabPath = prefabName;
     }
@@ -33,9 +32,10 @@ namespace Game.Scripts.Gameplay.ECS
       evt.GameObject = gameObject;
     }
 
-    public void PlayerChanged()
+    public void AddPickaxe(string pickaxeDataPath)
     {
-      _events.PlayerChangeEvents.NewEntity(out _);
+      ref var spawnEvent = ref _pickaxeAspect.SpawnPickaxeEvents.NewEntity(out _);
+      spawnEvent.PickaxeDataPath = pickaxeDataPath;
     }
   }
 }

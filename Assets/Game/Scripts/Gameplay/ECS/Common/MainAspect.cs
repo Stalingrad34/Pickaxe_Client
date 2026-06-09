@@ -5,8 +5,6 @@ namespace Game.Scripts.Gameplay.ECS.Common
 {
   public sealed class MainAspect : IProtoAspect
   {
-    public EventsAspect Events;
-    
     private readonly List<IProtoAspect> _aspects = new ();
     private ProtoWorld _world;
 
@@ -22,17 +20,12 @@ namespace Game.Scripts.Gameplay.ECS.Common
       
       foreach (var aspect in _aspects)
         aspect.Init(world);
-      
-      Events = new EventsAspect();
-      Events.Init(world);
     }
 
     public void PostInit()
     {
       foreach (var aspect in _aspects)
         aspect.PostInit();
-      
-      Events.PostInit();
     }
 
     public ProtoWorld World()

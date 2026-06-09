@@ -32,6 +32,7 @@ namespace Game.Scripts.Gameplay.ECS.EntityConvert.Systems
           converter.Convert(entity, _systems);
         }
         
+        convert.SetEntity(entity);
         _entityConvertAspect.Events.Del(entity);
       }
     }

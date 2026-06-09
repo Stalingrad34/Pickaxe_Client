@@ -14,17 +14,20 @@ namespace Game.Scripts.Gameplay.ECS.Pickaxe
       var aspect = systems.GetAspect<PickaxeAspect>();
       systems
         .AddSystem(new SpawnPickaxeSystem())
-        .AddSystem(new OneFrameSystem<SpawnPickaxeEvent>(aspect.SpawnPickaxePool));
+        .AddSystem(new OneFrameSystem<SpawnPickaxeEvent>(aspect.SpawnPickaxeEvents));
     }
 
     public IProtoAspect[] Aspects()
     {
-      throw new NotImplementedException();
+      return new IProtoAspect[]
+      {
+        new PickaxeAspect()
+      };
     }
 
     public Type[] Dependencies()
     {
-      throw new NotImplementedException();
+      return null;
     }
   }
 }

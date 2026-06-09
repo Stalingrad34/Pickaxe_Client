@@ -1,6 +1,5 @@
 ﻿using Game.Scripts.Gameplay.OreMining;
 using Game.Scripts.Infrastructure.Custom;
-using Game.Scripts.Infrastructure.Extensions;
 using Game.Scripts.Infrastructure.Services;
 using Game.Scripts.Infrastructure.Services.Database;
 using Game.Scripts.UI;
@@ -37,6 +36,14 @@ namespace Game.Scripts.Gameplay.FloorButtons
       onRoot.SetActive(_databaseService.Money.Value >= pickaxeCost);
       offRoot.SetActive(_databaseService.Money.Value < pickaxeCost);
       cost.text = "$" + MoneyFormatter.Format((long)pickaxeCost);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+      if (other.gameObject.CompareTag("Player"))
+      {
+        ServiceProvider.Get<OreMiningService>().TryAddPickaxes(pickaxesCount);
+      }
     }
   }
 }

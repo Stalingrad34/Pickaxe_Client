@@ -14,7 +14,7 @@ namespace Game.Scripts.Gameplay.ECS.Spawn
       var spawnAspect = systems.GetAspect<SpawnAspect>();
       systems
         .AddSystem(new SpawnCharacterSystem())
-        .AddSystem(new OneFrameSystem<SpawnCharacterEvent>(spawnAspect.SpawnEvents));
+        .AddSystem(new OneFrameSystem<SpawnCharacterEvent>(spawnAspect.SpawnCharacterEvents));
     }
 
     public IProtoAspect[] Aspects()

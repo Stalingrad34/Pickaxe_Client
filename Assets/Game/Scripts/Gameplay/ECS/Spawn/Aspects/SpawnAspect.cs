@@ -1,11 +1,12 @@
-﻿using Game.Scripts.Gameplay.ECS.Spawn.Components;
+﻿using Game.Scripts.Gameplay.ECS.Pickaxe.Components;
+using Game.Scripts.Gameplay.ECS.Spawn.Components;
 using Leopotam.EcsProto;
 
 namespace Game.Scripts.Gameplay.ECS.Spawn.Aspects
 {
   public class SpawnAspect : IProtoAspect
   {
-    public ProtoPool<SpawnCharacterEvent> SpawnEvents;
+    public ProtoPool<SpawnCharacterEvent> SpawnCharacterEvents;
     private ProtoWorld _world;
     
     public void Init(ProtoWorld world)
@@ -13,8 +14,8 @@ namespace Game.Scripts.Gameplay.ECS.Spawn.Aspects
       _world = world;
       world.AddAspect(this);
       
-      SpawnEvents = new ProtoPool<SpawnCharacterEvent>();
-      world.AddPool(SpawnEvents);
+      SpawnCharacterEvents = new ProtoPool<SpawnCharacterEvent>();
+      world.AddPool(SpawnCharacterEvents);
     }
 
     public void PostInit()

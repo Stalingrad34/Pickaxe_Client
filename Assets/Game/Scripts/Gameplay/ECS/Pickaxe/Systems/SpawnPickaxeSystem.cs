@@ -20,7 +20,7 @@ namespace Game.Scripts.Gameplay.ECS.Pickaxe.Systems
     {
       foreach (var entity in _entities)
       {
-        var spawnEvent = _pickaxeAspect.SpawnPickaxePool.Get(entity);
+        var spawnEvent = _pickaxeAspect.SpawnPickaxeEvents.Get(entity);
         var pickaxeData = AssetProvider.GetPickaxeData(spawnEvent.PickaxeDataPath);
       }
     }
