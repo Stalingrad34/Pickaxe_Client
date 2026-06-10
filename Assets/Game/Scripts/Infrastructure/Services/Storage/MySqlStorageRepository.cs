@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Game.Scripts.Infrastructure.Services.Storage;
+using Game.Scripts.Infrastructure.Services.Storage.Data;
 using Game.Scripts.Multiplayer;
 using Newtonsoft.Json;
 using Sirenix.Utilities;
@@ -8,7 +10,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Infrastructure.Services.Database
 {
-  public class MySqlDatabaseProcessor : IDatabaseProcessor
+  public class MySqlStorageRepository : IStorageRepository
   {
     public class Response
     {
@@ -30,13 +32,13 @@ namespace Game.Scripts.Infrastructure.Services.Database
     private readonly string _getStateURI;
     private readonly string _setStateURI;
     
-    public MySqlDatabaseProcessor(ConnectConfig connectConfig)
+    public MySqlStorageRepository(ConnectConfig connectConfig)
     {
       _getStateURI = connectConfig.GetStateUrl;
       _setStateURI = connectConfig.SetStateUrl;
     }
     
-    public async UniTask Load(DatabaseService database)
+    public async UniTask<SaveData> Load()
     {
       var pars = new Dictionary<string, string>
       {
@@ -53,16 +55,17 @@ namespace Game.Scripts.Infrastructure.Services.Database
       catch (Exception e)
       {
         Debug.LogError(e);
-        return;
+        return new SaveData();
       }
 
       if (!response.success)
       {
         Debug.LogError(response.message);
-        return;
+        return new SaveData();
       }
       
       Debug.Log(response.message);
+      return new SaveData();
       
       /*database.PlayerName.Value = response.data.Name;
       database.Weapon.Value = response.data.Weapon;
@@ -72,7 +75,7 @@ namespace Game.Scripts.Infrastructure.Services.Database
       database.Inventory.AddRange(response.data.Inventory);*/
     }
 
-    public async UniTask Save(DatabaseService database)
+    public async UniTask Save(SaveData database)
     {
       var state = new PlayerStateDto()
       {

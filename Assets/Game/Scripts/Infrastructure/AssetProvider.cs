@@ -29,9 +29,9 @@ namespace Game.Scripts.Infrastructure
             return GetResource<EnemyView>($"{UNITS_PATH}/{prefabPath}");
         }
         
-        public static PickaxeConfig GetPickaxeData(string path)
+        public static PickaxeConfig GetPickaxeData(PickaxeType type)
         {
-            return GetResource<PickaxeConfig>(path);
+            return GetResource<PickaxeConfig>($"Pickaxe_{type}");
         }
         
         public static UnitView GetCharacterView(string prefabPath)

@@ -13,6 +13,7 @@ namespace Game.Scripts.Gameplay.ECS.Spawn
     {
       var spawnAspect = systems.GetAspect<SpawnAspect>();
       systems
+        .AddSystem(new LinkMineSystem())
         .AddSystem(new SpawnCharacterSystem())
         .AddSystem(new OneFrameSystem<SpawnCharacterEvent>(spawnAspect.SpawnCharacterEvents));
     }

@@ -1,7 +1,7 @@
 ﻿namespace Game.Scripts.Gameplay.ECS.Pickaxe.Components
 {
-  public struct SpawnPickaxeEvent
+  public struct PickaxeComponent
   {
-    public string PickaxeDataPath;
+    
   }
 }

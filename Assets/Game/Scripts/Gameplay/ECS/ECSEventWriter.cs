@@ -1,6 +1,8 @@
-﻿using Game.Scripts.Gameplay.ECS.EntityConvert.Aspects;
+﻿using System.Collections.Generic;
+using Game.Scripts.Gameplay.ECS.EntityConvert.Aspects;
 using Game.Scripts.Gameplay.ECS.Pickaxe.Aspects;
 using Game.Scripts.Gameplay.ECS.Spawn.Aspects;
+using Game.Scripts.Gameplay.Pickaxe;
 using Game.Scripts.Gameplay.Units;
 using Leopotam.EcsProto;
 using UnityEngine;
@@ -16,6 +18,7 @@ namespace Game.Scripts.Gameplay.ECS
     public ECSEventWriter(ProtoWorld world)
     {
       _spawn = world.GetAspect<SpawnAspect>();
+      _pickaxeAspect = world.GetAspect<PickaxeAspect>();
       _entityConvert = world.GetAspect<EntityConvertAspect>();
     }
 
@@ -32,10 +35,11 @@ namespace Game.Scripts.Gameplay.ECS
       evt.GameObject = gameObject;
     }
 
-    public void AddPickaxe(string pickaxeDataPath)
+    public void RebuildPickaxes(string ownerId, Dictionary<PickaxeType, int> pickaxes)
     {
-      ref var spawnEvent = ref _pickaxeAspect.SpawnPickaxeEvents.NewEntity(out _);
-      spawnEvent.PickaxeDataPath = pickaxeDataPath;
+      ref var spawnEvent = ref _pickaxeAspect.RebuildPickaxeEvents.NewEntity(out _);
+      spawnEvent.OwnerID = ownerId;
+      spawnEvent.Pickaxes = pickaxes;
     }
   }
 }

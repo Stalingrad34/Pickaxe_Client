@@ -1,10 +1,8 @@
 ﻿using BitGames.Bits;
 using Cysharp.Threading.Tasks;
-using Game.Scripts.Gameplay.OreMining;
 using Game.Scripts.Gameplay.OreProcessing;
 using Game.Scripts.Infrastructure.Services;
-using Game.Scripts.Infrastructure.Services.Config;
-using Game.Scripts.Infrastructure.Services.Database;
+using Game.Scripts.Infrastructure.Services.Storage;
 using Game.Scripts.Infrastructure.States;
 using Game.Scripts.Multiplayer;
 using Game.Scripts.States;
@@ -46,11 +44,25 @@ namespace Game.Scripts.Infrastructure
             ServiceProvider.Register(new AnalyticsService());
             ServiceProvider.Register(new InAppService());
             ServiceProvider.Register(new ConfigProvider(connectConfig));*/
+
+            var storageService = new StorageService();
+            var playerService = new PlayerService();
+            var economyService = new EconomyService();
+            var pickaxesService = new PickaxesService();
+            
+            storageService
+                .AddProcessor(playerService)
+                .AddProcessor(economyService)
+                .AddProcessor(pickaxesService);
+            
+            ServiceProvider.Register(storageService);
+            ServiceProvider.Register(playerService);
+            ServiceProvider.Register(economyService);
+            ServiceProvider.Register(pickaxesService);
             ServiceProvider.Register(new LocalizationService());
             ServiceProvider.Register(new SettingsProvider());
-            ServiceProvider.Register(new OreMiningService());
             ServiceProvider.Register(new OreProcessingService());
-            ServiceProvider.Register(new DatabaseService(connectConfig));
+            ServiceProvider.Register(new EconomyService());
             
             await ServiceProvider.InitServices();
             

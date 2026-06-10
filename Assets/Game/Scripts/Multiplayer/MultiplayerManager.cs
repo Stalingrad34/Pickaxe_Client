@@ -43,7 +43,7 @@ namespace Game.Scripts.Multiplayer
       DontDestroyOnLoad(this);
     }
 
-    public async UniTask<Room<State>> Connect(DatabaseService database, string roomName, Vector3Float position, float rotation)
+    public async UniTask<Room<State>> Connect(PlayerService player, string roomName, Vector3Float position, float rotation)
     {
       var data = new Dictionary<string, object>()
       {
@@ -53,7 +53,7 @@ namespace Game.Scripts.Multiplayer
         /*{"weapon", database.Weapon.Value},
         {"body", database.Body.Value},
         {"face", database.Face.Value},*/
-        {"name", database.PlayerName.Value},
+        {"name", player.PlayerName.Value},
       };
       _room = await Instance.client.JoinOrCreate<State>(roomName, data).AsUniTask();
 

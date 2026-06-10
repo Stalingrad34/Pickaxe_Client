@@ -17,6 +17,7 @@ namespace Game.Scripts.Gameplay.ECS
   public class ECSRunner : MonoBehaviour
   {
     public static ECSEventWriter EcsEventWriter { get; private set; }
+    public ProtoWorld World => _world;
     
     [SerializeField] private ExampleCharacterCamera mainCamera;
     
@@ -65,10 +66,10 @@ namespace Game.Scripts.Gameplay.ECS
       _updateSystems
         .AddService(mainCamera, typeof(ExampleCharacterCamera))
         .AddService(inputActions, typeof(InputActions))
+        .AddModule(convertEntityModule)
         .AddModule(inputModule)
         .AddModule(spawnModule)
         .AddModule(moveModule)
-        .AddModule(convertEntityModule)
         .AddModule(pickaxeModule)
         //.AddSystem(new OneFrameSystem<PlayerChangeEvent>(_mainAspect.Events.PlayerChangeEvents))
         .Init();

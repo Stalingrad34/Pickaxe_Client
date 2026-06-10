@@ -19,8 +19,8 @@ namespace Game.Scripts.States
       await SceneManager.LoadSceneAsync("Game/Scenes/Game");
       UIManager.SetCameraStack(Camera.main);
 
-      var database = ServiceProvider.Get<DatabaseService>();
-      UIManager.ShowGUI<MainGUIView, MainGUIModel>(new MainGUIModel(database));
+      var economy = ServiceProvider.Get<EconomyService>();
+      UIManager.ShowGUI<MainGUIView, MainGUIModel>(new MainGUIModel(economy));
       
       var data = new UnitData()
       {
@@ -28,12 +28,11 @@ namespace Game.Scripts.States
         Speed = 2,
         //PlayerSpeed = ServiceProvider.Get<ConfigProvider>().Game.Speed,
         //JumpForce = ServiceProvider.Get<ConfigProvider>().Game.JumpForce,
-        PlayerName = "Player",
-        StartAngleY = 0,
-        Position = Vector3.back * 30,
+        PlayerName = "Player"
       };
       
       ECSRunner.EcsEventWriter.SpawnCharacter(data, "Player");
+      ServiceProvider.Get<PickaxesService>().RebuildPickaxes("player");
     }
   }
 }

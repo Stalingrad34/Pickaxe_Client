@@ -1,5 +1,4 @@
 ﻿using Game.Scripts.Infrastructure.Services;
-using Game.Scripts.Infrastructure.Services.Database;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using UnityEngine;
@@ -11,7 +10,7 @@ namespace Game.Scripts.Infrastructure.Editor
     [Button]
     public void AddMoney()
     {
-      ServiceProvider.Get<DatabaseService>().Money.Value += 100;
+      ServiceProvider.Get<EconomyService>().Money.Value += 100;
     }
     
     public static void OpenWindow()

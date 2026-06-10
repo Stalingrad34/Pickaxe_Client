@@ -14,8 +14,8 @@ namespace Game.Scripts.Gameplay.ECS.Spawn.Systems
     
     public void Init(IProtoSystems systems)
     {
-      _spawn = systems.GetAspect<SpawnAspect>();
       _mainCamera = systems.GetService<ExampleCharacterCamera>();
+      _spawn = systems.GetAspect<SpawnAspect>();
       _entities = Entities.ProtoIt<SpawnCharacterEvent>(systems.World());
     }
     

@@ -5,6 +5,8 @@ namespace Game.Scripts.Gameplay.Pickaxe
   [CreateAssetMenu(menuName = "Data/PickaxeConfig")]
   public class PickaxeConfig : ScriptableObject
   {
-    
+    public PickaxeView pickaxeView;
+    public PickaxeType pickaxeType;
+    public int miningOreCount;
   }
 }

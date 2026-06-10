@@ -1,4 +1,5 @@
 ﻿using BitGames.Bits;
+using Game.Scripts.Infrastructure.Services;
 using Game.Scripts.Infrastructure.Services.Database;
 using UniRx;
 
@@ -8,12 +9,12 @@ namespace Game.Scripts.UI.GUI
   {
     public readonly ReactiveProperty<ulong> Money;
     public readonly ReactiveProperty<bool> ShowJoystick = new ();
-    private readonly DatabaseService _database;
+    private readonly EconomyService _economy;
 
-    public MainGUIModel(DatabaseService database)
+    public MainGUIModel(EconomyService economy)
     {
-      _database = database;
-      Money = _database.Money;
+      _economy = economy;
+      Money = _economy.Money;
       ShowJoystick.Value = Platform.IsMobileWebGL();
     }
   }
