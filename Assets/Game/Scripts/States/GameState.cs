@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 
 namespace Game.Scripts.States
 {
-  public class GameState : IEnterStateAsync
+  public class GameState : IEnterStateAsync, IExitState
   {
     public async UniTask Enter()
     {
@@ -33,6 +33,12 @@ namespace Game.Scripts.States
       
       ECSRunner.EcsEventWriter.SpawnCharacter(data, "Player");
       ServiceProvider.Get<PickaxesService>().RebuildPickaxes("player");
+      ServiceProvider.Get<PickaxesService>().StartPickaxeTimer();
+    }
+
+    public void Exit()
+    {
+      ServiceProvider.Get<PickaxesService>().StopPickaxeTimer();
     }
   }
 }

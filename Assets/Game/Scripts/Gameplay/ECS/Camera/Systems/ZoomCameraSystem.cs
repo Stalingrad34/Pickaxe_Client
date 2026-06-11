@@ -25,7 +25,7 @@ namespace Game.Scripts.Gameplay.ECS.Camera.Systems
       foreach (var entity in _entities)
       {
         var control = _input.Controls.Get(entity);
-        _camera.Cameras.Get(entity).ScrollInput = control.MouseScroll;
+        _camera.Cameras.Get(entity).ScrollInput = control.MouseScroll / 2;
       }
     }
   }

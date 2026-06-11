@@ -41,5 +41,11 @@ namespace Game.Scripts.Gameplay.ECS
       spawnEvent.OwnerID = ownerId;
       spawnEvent.Pickaxes = pickaxes;
     }
+
+    public void PickaxesPunch(string ownerId)
+    {
+      ref var punchEvent = ref _pickaxeAspect.PickaxesPunchEvents.NewEntity(out _);
+      punchEvent.OwnerId =  ownerId;
+    }
   }
 }

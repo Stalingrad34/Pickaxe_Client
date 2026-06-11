@@ -14,7 +14,9 @@ namespace Game.Scripts.Gameplay.ECS.Pickaxe
       var aspect = systems.GetAspect<PickaxeAspect>();
       systems
         .AddSystem(new RebuildPickaxesSystem())
-        .AddSystem(new OneFrameSystem<RebuildPickaxeEvent>(aspect.RebuildPickaxeEvents));
+        .AddSystem(new PickaxesPunchSystem())
+        .AddSystem(new OneFrameSystem<RebuildPickaxeEvent>(aspect.RebuildPickaxeEvents))
+        .AddSystem(new OneFrameSystem<PickaxesPunchEvent>(aspect.PickaxesPunchEvents));
     }
 
     public IProtoAspect[] Aspects()

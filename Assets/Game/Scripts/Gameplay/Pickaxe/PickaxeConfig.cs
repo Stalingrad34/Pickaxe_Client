@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Scripts.Gameplay.Ore;
+using UnityEngine;
 
 namespace Game.Scripts.Gameplay.Pickaxe
 {
@@ -7,6 +8,6 @@ namespace Game.Scripts.Gameplay.Pickaxe
   {
     public PickaxeView pickaxeView;
     public PickaxeType pickaxeType;
-    public int miningOreCount;
+    public OreConfig oreConfig;
   }
 }

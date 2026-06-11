@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50e079b51a26443ab46a6b7510cd0427, type: 3}
   m_Name: Pickaxe_Cuprum
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.Pickaxe.PickaxeConfig
-  pickaxeView: {fileID: 5775443065723726285, guid: 2c1a2d9dcb804824e9fba67f4fef22fb, type: 3}
+  pickaxeView: {fileID: 4421495091186056668, guid: 2c1a2d9dcb804824e9fba67f4fef22fb, type: 3}
   pickaxeType: 3
-  miningOreCount: 24
+  oreConfig: {fileID: 11400000, guid: ec27270e3d3ff2d42a7261e0176b0734, type: 2}

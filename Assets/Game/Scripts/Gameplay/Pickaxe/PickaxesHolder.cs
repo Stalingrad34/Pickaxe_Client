@@ -10,7 +10,7 @@ namespace Game.Scripts.Gameplay.Pickaxe
     [SerializeField] private Transform pickaxesPoolRoot;
     [SerializeField] private List<PickaxeRootView> pickaxeRoots;
 
-    private Dictionary<PickaxeType, Queue<PickaxeView>> _views = new();
+    private readonly Dictionary<PickaxeType, Queue<PickaxeView>> _views = new();
     
     public void RebuildPickaxes(Dictionary<PickaxeType, int> pickaxes)
     {
@@ -26,6 +26,17 @@ namespace Game.Scripts.Gameplay.Pickaxe
           pickaxeRoots[rootIdx].AddView(view);
           rootIdx++;
         }
+      }
+    }
+    
+    public void PickaxesPunch()
+    {
+      foreach (var root in pickaxeRoots)
+      {
+        if (root.IsEmpty())
+          continue;
+        
+        root.Punch();
       }
     }
 

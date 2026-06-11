@@ -8,6 +8,7 @@ namespace Game.Scripts.Gameplay.ECS.Pickaxe.Aspects
     public ProtoPool<PickaxeComponent> Pickaxes;
     public ProtoPool<PickaxeMineComponent> PickaxeMines;
     public ProtoPool<RebuildPickaxeEvent> RebuildPickaxeEvents;
+    public ProtoPool<PickaxesPunchEvent> PickaxesPunchEvents;
     private ProtoWorld _world;
     
     public void Init(ProtoWorld world)
@@ -23,6 +24,9 @@ namespace Game.Scripts.Gameplay.ECS.Pickaxe.Aspects
       
       RebuildPickaxeEvents = new ProtoPool<RebuildPickaxeEvent>();
       _world.AddPool(RebuildPickaxeEvents);
+      
+      PickaxesPunchEvents = new ProtoPool<PickaxesPunchEvent>();
+      _world.AddPool(PickaxesPunchEvents);
     }
 
     public void PostInit()

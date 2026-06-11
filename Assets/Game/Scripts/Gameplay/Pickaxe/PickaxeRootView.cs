@@ -12,6 +12,7 @@ namespace Game.Scripts.Gameplay.Pickaxe
       _view = view;
       _view.transform.SetParent(transform);
       _view.transform.localPosition = Vector3.zero;
+      _view.transform.localRotation = Quaternion.identity;
       _view.gameObject.SetActive(true);
       _isEmpty = false;
     }
@@ -24,6 +25,20 @@ namespace Game.Scripts.Gameplay.Pickaxe
       _isEmpty = true;
       _view.gameObject.SetActive(false);
       return _view;
+    }
+
+    public void Punch()
+    {
+      if (_isEmpty)
+        return;
+      
+      SpawnOre();
+      _view.PlayPunchAnimation().Forget();
+    }
+
+    private void SpawnOre()
+    {
+      _view.SpawnOre();
     }
 
     public bool IsEmpty()

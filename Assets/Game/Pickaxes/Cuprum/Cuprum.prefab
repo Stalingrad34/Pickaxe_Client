@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2861088451033834582, guid: 36cae5f9dd1e97c4aaea8722abf452a7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5860461196791402394, guid: 36cae5f9dd1e97c4aaea8722abf452a7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.2273
@@ -58,28 +62,8 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2861088451033834582, guid: 36cae5f9dd1e97c4aaea8722abf452a7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6580162551353061491}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8005691957952060869, guid: 36cae5f9dd1e97c4aaea8722abf452a7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5775443065723726285}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36cae5f9dd1e97c4aaea8722abf452a7, type: 3}
---- !u!1 &3251818393913890526 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8005691957952060869, guid: 36cae5f9dd1e97c4aaea8722abf452a7, type: 3}
-  m_PrefabInstance: {fileID: 4771891402852174619}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5775443065723726285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3251818393913890526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ebe1b3fb324410dab36718c6245762b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.Pickaxe.PickaxeView
 --- !u!4 &7317655857643564877 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2861088451033834582, guid: 36cae5f9dd1e97c4aaea8722abf452a7, type: 3}

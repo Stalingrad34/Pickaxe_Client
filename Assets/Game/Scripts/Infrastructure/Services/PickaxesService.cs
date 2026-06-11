@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Game.Scripts.Gameplay.ECS;
 using Game.Scripts.Gameplay.Pickaxe;
 using Game.Scripts.Infrastructure.Services.Storage;
@@ -13,6 +14,20 @@ namespace Game.Scripts.Infrastructure.Services
     public readonly ReactiveProperty<ulong> PickaxesNominal = new();
     
     private Dictionary<PickaxeType, int> _pickaxes = new();
+    private IDisposable _pickaxesTimer;
+
+    public void StartPickaxeTimer()
+    {
+      _pickaxesTimer = Observable
+        .Timer(TimeSpan.FromSeconds(5))
+        .Repeat()
+        .Subscribe(_ => PickaxesPunchFire());
+    }
+
+    public void StopPickaxeTimer()
+    {
+      _pickaxesTimer.Dispose();
+    }
     
     public void TryAddPickaxes(int count)
     {
@@ -37,6 +52,11 @@ namespace Game.Scripts.Infrastructure.Services
         return 5;
 
       return PickaxesNominal.Value * 7 / 5 + 6;
+    }
+
+    private void PickaxesPunchFire()
+    {
+      ECSRunner.EcsEventWriter.PickaxesPunch("player");
     }
     
     private void AddPickaxe(PickaxeType type, int amount = 1)
