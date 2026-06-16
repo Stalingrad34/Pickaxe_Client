@@ -5,6 +5,7 @@ using Game.Scripts.Gameplay.ECS.Common;
 using Game.Scripts.Gameplay.ECS.EntityConvert;
 using Game.Scripts.Gameplay.ECS.Input;
 using Game.Scripts.Gameplay.ECS.KinematicCharacter;
+using Game.Scripts.Gameplay.ECS.Ore;
 using Game.Scripts.Gameplay.ECS.Pickaxe;
 using Game.Scripts.Gameplay.ECS.RigidBody;
 using Game.Scripts.Gameplay.ECS.Spawn;
@@ -46,6 +47,7 @@ namespace Game.Scripts.Gameplay.ECS
       var rigidbodyModule = new RigidbodyModule();
       var convertEntityModule = new ConvertEntityModule();
       var pickaxeModule = new PickaxeModule();
+      var oreModule = new OreModule();
       
       _mainAspect = new MainAspect();
       _mainAspect.AddAspects(inputModule.Aspects());
@@ -55,6 +57,7 @@ namespace Game.Scripts.Gameplay.ECS
       _mainAspect.AddAspects(rigidbodyModule.Aspects());
       _mainAspect.AddAspects(convertEntityModule.Aspects());
       _mainAspect.AddAspects(pickaxeModule.Aspects());
+      _mainAspect.AddAspects(oreModule.Aspects());
       
       _world = new ProtoWorld(_mainAspect, config);
       EcsEventWriter = new ECSEventWriter(_world);
@@ -71,6 +74,7 @@ namespace Game.Scripts.Gameplay.ECS
         .AddModule(spawnModule)
         .AddModule(moveModule)
         .AddModule(pickaxeModule)
+        .AddModule(oreModule)
         //.AddSystem(new OneFrameSystem<PlayerChangeEvent>(_mainAspect.Events.PlayerChangeEvents))
         .Init();
       

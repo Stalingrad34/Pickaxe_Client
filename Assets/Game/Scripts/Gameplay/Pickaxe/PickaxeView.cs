@@ -1,5 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using Game.Scripts.Gameplay.ECS;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -35,8 +36,7 @@ namespace Game.Scripts.Gameplay.Pickaxe
 
     public void SpawnOre()
     {
-      var oreView = Instantiate(_pickaxeConfig.oreConfig.prefab, oreSpawnPoint.position, Quaternion.identity);
-      oreView.Init(_pickaxeConfig.oreConfig);
+      ECSRunner.EcsEventWriter.SpawnOre(oreSpawnPoint.position, transform.position - oreSpawnPoint.position, _pickaxeConfig.oreConfig);
     }
   }
 }

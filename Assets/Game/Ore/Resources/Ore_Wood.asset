@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Ore_Wood
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.Ore.OreConfig
   miningCount: 1
-  prefab: {fileID: 3987775147676367549, guid: 351baf6cffb392a4fa8b547dc66669e8, type: 3}
+  prefab: {fileID: 2448610267335282996, guid: f326c4c203159674790afd131573966c, type: 3}
