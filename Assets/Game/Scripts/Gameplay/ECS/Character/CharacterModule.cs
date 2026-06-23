@@ -1,28 +1,27 @@
 ﻿using System;
+using Game.Scripts.Gameplay.ECS.Character.Aspects;
+using Game.Scripts.Gameplay.ECS.Character.Systems;
 using Game.Scripts.Gameplay.ECS.Common;
-using Game.Scripts.Gameplay.ECS.Spawn.Aspects;
 using Game.Scripts.Gameplay.ECS.Spawn.Components;
-using Game.Scripts.Gameplay.ECS.Spawn.Systems;
 using Leopotam.EcsProto;
 
-namespace Game.Scripts.Gameplay.ECS.Spawn
+namespace Game.Scripts.Gameplay.ECS.Character
 {
-  public class SpawnModule : IProtoModule
+  public class CharacterModule : IProtoModule
   {
     public void Init(IProtoSystems systems)
     {
-      var spawnAspect = systems.GetAspect<SpawnAspect>();
+      var aspect = systems.GetAspect<CharacterAspect>();
       systems
-        .AddSystem(new LinkMineSystem())
         .AddSystem(new SpawnCharacterSystem())
-        .AddSystem(new OneFrameSystem<SpawnCharacterEvent>(spawnAspect.SpawnCharacterEvents));
+        .AddSystem(new OneFrameSystem<SpawnCharacterEvent>(aspect.SpawnCharacterEvents));
     }
 
     public IProtoAspect[] Aspects()
     {
       return new IProtoAspect[]
       {
-        new SpawnAspect()
+        new CharacterAspect()
       };
     }
 

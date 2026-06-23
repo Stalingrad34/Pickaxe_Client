@@ -1,10 +1,9 @@
-﻿using Game.Scripts.Gameplay.ECS.Pickaxe.Components;
-using Game.Scripts.Gameplay.ECS.Spawn.Components;
+﻿using Game.Scripts.Gameplay.ECS.Spawn.Components;
 using Leopotam.EcsProto;
 
-namespace Game.Scripts.Gameplay.ECS.Spawn.Aspects
+namespace Game.Scripts.Gameplay.ECS.Character.Aspects
 {
-  public class SpawnAspect : IProtoAspect
+  public class CharacterAspect : IProtoAspect
   {
     public ProtoPool<SpawnCharacterEvent> SpawnCharacterEvents;
     private ProtoWorld _world;

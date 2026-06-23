@@ -32,13 +32,8 @@ namespace Game.Scripts.Gameplay.Pickaxe
       if (_isEmpty)
         return;
       
-      SpawnOre();
-      _view.PlayPunchAnimation().Forget();
-    }
-
-    private void SpawnOre()
-    {
       _view.SpawnOre();
+      _view.PlayPunchAnimation().Forget();
     }
 
     public bool IsEmpty()
