@@ -28,7 +28,7 @@ namespace Game.Scripts.Gameplay.ECS
 
     public void SpawnCharacter(UnitData unitData, string prefabName)
     {
-      ref var evt = ref _characterAspect.SpawnCharacterEvents.NewEntity(out _);
+      ref var evt = ref _characterAspect.CharacterSpawnPool.NewEntity(out _);
       evt.Data = unitData;
       evt.PrefabPath = prefabName;
     }

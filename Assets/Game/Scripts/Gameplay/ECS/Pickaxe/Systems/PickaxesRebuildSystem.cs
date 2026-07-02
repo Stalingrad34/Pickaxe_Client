@@ -4,7 +4,7 @@ using Leopotam.EcsProto;
 
 namespace Game.Scripts.Gameplay.ECS.Pickaxe.Systems
 {
-  public class RebuildPickaxesSystem : IProtoInitSystem, IProtoRunSystem
+  public class PickaxesRebuildSystem : IProtoInitSystem, IProtoRunSystem
   {
     private PickaxeAspect _pickaxeAspect;
     private ProtoIt _eventEntities;
@@ -13,7 +13,7 @@ namespace Game.Scripts.Gameplay.ECS.Pickaxe.Systems
     public void Init(IProtoSystems systems)
     {
       _pickaxeAspect = systems.GetAspect<PickaxeAspect>();
-      _eventEntities = Entities.ProtoIt<RebuildPickaxeEvent>(systems.World());
+      _eventEntities = Entities.ProtoIt<PickaxesRebuildEvent>(systems.World());
       _minesEntities = Entities.ProtoIt<PickaxeMineComponent>(systems.World());
     }
 
@@ -21,14 +21,14 @@ namespace Game.Scripts.Gameplay.ECS.Pickaxe.Systems
     {
       foreach (var entity in _eventEntities)
       {
-        var spawnEvent = _pickaxeAspect.RebuildPickaxeEvents.Get(entity);
+        var rebuildEvent = _pickaxeAspect.RebuildPickaxeEvents.Get(entity);
         foreach (var mineEntity in _minesEntities)
         {
           var mine = _pickaxeAspect.PickaxeMines.Get(mineEntity);
-          if (spawnEvent.OwnerID != mine.OwnerId)
+          if (rebuildEvent.OwnerID != mine.OwnerId)
             continue;
 
-          mine.PickaxesHolder.RebuildPickaxes(spawnEvent.Pickaxes);
+          mine.PickaxesHolder.RebuildPickaxes(rebuildEvent.Pickaxes);
         }
       }
     }

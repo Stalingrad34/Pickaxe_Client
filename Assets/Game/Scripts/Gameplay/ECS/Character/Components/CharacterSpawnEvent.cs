@@ -2,7 +2,7 @@
 
 namespace Game.Scripts.Gameplay.ECS.Spawn.Components
 {
-  public struct SpawnCharacterEvent
+  public struct CharacterSpawnEvent
   {
     public UnitData Data;
     public string PrefabPath;

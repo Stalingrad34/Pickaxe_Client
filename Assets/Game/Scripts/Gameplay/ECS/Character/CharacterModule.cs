@@ -13,8 +13,8 @@ namespace Game.Scripts.Gameplay.ECS.Character
     {
       var aspect = systems.GetAspect<CharacterAspect>();
       systems
-        .AddSystem(new SpawnCharacterSystem())
-        .AddSystem(new OneFrameSystem<SpawnCharacterEvent>(aspect.SpawnCharacterEvents));
+        .AddSystem(new CharacterSpawnSystem())
+        .AddSystem(new OneFrameSystem<CharacterSpawnEvent>(aspect.CharacterSpawnPool));
     }
 
     public IProtoAspect[] Aspects()

@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
-    "com.ivanmurzak.unity.mcp": "0.80.0",
     "com.ivanmurzak.unity.mcp.animation": "1.2.13",
     "com.ivanmurzak.unity.mcp.probuilder": "1.2.13",
     "com.kyrylokuzyk.primetween": "git@github.com:Gnarly-Games/PrimeTween.git",

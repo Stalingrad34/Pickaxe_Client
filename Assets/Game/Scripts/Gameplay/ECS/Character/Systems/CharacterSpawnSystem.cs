@@ -8,7 +8,7 @@ using Leopotam.EcsProto;
 
 namespace Game.Scripts.Gameplay.ECS.Character.Systems
 {
-  public class SpawnCharacterSystem : IProtoInitSystem, IProtoRunSystem
+  public class CharacterSpawnSystem : IProtoInitSystem, IProtoRunSystem
   {
     private ExampleCharacterCamera _mainCamera;
     private CharacterAspect _characterAspect;
@@ -21,7 +21,7 @@ namespace Game.Scripts.Gameplay.ECS.Character.Systems
       _mainCamera = systems.GetService<ExampleCharacterCamera>();
       _characterAspect = systems.GetAspect<CharacterAspect>();
       _pickaxeAspect = systems.GetAspect<PickaxeAspect>();
-      _spawnEntities = Entities.ProtoIt<SpawnCharacterEvent>(systems.World());
+      _spawnEntities = Entities.ProtoIt<CharacterSpawnEvent>(systems.World());
       _mineEntities = Entities.ProtoIt<PickaxeMineComponent>(systems.World());
     }
     
@@ -29,7 +29,7 @@ namespace Game.Scripts.Gameplay.ECS.Character.Systems
     {
       foreach (var entity in _spawnEntities)
       {
-        ref var spawnEvent = ref _characterAspect.SpawnCharacterEvents.Get(entity);
+        ref var spawnEvent = ref _characterAspect.CharacterSpawnPool.Get(entity);
         foreach (var mineEntity in _mineEntities)
         {
           ref var mine = ref _pickaxeAspect.PickaxeMines.Get(mineEntity);

@@ -3,7 +3,6 @@ using Game.Scripts.Gameplay.ECS.Common;
 using Game.Scripts.Gameplay.ECS.Ore.Aspects;
 using Game.Scripts.Gameplay.ECS.Ore.Components;
 using Game.Scripts.Gameplay.ECS.Ore.Systems;
-using Game.Scripts.Gameplay.ECS.Spawn.Components;
 using Leopotam.EcsProto;
 
 namespace Game.Scripts.Gameplay.ECS.Ore

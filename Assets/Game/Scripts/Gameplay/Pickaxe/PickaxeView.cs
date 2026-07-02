@@ -26,7 +26,7 @@ namespace Game.Scripts.Gameplay.Pickaxe
     
     public async UniTaskVoid PlayPunchAnimation()
     {
-      var delay = Random.Range(0, 0.5f);
+      var delay = Random.Range(0, 0.2f);
       await UniTask.Delay(TimeSpan.FromSeconds(delay), cancellationToken: destroyCancellationToken).SuppressCancellationThrow();
       if (destroyCancellationToken.IsCancellationRequested)
         return;

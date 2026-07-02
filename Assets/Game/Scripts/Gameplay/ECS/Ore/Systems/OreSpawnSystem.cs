@@ -1,5 +1,6 @@
 ﻿using Game.Scripts.Gameplay.ECS.Ore.Aspects;
 using Game.Scripts.Gameplay.ECS.Ore.Components;
+using Game.Scripts.Gameplay.Ore;
 using Leopotam.EcsProto;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace Game.Scripts.Gameplay.ECS.Ore.Systems
   {
     private OreAspect _oreAspect;
     private IProtoIt _eventEntities;
-    
+
     public void Init(IProtoSystems systems)
     {
       _oreAspect = systems.GetAspect<OreAspect>();
@@ -22,7 +23,11 @@ namespace Game.Scripts.Gameplay.ECS.Ore.Systems
       {
         var spawnEvent = _oreAspect.OreSpawnPool.Get(eventEntity);
         var oreView = Object.Instantiate(spawnEvent.Config.prefab, spawnEvent.Position, Quaternion.identity);
-        oreView.Init(spawnEvent.Config);
+        var oreData = new OreData()
+        {
+          StartForce = spawnEvent.Direction
+        };
+        oreView.Init(oreData);
       }
     }
   }

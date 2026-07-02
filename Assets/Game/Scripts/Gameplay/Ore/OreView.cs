@@ -4,11 +4,13 @@ namespace Game.Scripts.Gameplay.Ore
 {
   public class OreView : MonoBehaviour
   {
-    private OreConfig _config;
-
-    public void Init(OreConfig config)
+    public void Init(OreData data)
     {
-      _config = config;
+      var setupComponents = gameObject.GetComponents<IOreSetup>();
+      foreach (var setupComponent in setupComponents)
+      {
+        setupComponent.Setup(data);
+      }
     }
 
     private void OnTriggerEnter(Collider other)
