@@ -128,6 +128,9 @@ PrefabInstance:
       addedObject: {fileID: 6574759997081220657}
     - targetCorrespondingSourceObject: {fileID: 6500311980659525006, guid: d56338f25892e6d4094e5f2efdc6397d, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 7001263996529454819}
+    - targetCorrespondingSourceObject: {fileID: 6500311980659525006, guid: d56338f25892e6d4094e5f2efdc6397d, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 4952450507872264844}
     - targetCorrespondingSourceObject: {fileID: 6500311980659525006, guid: d56338f25892e6d4094e5f2efdc6397d, type: 3}
       insertIndex: -1
@@ -147,6 +150,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6500311980659525006, guid: d56338f25892e6d4094e5f2efdc6397d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3833567398266509498}
+    - targetCorrespondingSourceObject: {fileID: 6500311980659525006, guid: d56338f25892e6d4094e5f2efdc6397d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1369284756585989055}
   m_SourcePrefab: {fileID: 100100000, guid: d56338f25892e6d4094e5f2efdc6397d, type: 3}
 --- !u!1 &406409807060078107 stripped
 GameObject:
@@ -230,6 +236,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c105818fb443ad843b222f54520854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.ECS.ConverterEntity.Converters.ConvertToEntity
+--- !u!114 &7001263996529454819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406409807060078107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cec6b75dcc954cf2a98f98b0d76e8224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.ECS.Common.Converters.TransformConverter
 --- !u!114 &4952450507872264844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +387,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a4c89e1de2435b9dcbe496d8668748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.ECS.EntityConvert.Converters.CharacterConverter
+--- !u!114 &1369284756585989055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406409807060078107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4bb8a290eb4220a6f9ef4283b0be90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.ECS.Pickup.Converters.PickupOreCollectorConverter
+  pickupDistance: 1
 --- !u!95 &451014135572743698 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6472858117986979207, guid: d56338f25892e6d4094e5f2efdc6397d, type: 3}

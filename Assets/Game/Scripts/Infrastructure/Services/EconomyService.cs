@@ -13,6 +13,11 @@ namespace Game.Scripts.Infrastructure.Services
     public readonly ReactiveProperty<ulong> ProcessingMoney = new();
     public readonly ReactiveProperty<ulong> ProcessingOre = new();
 
+    public void AddOre(ulong amount)
+    {
+      Ore.Value += amount;
+    }
+
     public void Save(SaveData data)
     {
       data.Economy.Money = Money.Value;

@@ -7,37 +7,6 @@
       "dependencies": {},
       "hash": "e5acc106ee196bc5a32fb14cdf2987b0f96d11e0"
     },
-    "com.ivanmurzak.unity.mcp": {
-      "version": "0.77.0",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.test-framework": "1.1.33",
-        "com.unity.modules.uielements": "1.0.0",
-        "extensions.unity.playerprefsex": "2.1.5"
-      },
-      "url": "https://package.openupm.com"
-    },
-    "com.ivanmurzak.unity.mcp.animation": {
-      "version": "1.2.13",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.ivanmurzak.unity.mcp": "0.77.0",
-        "com.unity.modules.animation": "1.0.0"
-      },
-      "url": "https://package.openupm.com"
-    },
-    "com.ivanmurzak.unity.mcp.probuilder": {
-      "version": "1.2.13",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.ivanmurzak.unity.mcp": "0.77.0",
-        "com.unity.probuilder": "5.2.4"
-      },
-      "url": "https://package.openupm.com"
-    },
     "com.kyrylokuzyk.primetween": {
       "version": "git@github.com:Gnarly-Games/PrimeTween.git",
       "depth": 0,
@@ -169,18 +138,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.probuilder": {
-      "version": "6.0.9",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.shadergraph": "17.0.3",
-        "com.unity.modules.imgui": "1.0.0",
-        "com.unity.modules.physics": "1.0.0",
-        "com.unity.settings-manager": "1.0.3"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.profiling.core": {
       "version": "1.0.3",
       "depth": 2,
@@ -231,13 +188,6 @@
     },
     "com.unity.searcher": {
       "version": "4.9.4",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.settings-manager": {
-      "version": "2.1.1",
       "depth": 2,
       "source": "registry",
       "dependencies": {},
@@ -302,13 +252,6 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
-    },
-    "extensions.unity.playerprefsex": {
-      "version": "2.1.5",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://package.openupm.com"
     },
     "io.colyseus.sdk": {
       "version": "https://github.com/colyseus/colyseus-unity3d.git#upm",

@@ -3,11 +3,13 @@ using Core.Scripts.Loggers;
 using Game.Scripts.Gameplay.ECS.Camera;
 using Game.Scripts.Gameplay.ECS.Character;
 using Game.Scripts.Gameplay.ECS.Common;
+using Game.Scripts.Gameplay.ECS.Destroy;
 using Game.Scripts.Gameplay.ECS.EntityConvert;
 using Game.Scripts.Gameplay.ECS.Input;
 using Game.Scripts.Gameplay.ECS.KinematicCharacter;
 using Game.Scripts.Gameplay.ECS.Ore;
 using Game.Scripts.Gameplay.ECS.Pickaxe;
+using Game.Scripts.Gameplay.ECS.Pickup;
 using Game.Scripts.Gameplay.ECS.RigidBody;
 using Game.Scripts.KinematicCharacterController.ExampleCharacter.Scripts;
 using Leopotam.EcsProto;
@@ -48,8 +50,11 @@ namespace Game.Scripts.Gameplay.ECS
       var convertEntityModule = new ConvertEntityModule();
       var pickaxeModule = new PickaxeModule();
       var oreModule = new OreModule();
+      var pickupModule = new PickupModule();
+      var destroyModule = new DestroyModule();
       
       _mainAspect = new MainAspect();
+      _mainAspect.AddAspects(GetCommonAspects());
       _mainAspect.AddAspects(inputModule.Aspects());
       _mainAspect.AddAspects(characterModule.Aspects());
       _mainAspect.AddAspects(cameraModule.Aspects());
@@ -58,6 +63,8 @@ namespace Game.Scripts.Gameplay.ECS
       _mainAspect.AddAspects(convertEntityModule.Aspects());
       _mainAspect.AddAspects(pickaxeModule.Aspects());
       _mainAspect.AddAspects(oreModule.Aspects());
+      _mainAspect.AddAspects(pickupModule.Aspects());
+      _mainAspect.AddAspects(destroyModule.Aspects());
       
       _world = new ProtoWorld(_mainAspect, config);
       EcsEventWriter = new ECSEventWriter(_world);
@@ -75,7 +82,8 @@ namespace Game.Scripts.Gameplay.ECS
         .AddModule(moveModule)
         .AddModule(pickaxeModule)
         .AddModule(oreModule)
-        //.AddSystem(new OneFrameSystem<PlayerChangeEvent>(_mainAspect.Events.PlayerChangeEvents))
+        .AddModule(pickupModule)
+        .AddModule(destroyModule)
         .Init();
       
       _fixedSystems = new ProtoSystems(_world);
@@ -87,6 +95,14 @@ namespace Game.Scripts.Gameplay.ECS
       _lateSystems
         .AddModule(cameraModule)
         .Init();
+    }
+
+    private IProtoAspect[] GetCommonAspects()
+    {
+      return new IProtoAspect[]
+      {
+        new TransformAspect()
+      };
     }
 
     private void Update() => Run(_updateSystems);
