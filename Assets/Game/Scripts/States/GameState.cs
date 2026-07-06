@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using Game.Scripts.Gameplay.ECS;
+using Game.Scripts.Gameplay.OreProcessing;
 using Game.Scripts.Gameplay.Units;
 using Game.Scripts.Infrastructure.Services;
 using Game.Scripts.Infrastructure.Services.Config;
@@ -34,6 +35,7 @@ namespace Game.Scripts.States
       ECSRunner.EcsEventWriter.SpawnCharacter(data, "Player");
       ServiceProvider.Get<PickaxesService>().RebuildPickaxes("player");
       ServiceProvider.Get<PickaxesService>().StartPickaxeTimer();
+      ServiceProvider.Get<OreProcessingService>().ProcessOre();
     }
 
     public void Exit()

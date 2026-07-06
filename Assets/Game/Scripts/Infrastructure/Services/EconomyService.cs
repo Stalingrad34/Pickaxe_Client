@@ -24,6 +24,15 @@ namespace Game.Scripts.Infrastructure.Services
       Money.Value += ProcessingMoney.Value;
       ProcessingMoney.Value = 0;
     }
+    
+    public void IncreaseStage(ulong cost)
+    {
+      if (cost > Money.Value)
+        return;
+      
+      Money.Value -= cost;
+      ProcessingStage.Value++;
+    }
 
     public void Save(SaveData data)
     {

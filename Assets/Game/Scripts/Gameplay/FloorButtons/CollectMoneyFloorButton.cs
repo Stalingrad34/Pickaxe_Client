@@ -7,6 +7,7 @@ namespace Game.Scripts.Gameplay.FloorButtons
 {
   public class CollectMoneyFloorButton : MonoBehaviour
   {
+    [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private TextMeshProUGUI processingMoneyText;
     [SerializeField] private GameObject onRoot;
     [SerializeField] private GameObject offRoot;

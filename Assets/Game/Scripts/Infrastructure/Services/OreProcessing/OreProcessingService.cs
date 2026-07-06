@@ -45,7 +45,7 @@ namespace Game.Scripts.Gameplay.OreProcessing
       };
     }
 
-    private int GetOrePerSecond(int stage)
+    public int GetOrePerSecond(int stage)
     {
       int ore = 1;
 
