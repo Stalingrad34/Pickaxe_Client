@@ -12,10 +12,17 @@ namespace Game.Scripts.Infrastructure.Services
     public readonly ReactiveProperty<ulong> Ore = new();
     public readonly ReactiveProperty<ulong> ProcessingMoney = new();
     public readonly ReactiveProperty<ulong> ProcessingOre = new();
+    public readonly ReactiveProperty<int> ProcessingStage = new();
 
     public void AddOre(ulong amount)
     {
       Ore.Value += amount;
+    }
+    
+    public void CollectMoney()
+    {
+      Money.Value += ProcessingMoney.Value;
+      ProcessingMoney.Value = 0;
     }
 
     public void Save(SaveData data)
@@ -24,6 +31,7 @@ namespace Game.Scripts.Infrastructure.Services
       data.Economy.Ore = Ore.Value;
       data.Economy.ProcessingMoney = ProcessingMoney.Value;
       data.Economy.ProcessingOre = ProcessingOre.Value;
+      data.Economy.ProcessingStage = ProcessingStage.Value;
 
       IsDirty = false;
     }
@@ -34,6 +42,7 @@ namespace Game.Scripts.Infrastructure.Services
       Ore.Value = data.Economy.Ore;
       ProcessingMoney.Value = data.Economy.ProcessingMoney;
       ProcessingOre.Value = data.Economy.ProcessingOre;
+      ProcessingStage.Value = data.Economy.ProcessingStage;
       
       Subscribe();
     }

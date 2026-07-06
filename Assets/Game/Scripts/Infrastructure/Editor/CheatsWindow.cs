@@ -13,6 +13,12 @@ namespace Game.Scripts.Infrastructure.Editor
       ServiceProvider.Get<EconomyService>().Money.Value += 100;
     }
     
+    [Button]
+    public void AddOre()
+    {
+      ServiceProvider.Get<EconomyService>().Ore.Value += 100;
+    }
+    
     public static void OpenWindow()
     {
       var window = GetWindow<CheatsWindow>();

@@ -8,11 +8,13 @@ namespace Game.Scripts.UI.GUI
   public class MainGUIView : GUIView<MainGUIModel>
   {
     [SerializeField] private TextMeshProUGUI moneyText;
+    [SerializeField] private TextMeshProUGUI oreText;
     [SerializeField] private GameObject joystick;
     
     protected override void SetModel(MainGUIModel model)
     {
       model.Money.SubscribeMoney(moneyText).AddTo(gameObject);
+      model.Ore.SubscribeOre(oreText).AddTo(gameObject);
       model.ShowJoystick.Subscribe(joystick.SetActive).AddTo(gameObject);
     }
   }

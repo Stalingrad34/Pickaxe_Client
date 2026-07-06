@@ -61,8 +61,7 @@ namespace Game.Scripts.Infrastructure
             ServiceProvider.Register(pickaxesService);
             ServiceProvider.Register(new LocalizationService());
             ServiceProvider.Register(new SettingsProvider());
-            ServiceProvider.Register(new OreProcessingService());
-            ServiceProvider.Register(new EconomyService());
+            ServiceProvider.Register(new OreProcessingService(economyService));
             
             await ServiceProvider.InitServices();
             

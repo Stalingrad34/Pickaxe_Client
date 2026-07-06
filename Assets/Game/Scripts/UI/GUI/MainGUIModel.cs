@@ -8,6 +8,7 @@ namespace Game.Scripts.UI.GUI
   public class MainGUIModel : GUIModel
   {
     public readonly ReactiveProperty<ulong> Money;
+    public readonly ReactiveProperty<ulong> Ore;
     public readonly ReactiveProperty<bool> ShowJoystick = new ();
     private readonly EconomyService _economy;
 
@@ -15,6 +16,7 @@ namespace Game.Scripts.UI.GUI
     {
       _economy = economy;
       Money = _economy.Money;
+      Ore = _economy.Ore;
       ShowJoystick.Value = Platform.IsMobileWebGL();
     }
   }

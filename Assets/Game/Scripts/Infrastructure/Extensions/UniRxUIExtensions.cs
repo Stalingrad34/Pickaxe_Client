@@ -20,6 +20,11 @@ namespace Game.Scripts.Infrastructure.Extensions
             return source.SubscribeWithState(text, (x, t) => t.text = $"${MoneyFormatter.Format((long)x)}");
         }
         
+        public static IDisposable SubscribeOre(this IObservable<ulong> source, TextMeshProUGUI text)
+        {
+            return source.SubscribeWithState(text, (x, t) => t.text = MoneyFormatter.Format((long)x));
+        }
+        
         public static IDisposable SubscribeToTMP(this IObservable<string> source, TextMeshProUGUI text)
         {
             return source.SubscribeWithState(text, (x, t) => t.text = x);
