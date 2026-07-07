@@ -7,5 +7,6 @@ namespace Game.Scripts.Gameplay.Ore
   {
     public int miningCount;
     public OreView prefab;
+    public Color pickupColor = Color.white;
   }
 }

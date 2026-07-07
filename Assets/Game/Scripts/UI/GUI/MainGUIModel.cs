@@ -1,6 +1,5 @@
 ﻿using BitGames.Bits;
 using Game.Scripts.Infrastructure.Services;
-using Game.Scripts.Infrastructure.Services.Database;
 using UniRx;
 
 namespace Game.Scripts.UI.GUI
@@ -10,6 +9,7 @@ namespace Game.Scripts.UI.GUI
     public readonly ReactiveProperty<ulong> Money;
     public readonly ReactiveProperty<ulong> Ore;
     public readonly ReactiveProperty<bool> ShowJoystick = new ();
+    public readonly ReactiveCommand<PickupTextData> PickupTextCommand;
     private readonly EconomyService _economy;
 
     public MainGUIModel(EconomyService economy)
@@ -18,6 +18,7 @@ namespace Game.Scripts.UI.GUI
       Money = _economy.Money;
       Ore = _economy.Ore;
       ShowJoystick.Value = Platform.IsMobileWebGL();
+      PickupTextCommand = economy.PickupTextCommand;
     }
   }
 }

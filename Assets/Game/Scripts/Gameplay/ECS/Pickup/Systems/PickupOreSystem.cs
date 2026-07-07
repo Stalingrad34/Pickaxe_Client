@@ -41,7 +41,9 @@ namespace Game.Scripts.Gameplay.ECS.Pickup.Systems
             continue;
           
           var amount = _pickupAspect.PickupOreItemsPool.Get(oreEntity).Amount;
-          _economyService.AddOre(amount);
+          var color = _pickupAspect.PickupOreItemsPool.Get(oreEntity).PickupTextColor;
+          
+          _economyService.AddOre(amount, color);
           
           _destroyAspect.DestroyPool.Add(oreEntity);
         }

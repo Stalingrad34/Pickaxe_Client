@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.Ore.OreConfig
   miningCount: 1
   prefab: {fileID: 2448610267335282996, guid: f326c4c203159674790afd131573966c, type: 3}
+  pickupColor: {r: 0.5254902, g: 0.38823533, b: 0.23137257, a: 1}

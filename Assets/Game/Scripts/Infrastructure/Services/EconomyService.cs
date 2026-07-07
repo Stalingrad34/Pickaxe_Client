@@ -1,6 +1,8 @@
 ﻿using Game.Scripts.Infrastructure.Services.Storage;
 using Game.Scripts.Infrastructure.Services.Storage.Data;
+using Game.Scripts.UI.GUI;
 using UniRx;
+using UnityEngine;
 
 namespace Game.Scripts.Infrastructure.Services
 {
@@ -13,10 +15,17 @@ namespace Game.Scripts.Infrastructure.Services
     public readonly ReactiveProperty<ulong> ProcessingMoney = new();
     public readonly ReactiveProperty<ulong> ProcessingOre = new();
     public readonly ReactiveProperty<int> ProcessingStage = new();
+    public readonly ReactiveCommand<PickupTextData> PickupTextCommand = new();
 
-    public void AddOre(ulong amount)
+    public void AddOre(ulong amount, Color pickupTextColor)
     {
       Ore.Value += amount;
+      var pickupData = new PickupTextData()
+      {
+        Text = $"+{amount}",
+        Color = pickupTextColor
+      };
+      PickupTextCommand.Execute(pickupData);
     }
     
     public void CollectMoney()

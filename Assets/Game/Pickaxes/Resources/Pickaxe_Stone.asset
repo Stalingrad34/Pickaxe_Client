@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.Pickaxe.PickaxeConfig
   pickaxeView: {fileID: 6762430176084746999, guid: 65841704f09deee4397453f238545746, type: 3}
   pickaxeType: 2
-  oreConfig: {fileID: 11400000, guid: ec27270e3d3ff2d42a7261e0176b0734, type: 2}
+  oreConfig: {fileID: 11400000, guid: 617c6ed2716f51449998da5c450b9908, type: 2}

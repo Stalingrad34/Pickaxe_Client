@@ -25,7 +25,9 @@ namespace Game.Scripts.Gameplay.ECS.Ore.Systems
         var oreView = Object.Instantiate(spawnEvent.Config.prefab, spawnEvent.Position, Quaternion.identity);
         var oreData = new OreData()
         {
-          StartForce = spawnEvent.Direction
+          StartForce = spawnEvent.Direction,
+          Amount = (ulong)spawnEvent.Config.miningCount,
+          PickupTextColor = spawnEvent.Config.pickupColor,
         };
         oreView.Init(oreData);
       }

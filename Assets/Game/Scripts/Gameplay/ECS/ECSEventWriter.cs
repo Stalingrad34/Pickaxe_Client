@@ -6,6 +6,7 @@ using Game.Scripts.Gameplay.ECS.Pickaxe.Aspects;
 using Game.Scripts.Gameplay.Ore;
 using Game.Scripts.Gameplay.Pickaxe;
 using Game.Scripts.Gameplay.Units;
+using Game.Scripts.UI.GUI;
 using Leopotam.EcsProto;
 using UnityEngine;
 
