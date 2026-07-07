@@ -9,7 +9,7 @@ namespace Game.Scripts.Gameplay.ECS.Ore.Systems
   public class OreSpawnSystem : IProtoInitSystem, IProtoRunSystem
   {
     private OreAspect _oreAspect;
-    private IProtoIt _eventEntities;
+    private ProtoIt _eventEntities;
 
     public void Init(IProtoSystems systems)
     {

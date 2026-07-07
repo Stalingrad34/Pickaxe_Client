@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using Game.Scripts.Gameplay.ECS;
 using UnityEngine;
@@ -24,9 +25,8 @@ namespace Game.Scripts.Gameplay.Pickaxe
       return _pickaxeConfig.pickaxeType;
     }
     
-    public async UniTaskVoid PlayPunchAnimation()
+    public async UniTask PlayPunchAnimation(CancellationToken token)
     {
-      var token = destroyCancellationToken;
       var delay = Random.Range(0, 0.2f);
       await UniTask.Delay(TimeSpan.FromSeconds(delay), cancellationToken: token).SuppressCancellationThrow();
       if (token.IsCancellationRequested)

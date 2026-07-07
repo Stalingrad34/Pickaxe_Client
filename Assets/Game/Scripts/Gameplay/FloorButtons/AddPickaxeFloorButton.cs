@@ -10,6 +10,7 @@ namespace Game.Scripts.Gameplay.FloorButtons
   public class AddPickaxeFloorButton : MonoBehaviour
   {
     [SerializeField] private int pickaxesCount;
+    [SerializeField] private bool autoMerge;
     [SerializeField] private CustomText title;
     [SerializeField] private TextMeshProUGUI cost;
     [SerializeField] private Canvas canvas;
@@ -43,7 +44,7 @@ namespace Game.Scripts.Gameplay.FloorButtons
     {
       if (other.gameObject.CompareTag("Player"))
       {
-        _pickaxes.TryAddPickaxes(pickaxesCount);
+        _pickaxes.TryAddPickaxes(pickaxesCount, autoMerge);
       }
     }
   }

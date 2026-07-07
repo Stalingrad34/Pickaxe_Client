@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Game.Scripts.Gameplay.Pickaxe
 {
@@ -27,13 +28,18 @@ namespace Game.Scripts.Gameplay.Pickaxe
       return _view;
     }
 
-    public void Punch()
+    public async UniTaskVoid Punch()
     {
       if (_isEmpty)
         return;
       
+      var token = destroyCancellationToken;
+      
+      await _view.PlayPunchAnimation(token);
+      if (token.IsCancellationRequested)
+        return;
+    
       _view.SpawnOre();
-      _view.PlayPunchAnimation().Forget();
     }
 
     public bool IsEmpty()

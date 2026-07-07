@@ -36,7 +36,7 @@ namespace Game.Scripts.Gameplay.Pickaxe
         if (root.IsEmpty())
           continue;
         
-        root.Punch();
+        root.Punch().Forget();
       }
     }
 

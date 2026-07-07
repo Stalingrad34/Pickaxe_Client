@@ -7,10 +7,18 @@ namespace Game.Scripts.Infrastructure.Editor
 {
   public class CheatsWindow : OdinEditorWindow
   {
-    [Button]
-    public void AddMoney()
+    [ButtonGroup("Money")]
+    [Button("Money +100")]
+    public void AddMoney100()
     {
       ServiceProvider.Get<EconomyService>().Money.Value += 100;
+    }
+    
+    [ButtonGroup("Money")]
+    [Button("Money +1000")]
+    public void AddMoney1000()
+    {
+      ServiceProvider.Get<EconomyService>().Money.Value += 1000;
     }
     
     [Button]
