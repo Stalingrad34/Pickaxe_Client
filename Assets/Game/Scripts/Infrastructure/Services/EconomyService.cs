@@ -71,6 +71,7 @@ namespace Game.Scripts.Infrastructure.Services
       Ore.Subscribe(_ => IsDirty = true);
       ProcessingMoney.Subscribe(_ => IsDirty = true);
       ProcessingOre.Subscribe(_ => IsDirty = true);
+      ProcessingStage.Subscribe(_ => IsDirty = true);
     }
   }
 }

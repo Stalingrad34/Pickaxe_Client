@@ -8,5 +8,6 @@ namespace Game.Scripts.Infrastructure.Services.Storage.Data
     public PlayerStorageData Player = new();
     public EconomyStorageData Economy = new();
     public PickaxesStorageData Pickaxes = new();
+    public OreProcessingData Processing = new();
   }
 }

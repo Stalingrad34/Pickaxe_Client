@@ -1,16 +1,24 @@
 ﻿using System;
-using Cysharp.Threading.Tasks;
 using Game.Scripts.Infrastructure.Services;
+using Game.Scripts.Infrastructure.Services.Storage;
+using Game.Scripts.Infrastructure.Services.Storage.Data;
 using UniRx;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game.Scripts.Gameplay.OreProcessing
 {
-  public class OreProcessingService : IService
+  public class OreProcessingService : IService, IStorageProcessor, IDisposable
   {
+    public bool IsDirty { get; private set; }
+    
+    public readonly ReactiveProperty<float> ProcessingMultiplier = new();
+    public readonly ReactiveProperty<int> MultiplierTimerSeconds = new();
+    
     private readonly EconomyService _economy;
     private int _processingStage;
     private IDisposable _processTimer;
+    private IDisposable _multiplierTimer;
 
     public OreProcessingService(EconomyService economy)
     {
@@ -20,11 +28,14 @@ namespace Game.Scripts.Gameplay.OreProcessing
     
     public void ProcessOre()
     {
-      _economy.ProcessingOre.Value += _economy.Ore.Value;
+      _economy.ProcessingOre.Value += (ulong)(_economy.Ore.Value * (double)ProcessingMultiplier.Value);
       _economy.Ore.Value = 0;
 
       if (_processTimer == null)
         StartProcessTimer();
+
+      if (_multiplierTimer == null)
+        StartMultiplierTimer();
     }
     
     public OrePrecessingData GetOrePrecessingData(int stage)
@@ -66,7 +77,7 @@ namespace Game.Scripts.Gameplay.OreProcessing
 
     private void StartProcessTimer()
     {
-      _processTimer = Observable.Timer(TimeSpan.FromSeconds(1)).Repeat().Subscribe(_ =>
+      _processTimer = Observable.Interval(TimeSpan.FromSeconds(1)).Subscribe(_ =>
       {
         if (_economy.ProcessingOre.Value > 0)
         {
@@ -81,10 +92,55 @@ namespace Game.Scripts.Gameplay.OreProcessing
         }
       });
     }
+    
+    private void StartMultiplierTimer()
+    {
+      MultiplierTimerSeconds.Value = 30;
+      _multiplierTimer = Observable.Interval(TimeSpan.FromSeconds(1)).Subscribe(_ =>
+      {
+        MultiplierTimerSeconds.Value--;
+        if (MultiplierTimerSeconds.Value > 0)
+          return;
+
+        MultiplierTimerSeconds.Value = 30;
+        ProcessingMultiplier.Value = GetMultiplier();
+      });
+    }
 
     private void ProcessingStageChanged(int stage)
     {
       _processingStage = stage;
+    }
+
+    private float GetMultiplier()
+    {
+      var random = Random.Range(0.5f, 1.5f);
+      return (float)Math.Round(random, 1);
+    }
+    
+    public void Save(SaveData data)
+    {
+      data.Processing.ProcessingMultiplier = ProcessingMultiplier.Value;
+
+      IsDirty = false;
+    }
+
+    public void Load(SaveData data)
+    {
+      ProcessingMultiplier.Value = data.Processing.ProcessingMultiplier > 0 ? data.Processing.ProcessingMultiplier : GetMultiplier();
+      
+      Subscribe();
+    }
+    
+    private void Subscribe()
+    {
+      ProcessingMultiplier.Subscribe(_ => IsDirty = true);
+    }
+
+    public void Dispose()
+    {
+      _processTimer?.Dispose();
+      _multiplierTimer?.Dispose();
     }
   }
 }

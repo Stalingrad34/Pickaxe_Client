@@ -20,6 +20,7 @@ namespace Game.Scripts.Infrastructure.Services
 
     public void StartPickaxeTimer()
     {
+      CheckCanMarge();
       _pickaxesTimer = Observable
         .Timer(TimeSpan.FromSeconds(5))
         .Repeat()
@@ -47,6 +48,11 @@ namespace Game.Scripts.Infrastructure.Services
       else
         RebuildPickaxes("player");
       
+      CheckCanMarge();
+    }
+
+    private void CheckCanMarge()
+    {
       CanMerge.Value = _pickaxes.Any(kvp => kvp.Value >= 3);
     }
 
