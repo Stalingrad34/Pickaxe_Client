@@ -1,6 +1,5 @@
 ﻿using BitGames.Bits;
 using Cysharp.Threading.Tasks;
-using Game.Scripts.Gameplay.OreProcessing;
 using Game.Scripts.Infrastructure.Services;
 using Game.Scripts.Infrastructure.Services.Storage;
 using Game.Scripts.Infrastructure.States;
@@ -64,6 +63,7 @@ namespace Game.Scripts.Infrastructure
             ServiceProvider.Register(new LocalizationService());
             ServiceProvider.Register(new SettingsProvider());
             ServiceProvider.Register(oreProcessingService);
+            ServiceProvider.Register(new TimeProvider());
             
             await ServiceProvider.InitServices();
             

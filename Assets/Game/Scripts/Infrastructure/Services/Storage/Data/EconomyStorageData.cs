@@ -6,6 +6,7 @@
     public ulong Ore;
     public ulong ProcessingMoney;
     public ulong ProcessingOre;
+    public ulong RestOre;
     public int ProcessingStage;
   }
 }

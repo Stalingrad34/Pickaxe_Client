@@ -14,9 +14,26 @@ namespace Game.Scripts.Infrastructure.Services
     public bool IsDirty { get; private set; }
     public readonly ReactiveProperty<ulong> PickaxesNominal = new();
     public readonly ReactiveProperty<bool> CanMerge = new();
+    public readonly ReactiveProperty<long> PickaxesPunchLastTime = new();
     
     private Dictionary<PickaxeType, int> _pickaxes = new();
     private IDisposable _pickaxesTimer;
+
+    public void CheckRestOre()
+    {
+      var currentTime = ServiceProvider.Get<TimeProvider>().GetCurrentTimeStamp();
+      var orePerSecond = 0;
+      foreach (var (pickaxe, count) in _pickaxes)
+      {
+        var config = AssetProvider.GetPickaxeData(pickaxe);
+        orePerSecond += config.oreConfig.miningCount * count;
+      }
+      
+      var restSeconds = currentTime - PickaxesPunchLastTime.Value;
+      ServiceProvider.Get<EconomyService>().AddRestOre(orePerSecond * (restSeconds / 5));
+      
+      PickaxesPunchLastTime.Value = currentTime;
+    }
 
     public void StartPickaxeTimer()
     {
@@ -71,6 +88,7 @@ namespace Game.Scripts.Infrastructure.Services
 
     private void PickaxesPunchFire()
     {
+      PickaxesPunchLastTime.Value = ServiceProvider.Get<TimeProvider>().GetCurrentTimeStamp();
       ECSRunner.EcsEventWriter.PickaxesPunch("player");
     }
     
@@ -116,6 +134,7 @@ namespace Game.Scripts.Infrastructure.Services
     {
       data.Pickaxes.PickaxesNominal = PickaxesNominal.Value;
       data.Pickaxes.Pickaxes = _pickaxes;
+      data.Pickaxes.PickaxesPunchLastTime = PickaxesPunchLastTime.Value;
       
       IsDirty = false;
     }
@@ -124,6 +143,7 @@ namespace Game.Scripts.Infrastructure.Services
     {
       PickaxesNominal.Value = data.Pickaxes.PickaxesNominal;
       _pickaxes = data.Pickaxes.Pickaxes;
+      PickaxesPunchLastTime.Value = data.Pickaxes.PickaxesPunchLastTime;
       
       Subscribe();
     }
@@ -131,6 +151,7 @@ namespace Game.Scripts.Infrastructure.Services
     private void Subscribe()
     {
       PickaxesNominal.Subscribe(_ => IsDirty = true);
+      PickaxesPunchLastTime.Subscribe(_ => IsDirty = true);
     }
   }
 }

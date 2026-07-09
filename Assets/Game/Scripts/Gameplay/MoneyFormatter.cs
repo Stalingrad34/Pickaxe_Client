@@ -1,43 +1,41 @@
-﻿using UnityEngine;
-
-namespace Game.Scripts.Gameplay
+﻿public static class MoneyFormatter
 {
-  public static class MoneyFormatter
+  private static readonly string[] Suffixes =
   {
-    private static readonly string[] Suffixes =
+    "",
+    "K",
+    "M",
+    "B",
+    "T",
+    "Q",
+    "S",
+    "O",
+    "N",
+    "D"
+  };
+
+  public static string Format(long value)
+  {
+    if (value < 1000)
+      return value.ToString();
+
+    int suffixIndex = 0;
+    long divider = 1;
+
+    while (value / divider >= 1000 && suffixIndex < Suffixes.Length - 1)
     {
-      "",   // 1
-      "K",  // thousand
-      "M",  // million
-      "B",  // billion
-      "T",  // trillion
-      "Q",  // quadrillion
-      "S",  // sextillion / твой игровой следующий ранг
-      "O",
-      "N",
-      "D"
-    };
-
-    public static string Format(long value)
-    {
-      if (value < 1000)
-        return Mathf.FloorToInt(value).ToString();
-
-      int suffixIndex = 0;
-
-      while (value >= 1000 && suffixIndex < Suffixes.Length - 1)
-      {
-        value /= 1000;
-        suffixIndex++;
-      }
-
-      if (value >= 100)
-        return $"{value:0}{Suffixes[suffixIndex]}";
-
-      if (value >= 10)
-        return $"{value:0.#}{Suffixes[suffixIndex]}";
-
-      return $"{value:0.##}{Suffixes[suffixIndex]}";
+      divider *= 1000;
+      suffixIndex++;
     }
+
+    long whole = value / divider;
+    long remainder = value % divider;
+
+    long decimalPart = remainder * 10 / divider;
+
+    if (decimalPart == 0)
+      return $"{whole}{Suffixes[suffixIndex]}";
+
+    return $"{whole}.{decimalPart}{Suffixes[suffixIndex]}";
   }
 }

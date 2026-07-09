@@ -1,5 +1,4 @@
-﻿using Game.Scripts.Gameplay.OreProcessing;
-using Game.Scripts.Infrastructure.Services;
+﻿using Game.Scripts.Infrastructure.Services;
 using TMPro;
 using UniRx;
 using UnityEngine;

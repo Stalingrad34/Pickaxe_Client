@@ -1,12 +1,11 @@
 ﻿using System;
-using Game.Scripts.Infrastructure.Services;
 using Game.Scripts.Infrastructure.Services.Storage;
 using Game.Scripts.Infrastructure.Services.Storage.Data;
 using UniRx;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Game.Scripts.Gameplay.OreProcessing
+namespace Game.Scripts.Infrastructure.Services
 {
   public class OreProcessingService : IService, IStorageProcessor, IDisposable
   {
@@ -31,6 +30,11 @@ namespace Game.Scripts.Gameplay.OreProcessing
       _economy.ProcessingOre.Value += (ulong)(_economy.Ore.Value * (double)ProcessingMultiplier.Value);
       _economy.Ore.Value = 0;
 
+      StartTimers();
+    }
+
+    public void StartTimers()
+    {
       if (_processTimer == null)
         StartProcessTimer();
 
