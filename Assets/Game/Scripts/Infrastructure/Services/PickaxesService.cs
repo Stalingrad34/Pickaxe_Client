@@ -101,7 +101,17 @@ namespace Game.Scripts.Infrastructure.Services
     public void TryMergeAll()
     {
       TryMerge(PickaxeType.Wood, PickaxeType.Stone);
-      TryMerge(PickaxeType.Stone, PickaxeType.Cuprum);
+      TryMerge(PickaxeType.Stone, PickaxeType.Copper);
+      TryMerge(PickaxeType.Copper, PickaxeType.Iron);
+      TryMerge(PickaxeType.Iron, PickaxeType.Titan);
+      TryMerge(PickaxeType.Titan, PickaxeType.Wolfram);
+      TryMerge(PickaxeType.Wolfram, PickaxeType.Crystal);
+      TryMerge(PickaxeType.Crystal, PickaxeType.Obsidian);
+      TryMerge(PickaxeType.Obsidian, PickaxeType.Emerald);
+      TryMerge(PickaxeType.Emerald, PickaxeType.Sapphire);
+      TryMerge(PickaxeType.Sapphire, PickaxeType.Rubin);
+      TryMerge(PickaxeType.Rubin, PickaxeType.Carbon);
+      TryMerge(PickaxeType.Carbon, PickaxeType.Diamond);
       RebuildPickaxes("player");
       CanMerge.Value = false;
     }

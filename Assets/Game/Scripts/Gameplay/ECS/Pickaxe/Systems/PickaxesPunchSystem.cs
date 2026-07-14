@@ -24,7 +24,7 @@ namespace Game.Scripts.Gameplay.ECS.Pickaxe.Systems
     {
       foreach (var eventEntity in _eventEntities)
       {
-        if (_oreAspect.OrePool.Len() > 200)
+        if (_oreAspect.OrePool.Len() > 150)
           continue;
        
         var ownerId = _pickaxeAspect.PickaxesPunchEvents.Get(eventEntity).OwnerId;

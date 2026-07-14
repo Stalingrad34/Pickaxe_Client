@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e079b51a26443ab46a6b7510cd0427, type: 3}
+  m_Name: Pickaxe_Carbon
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.Pickaxe.PickaxeConfig
+  pickaxeView: {fileID: 6647168245159731974, guid: 17d175dd4b82f8440a8ba4d02c04689c, type: 3}
+  pickaxeType: 12
+  oreConfig: {fileID: 11400000, guid: d3f532e0e9149d5428d9642b5d3f59f1, type: 2}
