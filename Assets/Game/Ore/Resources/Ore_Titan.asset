@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5954cab4cf81426895867a2f92c07635, type: 3}
   m_Name: Ore_Titan
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.Ore.OreConfig
-  miningCount: 1
-  prefab: {fileID: 2448610267335282996, guid: f326c4c203159674790afd131573966c, type: 3}
-  pickupColor: {r: 0.5254902, g: 0.38823533, b: 0.23137257, a: 1}
+  miningCount: 307
+  prefab: {fileID: 2448610267335282996, guid: 9b2a65b0f98582a41b892d216915f976, type: 3}
+  pickupColor: {r: 0.7607844, g: 0.8352942, b: 0.9176471, a: 1}

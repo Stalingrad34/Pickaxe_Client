@@ -6,9 +6,9 @@ namespace Game.Scripts.Infrastructure.Extensions
 {
   public static class CommonExtensions
   {
-    public static async UniTask<string> Localize(this string text)
+    public static string Localize(this string text)
     {
-      return await ServiceProvider.Get<LocalizationService>().GetLocalizedText(text);
+      return ServiceProvider.Get<LocalizationService>().GetLocalizedText(text);
     }
   }
 }

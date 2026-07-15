@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5954cab4cf81426895867a2f92c07635, type: 3}
   m_Name: Ore_Crystal
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.Ore.OreConfig
-  miningCount: 1
-  prefab: {fileID: 2448610267335282996, guid: f326c4c203159674790afd131573966c, type: 3}
-  pickupColor: {r: 0.5254902, g: 0.38823533, b: 0.23137257, a: 1}
+  miningCount: 4000
+  prefab: {fileID: 2448610267335282996, guid: 51c066059b9d3df41b852a3f16f64524, type: 3}
+  pickupColor: {r: 0.43529415, g: 0.72156864, b: 0.8313726, a: 1}

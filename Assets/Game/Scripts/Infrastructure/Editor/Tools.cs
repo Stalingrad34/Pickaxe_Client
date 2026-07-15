@@ -27,5 +27,11 @@ namespace Game.Scripts.Editor
     {
       CheatsWindow.OpenWindow();
     }
+    
+    [MenuItem("Game/OpenLocalization", false, 4)]
+    static void OpenLocalization()
+    {
+      LocalizationEditor.OpenWindow();
+    }
   }
 }

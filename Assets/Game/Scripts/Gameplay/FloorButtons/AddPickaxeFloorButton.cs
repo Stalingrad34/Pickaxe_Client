@@ -23,7 +23,7 @@ namespace Game.Scripts.Gameplay.FloorButtons
     private void Start()
     {
       canvas.worldCamera = UIManager.GameCamera;
-      title.SetText(new TextData("buy", pickaxesCount.ToString()));
+      title.SetText(new TextData("buy_pickaxes", pickaxesCount.ToString()));
       
       _economy = ServiceProvider.Get<EconomyService>();
       _pickaxes = ServiceProvider.Get<PickaxesService>();

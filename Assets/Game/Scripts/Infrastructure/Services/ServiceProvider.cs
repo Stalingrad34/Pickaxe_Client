@@ -34,6 +34,17 @@ namespace Game.Scripts.Infrastructure.Services
 
       throw new UnityException($"Service {nameof(TService)} not registered");
     }
+    
+    public static bool Has<TService>() where TService : IService
+    {
+      foreach (var service in Container)
+      {
+        if (service is TService)
+          return true;
+      }
+
+      return false;
+    }
 
     public static void Register<T>(T service) where T: IService
     {

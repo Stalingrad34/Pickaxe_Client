@@ -2,7 +2,7 @@
 {
   public class EconomyStorageData
   {
-    public ulong Money;
+    public ulong Money = 10;
     public ulong Ore;
     public ulong ProcessingMoney;
     public ulong ProcessingOre;

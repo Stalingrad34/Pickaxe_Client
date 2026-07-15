@@ -27,6 +27,48 @@ namespace Game.Scripts.Infrastructure.Editor
       ServiceProvider.Get<EconomyService>().Ore.Value += 100;
     }
     
+    [HorizontalGroup("LangButtons")]
+    [Button("Ru", ButtonSizes.Medium)]
+    [GUIColor(nameof(GetRuButtonColor))]
+    private void SelectRu()
+    {
+      if (!ServiceProvider.Has<LocalizationService>())
+        return;
+      
+      ServiceProvider.Get<LocalizationService>().ChangeLanguage("ru");
+    }
+
+    [HorizontalGroup("LangButtons")]
+    [Button("En", ButtonSizes.Medium)]
+    [GUIColor(nameof(GetEnButtonColor))]
+    private void SelectEn()
+    {
+      if (!ServiceProvider.Has<LocalizationService>())
+        return;
+      
+      ServiceProvider.Get<LocalizationService>().ChangeLanguage("en");
+    }
+
+    private Color GetRuButtonColor()
+    {
+      if (!ServiceProvider.Has<LocalizationService>())
+        return Color.white;
+      
+      return ServiceProvider.Get<LocalizationService>().CurrentLanguage == "ru"
+        ? Color.green
+        : Color.white;
+    }
+
+    private Color GetEnButtonColor()
+    {
+      if (!ServiceProvider.Has<LocalizationService>())
+        return Color.white;
+      
+      return ServiceProvider.Get<LocalizationService>().CurrentLanguage == "en"
+        ? Color.green
+        : Color.white;
+    }
+    
     public static void OpenWindow()
     {
       var window = GetWindow<CheatsWindow>();

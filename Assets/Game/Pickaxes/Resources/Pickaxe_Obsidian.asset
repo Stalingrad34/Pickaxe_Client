@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50e079b51a26443ab46a6b7510cd0427, type: 3}
   m_Name: Pickaxe_Obsidian
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.Pickaxe.PickaxeConfig
-  pickaxeView: {fileID: 508862578907540918, guid: e4198aa5ee2c22c459ea89c0e435897e, type: 3}
+  pickaxeView: {fileID: 4892331216781467686, guid: 288bc7701632acf429ddcd38053bd91a, type: 3}
   pickaxeType: 8
   oreConfig: {fileID: 11400000, guid: cf9b7bf9445d06142a445e577e30af73, type: 2}

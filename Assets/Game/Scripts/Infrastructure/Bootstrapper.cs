@@ -48,19 +48,21 @@ namespace Game.Scripts.Infrastructure
             var playerService = new PlayerService();
             var economyService = new EconomyService();
             var pickaxesService = new PickaxesService();
+            var localizationService = new LocalizationService();
             var oreProcessingService = new OreProcessingService(economyService);
             
             storageService
                 .AddProcessor(playerService)
                 .AddProcessor(economyService)
                 .AddProcessor(pickaxesService)
+                .AddProcessor(localizationService)
                 .AddProcessor(oreProcessingService);
             
             ServiceProvider.Register(storageService);
             ServiceProvider.Register(playerService);
             ServiceProvider.Register(economyService);
             ServiceProvider.Register(pickaxesService);
-            ServiceProvider.Register(new LocalizationService());
+            ServiceProvider.Register(localizationService);
             ServiceProvider.Register(new SettingsProvider());
             ServiceProvider.Register(oreProcessingService);
             ServiceProvider.Register(new TimeProvider());

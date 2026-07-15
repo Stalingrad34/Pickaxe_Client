@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 using Game.Scripts.Infrastructure.Extensions;
 using Game.Scripts.Infrastructure.Services;
 using TMPro;
@@ -29,28 +28,28 @@ namespace Game.Scripts.Infrastructure.Custom
                 LocalizationService.LanguageChanged.SubscribeCommand(OnLanguageChanged).AddTo(gameObject);
             }
             
-            LocalizeText().Forget();
+            LocalizeText();
         }
 
         private void OnLanguageChanged()
         {
-            LocalizeText().Forget();
+            LocalizeText();
         }
 
-        private async UniTaskVoid LocalizeText()
+        private void LocalizeText()
         {
             if (!string.IsNullOrEmpty(_textData.Key))
             {
-                text = await LocalizationService.GetLocalizedText(_textData.Key);
+                text = LocalizationService.GetLocalizedText(_textData.Key);
             }
             else if (!string.IsNullOrEmpty(_textData.Format))
             {
-                var format = await LocalizationService.GetLocalizedText(_textData.Format);
+                var format = LocalizationService.GetLocalizedText(_textData.Format);
 
                 var values = new List<string>(_textData.Values.Length);
                 foreach (var value in _textData.Values)
                 {
-                    var localizeValues = await LocalizationService.GetLocalizedText(value);
+                    var localizeValues = LocalizationService.GetLocalizedText(value);
                     values.Add(localizeValues);
                 }
 

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50e079b51a26443ab46a6b7510cd0427, type: 3}
   m_Name: Pickaxe_Titan
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.Pickaxe.PickaxeConfig
-  pickaxeView: {fileID: 508862578907540918, guid: e4198aa5ee2c22c459ea89c0e435897e, type: 3}
+  pickaxeView: {fileID: 3190839126844238633, guid: f8e037185eef0e44f986f47859022b42, type: 3}
   pickaxeType: 5
   oreConfig: {fileID: 11400000, guid: 510e9ca4a6e6c49498bd784ced84e191, type: 2}

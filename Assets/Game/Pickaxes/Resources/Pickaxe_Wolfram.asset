@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50e079b51a26443ab46a6b7510cd0427, type: 3}
   m_Name: Pickaxe_Wolfram
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.Pickaxe.PickaxeConfig
-  pickaxeView: {fileID: 508862578907540918, guid: e4198aa5ee2c22c459ea89c0e435897e, type: 3}
+  pickaxeView: {fileID: 7223965024118379773, guid: 84e03e3125274dc4eaa4ce337f56804f, type: 3}
   pickaxeType: 6
   oreConfig: {fileID: 11400000, guid: 30a5d22ad3e843449947134f5c310168, type: 2}

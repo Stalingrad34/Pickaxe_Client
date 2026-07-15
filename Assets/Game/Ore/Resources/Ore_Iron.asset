@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5954cab4cf81426895867a2f92c07635, type: 3}
   m_Name: Ore_Iron
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.Ore.OreConfig
-  miningCount: 1
-  prefab: {fileID: 2448610267335282996, guid: f326c4c203159674790afd131573966c, type: 3}
-  pickupColor: {r: 0.5254902, g: 0.38823533, b: 0.23137257, a: 1}
+  miningCount: 89
+  prefab: {fileID: 2448610267335282996, guid: 51d0054704bfe8a4ebf34298564d8b85, type: 3}
+  pickupColor: {r: 0.4666667, g: 0.46274513, b: 0.5921569, a: 1}

@@ -14,22 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Localization-Locales
   m_GUID: 28b59d0e9f3fbab4fa4ab99ba7c3b167
-  m_SerializeEntries:
-  - m_GUID: 7013c45bf1e993b48bf47e8bc93f3937
-    m_Address: English (en)
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: be8742531440cd34ca23c888dc0840e2
-    m_Address: Russian (ru)
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: b5a624352ccfcce4795abf7777c9a7be, type: 2}
   m_SchemaSet:
     m_Schemas:
     - {fileID: 11400000, guid: 54d4021332a8f16409da06cfc1524206, type: 2}
     - {fileID: 11400000, guid: 004dfd58f3513a74393cce1c399de204, type: 2}
+  m_FolderEntryCache: []
+  <FlaggedDuringContentUpdateRestriction>k__BackingField: 0
+  m_CurrentHash:
+    'bytes[0]': 194
+    'bytes[1]': 235
+    'bytes[2]': 56
+    'bytes[3]': 239
+    'bytes[4]': 254
+    'bytes[5]': 136
+    'bytes[6]': 138
+    'bytes[7]': 245
+    'bytes[8]': 82
+    'bytes[9]': 90
+    'bytes[10]': 86
+    'bytes[11]': 49
+    'bytes[12]': 203
+    'bytes[13]': 159
+    'bytes[14]': 138
+    'bytes[15]': 149

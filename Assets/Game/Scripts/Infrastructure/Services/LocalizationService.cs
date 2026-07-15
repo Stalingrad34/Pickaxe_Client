@@ -1,41 +1,52 @@
-﻿using Cysharp.Threading.Tasks;
-using TMPro;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using Game.Scripts.Infrastructure.Services.Storage;
+using Game.Scripts.Infrastructure.Services.Storage.Data;
+using Newtonsoft.Json;
 using UniRx;
-using UnityEngine.Localization;
-using UnityEngine.Localization.Settings;
+using UnityEngine;
 
 namespace Game.Scripts.Infrastructure.Services
 {
-  public class LocalizationService : IService
+  public class LocalizationService : IInitializableService, IStorageProcessor
   {
+    public bool IsDirty { get; private set; }
     public readonly ReactiveCommand LanguageChanged = new();
 
-    public LocalizationService()
-    {
-      LocalizationSettings.SelectedLocaleChanged += LocaleChanged;
-    }
+    private Dictionary<string, Dictionary<string, string>> _localizations;
 
-    private void LocaleChanged(Locale locale)
+    public string CurrentLanguage => _currentLanguage;
+    private string _currentLanguage;
+
+    public async UniTask Init(CancellationToken token)
     {
+      var json = await Resources.LoadAsync<TextAsset>("Localization") as TextAsset;
+      _localizations = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(json.text);
+    }
+    
+    public void ChangeLanguage(string locale)
+    {
+      _currentLanguage = locale;
+      IsDirty = true;
       LanguageChanged.Execute();
     }
 
-    public async UniTask<string> GetLocalizedText(string key)
+    public string GetLocalizedText(string text)
     {
-      var table = await LocalizationSettings.StringDatabase.GetTableAsync("Localization");
-      if (table == null)
-      {
-        return key;
-      }
+      return _localizations.TryGetValue(text, out var localizations) ? localizations[_currentLanguage] : text;
+    }
+    
+    public void Save(SaveData data)
+    {
+      data.Player.Language = _currentLanguage;
+      IsDirty = false;
+    }
 
-      var entry = table.GetEntry(key);
-      if (entry == null)
-      {
-        return key;
-      }
-
-      var value = entry.GetLocalizedString();
-      return string.IsNullOrEmpty(value) ? key : value;
+    public void Load(SaveData data)
+    {
+      _currentLanguage = data.Player.Language;
     }
   }
 }

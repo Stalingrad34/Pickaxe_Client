@@ -14,15 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Localization-Assets-Shared
   m_GUID: 1d39e69b3141ae74b9cf1d023d8196be
-  m_SerializeEntries:
-  - m_GUID: ea0c4488a16ef1342a7f9502cfc7041d
-    m_Address: Assets/Game/Localization/Localization Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: b5a624352ccfcce4795abf7777c9a7be, type: 2}
   m_SchemaSet:
     m_Schemas:
     - {fileID: 11400000, guid: b56d2d1d44437fd43a0b74a616d74473, type: 2}
     - {fileID: 11400000, guid: 88df736014721a14ab6e54755f0a5bbf, type: 2}
+  m_FolderEntryCache: []
+  <FlaggedDuringContentUpdateRestriction>k__BackingField: 0
+  m_CurrentHash:
+    'bytes[0]': 212
+    'bytes[1]': 67
+    'bytes[2]': 196
+    'bytes[3]': 195
+    'bytes[4]': 4
+    'bytes[5]': 65
+    'bytes[6]': 214
+    'bytes[7]': 225
+    'bytes[8]': 116
+    'bytes[9]': 53
+    'bytes[10]': 213
+    'bytes[11]': 183
+    'bytes[12]': 228
+    'bytes[13]': 11
+    'bytes[14]': 155
+    'bytes[15]': 139
