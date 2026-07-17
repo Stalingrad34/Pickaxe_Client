@@ -15,3 +15,4 @@ MonoBehaviour:
   pickaxeView: {fileID: 6647168245159731974, guid: 17d175dd4b82f8440a8ba4d02c04689c, type: 3}
   pickaxeType: 12
   oreConfig: {fileID: 11400000, guid: d3f532e0e9149d5428d9642b5d3f59f1, type: 2}
+  nameKey: carbon

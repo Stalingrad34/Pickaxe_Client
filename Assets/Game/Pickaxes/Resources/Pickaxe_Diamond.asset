@@ -15,3 +15,4 @@ MonoBehaviour:
   pickaxeView: {fileID: 3479729758418147358, guid: db960d21317c88c42bfe23d5c56372cb, type: 3}
   pickaxeType: 13
   oreConfig: {fileID: 11400000, guid: 7e53b6b617e0f7e4ca60df56ee48da00, type: 2}
+  nameKey: diamond

@@ -15,3 +15,4 @@ MonoBehaviour:
   pickaxeView: {fileID: 5689784329244796759, guid: b7c2a8d4432d7594998247e497ee2c26, type: 3}
   pickaxeType: 7
   oreConfig: {fileID: 11400000, guid: a21c594f706acd04dbcd5aab0dc7de93, type: 2}
+  nameKey: crystal

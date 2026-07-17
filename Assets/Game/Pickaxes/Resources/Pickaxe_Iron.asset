@@ -15,3 +15,4 @@ MonoBehaviour:
   pickaxeView: {fileID: 4929505362835153113, guid: 652d869aa7bcc0b479844a29b78274c6, type: 3}
   pickaxeType: 4
   oreConfig: {fileID: 11400000, guid: 7dec43899ce071a4087ae7b885aae5fa, type: 2}
+  nameKey: iron

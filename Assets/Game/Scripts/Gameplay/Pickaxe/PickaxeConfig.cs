@@ -9,5 +9,6 @@ namespace Game.Scripts.Gameplay.Pickaxe
     public PickaxeView pickaxeView;
     public PickaxeType pickaxeType;
     public OreConfig oreConfig;
+    public string nameKey;
   }
 }

@@ -15,3 +15,4 @@ MonoBehaviour:
   pickaxeView: {fileID: 4806563877512158770, guid: 5f06e5ca81ef05148a3fb688b12992a4, type: 3}
   pickaxeType: 11
   oreConfig: {fileID: 11400000, guid: 63f9bd564ce958a4c90d2ae62d126e1f, type: 2}
+  nameKey: rubin

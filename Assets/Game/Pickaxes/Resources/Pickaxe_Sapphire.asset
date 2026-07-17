@@ -15,3 +15,4 @@ MonoBehaviour:
   pickaxeView: {fileID: 2572642654866392457, guid: 52534c2801e42d74a9d2d71cb915f557, type: 3}
   pickaxeType: 10
   oreConfig: {fileID: 11400000, guid: 4124171144d831849a01ddc0a35da775, type: 2}
+  nameKey: sapphire
