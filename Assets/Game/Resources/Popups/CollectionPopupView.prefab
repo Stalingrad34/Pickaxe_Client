@@ -144,7 +144,7 @@ MonoBehaviour:
   m_text: "\u0414\u0435\u0440\u0435\u0432\u043E"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 14799f4bb74ab924dba50bce1a7b7978, type: 2}
-  m_sharedMaterial: {fileID: 3304866149646035212, guid: 14799f4bb74ab924dba50bce1a7b7978, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 2cbd300f87153eb498106a976dbf1890, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 10.7
-  m_fontSizeMax: 20.2
+  m_fontSizeMax: 25
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -489,7 +489,6 @@ GameObject:
   - component: {fileID: 8207977810853054721}
   - component: {fileID: 242371655345869075}
   - component: {fileID: 3538866064191239052}
-  - component: {fileID: 7811089184465457068}
   m_Layer: 5
   m_Name: Count
   m_TagString: Untagged
@@ -616,20 +615,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7811089184465457068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3841375070501286799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abe43720b0b04a8783861a3d11d97005, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.LocalizableText
-  text: {fileID: 3538866064191239052}
-  key: ore
 --- !u!1 &4421153060901034698
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,7 +941,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.LocalizableText
   text: {fileID: 5726385389611072010}
-  key: ore
+  key: collected
 --- !u!1 &7269129765533288124
 GameObject:
   m_ObjectHideFlags: 0
@@ -1082,7 +1067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a270a356d2ed47dc8daba5b3ed1b90a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.UI.Popups.Collection.CollectionPopupView
-  availableCount: {fileID: 3538866064191239052}
+  collectedCount: {fileID: 3538866064191239052}
   itemPrefab: {fileID: 7720608494826394526}
   itemsRoot: {fileID: 1380301902066459747}
   closeBtn: {fileID: 7512732703508428673}

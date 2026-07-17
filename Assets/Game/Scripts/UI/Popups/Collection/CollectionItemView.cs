@@ -15,6 +15,7 @@ namespace Game.Scripts.UI.Popups.Collection
     protected override void SetModel(CollectionItemModel model)
     {
       model.Name.SubscribeCustomText(nameText).AddTo(gameObject);
+      model.NameColor.SubscribeTextColor(nameText).AddTo(gameObject);
       model.Icon.SubscribeToImageSprite(icon).AddTo(gameObject);
     }
   }

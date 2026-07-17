@@ -84,6 +84,11 @@ namespace Game.Scripts.Infrastructure.Extensions
             return source.SubscribeWithState(image, (c, t) => t.color = c);
         }
         
+        public static IDisposable SubscribeTextColor(this IObservable<Color> source, CustomText text)
+        {
+            return source.SubscribeWithState(text, (c, t) => t.color = c);
+        }
+        
         public static IDisposable SubscribeToImageUrl(this IObservable<string> source, ImageUrlWidget widget)
         {
             return source.SubscribeWithState(widget, (c, t) => widget.SetImageUrl(c).Forget());
@@ -204,7 +209,7 @@ namespace Game.Scripts.Infrastructure.Extensions
         
         public static IDisposable SubscribeCount<T>(this ReactiveCollection<T> collection, Action<int> method)
         {
-            return collection.ObserveCountChanged().Subscribe(count => method?.Invoke(count));
+            return collection.ObserveCountChanged(true).Subscribe(count => method?.Invoke(count));
         }
 
         public static IDisposable SubscribeCustomStyle(this IObservable<CustomButtonSettings.Style> source, CustomButton button)

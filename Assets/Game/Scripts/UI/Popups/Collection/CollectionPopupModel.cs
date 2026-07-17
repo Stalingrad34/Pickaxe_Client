@@ -7,6 +7,8 @@ namespace Game.Scripts.UI.Popups.Collection
 {
   public class CollectionPopupModel : PopupModel
   {
+    public readonly ReactiveProperty<int> CollectedPickaxesMaxCount = new();
+    public readonly ReactiveProperty<int> CollectedPickaxesCurrentCount = new();
     public readonly ReactiveCollection<CollectionItemModel> Items = new();
 
     public CollectionPopupModel()
@@ -17,9 +19,12 @@ namespace Game.Scripts.UI.Popups.Collection
       foreach (var pickaxe in sortedPickaxes)
       {
         var isCollected = pickaxesService.CollectedPickaxes.Contains(pickaxe.pickaxeType);
-        var model = new CollectionItemModel(pickaxe.nameKey, isCollected ? pickaxe.available :  pickaxe.unavailable);
+        var model = new CollectionItemModel(pickaxe, isCollected);
         Items.Add(model);
       }
+      
+      CollectedPickaxesMaxCount.Value = pickaxes.Count;
+      CollectedPickaxesCurrentCount.Value = ServiceProvider.Get<PickaxesService>().CollectedPickaxes.Count;
     }
   }
 }

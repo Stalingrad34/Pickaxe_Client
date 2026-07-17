@@ -15,5 +15,7 @@
     Rubin = 11,
     Carbon = 12,
     Diamond = 13,
+    
+    Locked = 1000,
   }
 }

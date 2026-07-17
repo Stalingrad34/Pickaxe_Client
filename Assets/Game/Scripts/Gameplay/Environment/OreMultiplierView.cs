@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Infrastructure.Services;
+﻿using Game.Scripts.Infrastructure.Custom;
+using Game.Scripts.Infrastructure.Services;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -8,8 +9,8 @@ namespace Game.Scripts.Gameplay.Environment
 {
   public class OreMultiplierView : MonoBehaviour
   {
-    [SerializeField] private TextMeshProUGUI multiplierText;
-    [SerializeField] private TextMeshProUGUI multiplierTimerText;
+    [SerializeField] private CustomText multiplierText;
+    [SerializeField] private CustomText multiplierTimerText;
     [SerializeField] private Image progressBar;
 
     private void Start()
@@ -22,14 +23,14 @@ namespace Game.Scripts.Gameplay.Environment
     private void MultiplierChanged(float multiplier)
     {
       var text = multiplier.ToString("0.0");
-      multiplierText.text = $"{text}x";
+      multiplierText.SetText(new TextData("ore_multiplier", $"{text}x"));
       var value = Mathf.InverseLerp(0.5f, 1.5f, multiplier);
       progressBar.fillAmount = value;
     }
 
     private void MultiplierTimerChanged(int seconds)
     {
-      multiplierTimerText.text = $"Следующее изменение через {seconds} секунд";
+      multiplierTimerText.SetText(new TextData("next_multiplier_time", seconds.ToString()));
     }
   }
 }

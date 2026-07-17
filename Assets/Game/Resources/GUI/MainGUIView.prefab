@@ -460,7 +460,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 233.35522, y: -302.6454}
+  m_AnchoredPosition: {x: 175, y: -302.6454}
   m_SizeDelta: {x: 338.7104, y: 231.2908}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3625975593345984510
@@ -1152,7 +1152,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   collectionBtn: {fileID: 5716266420869680605}
-  openedPickaxesCount: {fileID: 8150523257944594824}
+  collectedPickaxesCount: {fileID: 8150523257944594824}
   pickupTextDuration: 1
 --- !u!1 &8966859124887557765
 GameObject:

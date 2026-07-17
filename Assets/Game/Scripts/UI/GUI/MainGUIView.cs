@@ -17,8 +17,11 @@ namespace Game.Scripts.UI.GUI
     [SerializeField] private TextMeshProUGUI pickupTextView;
     [SerializeField] private AnimationCurve pickupTextAlphaCurve;
     [SerializeField] private CustomButton collectionBtn;
-    [SerializeField] private TextMeshProUGUI openedPickaxesCount;
+    [SerializeField] private TextMeshProUGUI collectedPickaxesCount;
     [SerializeField] private float pickupTextDuration;
+
+    private int _collectedMaxCount;
+    private int _collectedCurrentCount;
     
     protected override void SetModel(MainGUIModel model)
     {
@@ -26,8 +29,22 @@ namespace Game.Scripts.UI.GUI
       model.Ore.SubscribeOre(oreText).AddTo(gameObject);
       model.ShowJoystick.Subscribe(joystick.SetActive).AddTo(gameObject);
       model.PickupTextCommand.Subscribe(PickupTextHandler).AddTo(gameObject);
+      model.CollectedPickaxesMaxCount.Subscribe(CollectedPickaxesMaxChanged).AddTo(gameObject);
+      model.CollectedPickaxesCurrentCount.Subscribe(CollectedPickaxesCurrentChanged).AddTo(gameObject);
 
       collectionBtn.OnClick(model.OpenCollection).AddTo(gameObject);
+    }
+
+    private void CollectedPickaxesMaxChanged(int count)
+    {
+      _collectedMaxCount = count;
+      collectedPickaxesCount.text = $"{_collectedCurrentCount} / {_collectedMaxCount}";
+    }
+    
+    private void CollectedPickaxesCurrentChanged(int count)
+    {
+      _collectedCurrentCount = count;
+      collectedPickaxesCount.text = $"{_collectedCurrentCount} / {_collectedMaxCount}";
     }
 
     private void PickupTextHandler(PickupTextData data)

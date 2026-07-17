@@ -66,7 +66,7 @@ namespace Game.Scripts.Infrastructure.Services
         TryMergeAll();
       else
         RebuildPickaxes("player");
-
+      
       CollectPickaxes();
       CheckCanMarge();
     }
@@ -125,6 +125,7 @@ namespace Game.Scripts.Infrastructure.Services
       TryMerge(PickaxeType.Rubin, PickaxeType.Carbon);
       TryMerge(PickaxeType.Carbon, PickaxeType.Diamond);
       RebuildPickaxes("player");
+      CollectPickaxes();
       CanMerge.Value = false;
     }
 

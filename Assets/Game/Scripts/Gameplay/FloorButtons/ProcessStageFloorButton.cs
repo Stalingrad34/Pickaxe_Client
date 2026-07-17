@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Infrastructure.Services;
+﻿using Game.Scripts.Infrastructure.Custom;
+using Game.Scripts.Infrastructure.Services;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -7,7 +8,7 @@ namespace Game.Scripts.Gameplay.FloorButtons
 {
   public class ProcessStageFloorButton : MonoBehaviour
   {
-    [SerializeField] private TextMeshProUGUI nextStageText;
+    [SerializeField] private CustomText nextStageText;
     [SerializeField] private TextMeshProUGUI cost;
     [SerializeField] private GameObject onRoot;
     [SerializeField] private GameObject offRoot;
@@ -28,7 +29,7 @@ namespace Game.Scripts.Gameplay.FloorButtons
       var processingData = ServiceProvider.Get<OreProcessingService>().GetOrePrecessingData(_stage + 1);
       var oreAmount = ServiceProvider.Get<OreProcessingService>().GetOrePerSecond(_stage);
       var boost = processingData.OreCount - oreAmount;
-      nextStageText.text = $"+{MoneyFormatter.Format(boost)} в секунду";
+      nextStageText.SetText(new TextData("per_second", $"+{boost}"));
       cost.text = $"${MoneyFormatter.Format(processingData.UpgradeCost)}";
     }
 
