@@ -1,5 +1,6 @@
 ﻿using BitGames.Bits;
 using Game.Scripts.Infrastructure.Services;
+using Game.Scripts.UI.Popups.Collection;
 using UniRx;
 
 namespace Game.Scripts.UI.GUI
@@ -19,6 +20,12 @@ namespace Game.Scripts.UI.GUI
       Ore = _economy.Ore;
       ShowJoystick.Value = Platform.IsMobileWebGL();
       PickupTextCommand = economy.PickupTextCommand;
+    }
+
+    public void OpenCollection()
+    {
+      var model = new CollectionPopupModel();
+      UIManager.ShowPopup<CollectionPopupView, CollectionPopupModel>(model);
     }
   }
 }

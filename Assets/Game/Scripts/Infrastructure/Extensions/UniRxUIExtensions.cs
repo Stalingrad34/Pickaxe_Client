@@ -201,6 +201,11 @@ namespace Game.Scripts.Infrastructure.Extensions
         {
             return collection.ObserveRemove().Subscribe(addEvent => method?.Invoke(addEvent.Value, addEvent.Index));
         }
+        
+        public static IDisposable SubscribeCount<T>(this ReactiveCollection<T> collection, Action<int> method)
+        {
+            return collection.ObserveCountChanged().Subscribe(count => method?.Invoke(count));
+        }
 
         public static IDisposable SubscribeCustomStyle(this IObservable<CustomButtonSettings.Style> source, CustomButton button)
         {

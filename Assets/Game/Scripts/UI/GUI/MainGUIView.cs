@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using Game.Scripts.Infrastructure.Custom;
 using Game.Scripts.Infrastructure.Extensions;
 using TMPro;
 using UniRx;
@@ -15,6 +16,8 @@ namespace Game.Scripts.UI.GUI
     [SerializeField] private RectTransform pickupTextTarget;
     [SerializeField] private TextMeshProUGUI pickupTextView;
     [SerializeField] private AnimationCurve pickupTextAlphaCurve;
+    [SerializeField] private CustomButton collectionBtn;
+    [SerializeField] private TextMeshProUGUI openedPickaxesCount;
     [SerializeField] private float pickupTextDuration;
     
     protected override void SetModel(MainGUIModel model)
@@ -23,6 +26,8 @@ namespace Game.Scripts.UI.GUI
       model.Ore.SubscribeOre(oreText).AddTo(gameObject);
       model.ShowJoystick.Subscribe(joystick.SetActive).AddTo(gameObject);
       model.PickupTextCommand.Subscribe(PickupTextHandler).AddTo(gameObject);
+
+      collectionBtn.OnClick(model.OpenCollection).AddTo(gameObject);
     }
 
     private void PickupTextHandler(PickupTextData data)

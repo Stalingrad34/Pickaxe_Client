@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e079b51a26443ab46a6b7510cd0427, type: 3}
+  m_Name: Pickaxe_Stone
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.Pickaxe.PickaxeConfig
+  pickaxeView: {fileID: 6762430176084746999, guid: 65841704f09deee4397453f238545746, type: 3}
+  pickaxeType: 2
+  oreConfig: {fileID: 11400000, guid: 617c6ed2716f51449998da5c450b9908, type: 2}
+  nameKey: stone
+  available: {fileID: 21300000, guid: 01a857d07df705748a2afa8b271d5e89, type: 3}
+  unavailable: {fileID: 21300000, guid: 7953afb4152391b4a9d326a4475a7f1c, type: 3}

@@ -17,6 +17,7 @@ namespace Game.Scripts.Infrastructure
         private const string POPUPS_PATH = "Popups";
         private const string SOUNDS_PATH = "Sounds";
         private const string UNITS_PATH = "Units";
+        private const string PICKAXES_PATH = "Configs/Pickaxes";
         private static readonly Dictionary<Type, MonoBehaviour> Assets = new();
         
         public static PlayerView GetPlayerView(string prefabPath)
@@ -31,7 +32,7 @@ namespace Game.Scripts.Infrastructure
         
         public static PickaxeConfig GetPickaxeData(PickaxeType type)
         {
-            return GetResource<PickaxeConfig>($"Pickaxe_{type}");
+            return GetResource<PickaxeConfig>($"{PICKAXES_PATH}/Pickaxe_{type}");
         }
         
         public static UnitView GetCharacterView(string prefabPath)
@@ -93,6 +94,12 @@ namespace Game.Scripts.Infrastructure
         public static CustomButtonStyle GetCustomButtonStyle(CustomButtonSettings.Style style)
         {
             return Resources.Load<CustomButtonStyle>($"Buttons/{style}");
+        }
+
+        public static List<PickaxeConfig> GetAllPickaxes()
+        {
+            var resources = Resources.LoadAll<PickaxeConfig>("Configs/Pickaxes");
+            return resources.ToList();
         }
     }
 }

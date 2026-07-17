@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Game.Scripts.Gameplay.ECS;
 using Game.Scripts.Gameplay.Pickaxe;
+using Game.Scripts.Infrastructure.Extensions;
 using Game.Scripts.Infrastructure.Services.Storage;
 using Game.Scripts.Infrastructure.Services.Storage.Data;
 using UniRx;
@@ -15,6 +16,7 @@ namespace Game.Scripts.Infrastructure.Services
     public readonly ReactiveProperty<ulong> PickaxesNominal = new();
     public readonly ReactiveProperty<bool> CanMerge = new();
     public readonly ReactiveProperty<long> PickaxesPunchLastTime = new();
+    public ReactiveCollection<PickaxeType> CollectedPickaxes = new();
     
     private Dictionary<PickaxeType, int> _pickaxes = new();
     private IDisposable _pickaxesTimer;
@@ -64,8 +66,18 @@ namespace Game.Scripts.Infrastructure.Services
         TryMergeAll();
       else
         RebuildPickaxes("player");
-      
+
+      CollectPickaxes();
       CheckCanMarge();
+    }
+
+    private void CollectPickaxes()
+    {
+      foreach (var type in _pickaxes.Keys)
+      {
+        if(!CollectedPickaxes.Contains(type))
+          CollectedPickaxes.Add(type);
+      }
     }
 
     private void CheckCanMarge()
@@ -145,6 +157,7 @@ namespace Game.Scripts.Infrastructure.Services
       data.Pickaxes.PickaxesNominal = PickaxesNominal.Value;
       data.Pickaxes.Pickaxes = _pickaxes;
       data.Pickaxes.PickaxesPunchLastTime = PickaxesPunchLastTime.Value;
+      data.Pickaxes.CollectedPickaxes = new List<PickaxeType>(CollectedPickaxes);
       
       IsDirty = false;
     }
@@ -154,6 +167,7 @@ namespace Game.Scripts.Infrastructure.Services
       PickaxesNominal.Value = data.Pickaxes.PickaxesNominal;
       _pickaxes = data.Pickaxes.Pickaxes;
       PickaxesPunchLastTime.Value = data.Pickaxes.PickaxesPunchLastTime;
+      CollectedPickaxes = new ReactiveCollection<PickaxeType>(data.Pickaxes.CollectedPickaxes);
       
       Subscribe();
     }
@@ -162,6 +176,7 @@ namespace Game.Scripts.Infrastructure.Services
     {
       PickaxesNominal.Subscribe(_ => IsDirty = true);
       PickaxesPunchLastTime.Subscribe(_ => IsDirty = true);
+      CollectedPickaxes.SubscribeCount(_ => IsDirty = true);
     }
   }
 }

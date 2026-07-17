@@ -84,7 +84,7 @@ namespace Game.Scripts.UI
             return view;
         }
 
-        public static bool TryShowPopup<TView, TModel>(TModel model)
+        public static bool ShowPopup<TView, TModel>(TModel model)
             where TView : PopupView<TModel> where TModel : PopupModel
         {
             if (_instance._popups.ContainsKey(typeof(TModel)))
@@ -97,8 +97,6 @@ namespace Game.Scripts.UI
             popupView.Init(model, canvas);
             _instance._popups[typeof(TModel)] = popupView;
 
-            popupView.GetShowTween();
-
             return true;
         }
         
@@ -106,21 +104,7 @@ namespace Game.Scripts.UI
         {
             var view = _instance._popups[model.GetType()];
             view.SetInputActive(false);
-
-            var hideTween = view.GetHideTween();
-            hideTween.OnComplete(() => DestroyPopup(model));
-        }
-        
-        public static async UniTask ShowPopupAsync<TView, TModel>(TModel model)
-            where TView : PopupView<TModel> where TModel : PopupModel
-        {
-            var res = AssetProvider.GetPopup<TView, TModel>();
-            var canvas = GetPopupCanvas();
-            var popupView = Instantiate(res, canvas.transform, false);
-
-            popupView.Init(model, canvas);
-            _instance._popups[typeof(TModel)] = popupView;
-            await popupView.GetShowTween();
+            DestroyPopup(model);
         }
         
         public static async UniTask ShowBlackScreenFade()

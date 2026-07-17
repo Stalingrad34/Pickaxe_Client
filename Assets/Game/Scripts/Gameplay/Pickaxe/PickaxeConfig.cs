@@ -10,5 +10,7 @@ namespace Game.Scripts.Gameplay.Pickaxe
     public PickaxeType pickaxeType;
     public OreConfig oreConfig;
     public string nameKey;
+    public Sprite available;
+    public Sprite unavailable;
   }
 }

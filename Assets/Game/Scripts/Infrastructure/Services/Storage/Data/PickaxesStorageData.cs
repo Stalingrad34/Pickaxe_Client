@@ -10,5 +10,6 @@ namespace Game.Scripts.Infrastructure.Services.Storage.Data
     public ulong PickaxesNominal;
     public Dictionary<PickaxeType, int> Pickaxes = new();
     public long PickaxesPunchLastTime;
+    public List<PickaxeType> CollectedPickaxes = new();
   }
 }
