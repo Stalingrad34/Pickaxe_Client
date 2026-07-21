@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Game.Scripts.Gameplay.Chest;
 using Game.Scripts.Gameplay.ECS;
 using Game.Scripts.Infrastructure.Custom;
 using UnityEngine;
@@ -46,6 +47,11 @@ namespace Game.Scripts.Gameplay.Pickaxe
     public void SpawnOre()
     {
       ECSRunner.EcsEventWriter.SpawnOre(oreSpawnPoint.position, transform.position - oreSpawnPoint.position, _pickaxeConfig.oreConfig);
+    }
+    
+    public void SpawnChest(ChestConfig chestConfig)
+    {
+      ECSRunner.EcsEventWriter.SpawnChest(oreSpawnPoint.position, transform.position - oreSpawnPoint.position, chestConfig);
     }
   }
 }

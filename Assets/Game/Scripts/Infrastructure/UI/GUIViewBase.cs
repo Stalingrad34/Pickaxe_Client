@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace Game.Scripts.UI
+namespace Game.Scripts.Infrastructure.UI
 {
   public abstract class GUIViewBase : MonoBehaviour
   {

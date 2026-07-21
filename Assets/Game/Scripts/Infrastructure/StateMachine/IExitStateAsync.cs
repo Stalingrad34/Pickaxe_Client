@@ -1,6 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 
-namespace Game.Scripts.Infrastructure.States
+namespace Game.Scripts.Infrastructure.StateMachine
 {
   public interface IExitStateAsync
   {

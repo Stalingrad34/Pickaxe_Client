@@ -2,7 +2,7 @@ using Game.Scripts.Infrastructure.Custom;
 using PrimeTween;
 using UnityEngine;
 
-namespace Game.Scripts.Widgets
+namespace Game.Scripts.Infrastructure.Widgets
 {
   public class NotificationView : MonoBehaviour
   {

@@ -1,7 +1,7 @@
 ﻿using Game.Scripts.Infrastructure.Extensions;
 using UnityEngine;
 
-namespace Game.Scripts.Widgets
+namespace Game.Scripts.Infrastructure.Widgets
 {
   public abstract class WidgetView<T> : MonoBehaviour where T : WidgetModel
   {

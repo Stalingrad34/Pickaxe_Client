@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Scripts.Multiplayer.Generated;
+using UnityEngine;
 
 namespace Game.Scripts.Multiplayer
 {

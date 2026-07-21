@@ -4,6 +4,7 @@ using System.Linq;
 using Game.Scripts.Gameplay.Pickaxe;
 using Game.Scripts.Gameplay.Units;
 using Game.Scripts.Infrastructure.Custom;
+using Game.Scripts.Infrastructure.UI;
 using Game.Scripts.Multiplayer;
 using Game.Scripts.UI;
 using UnityEngine;

@@ -6,19 +6,20 @@
 // 
 
 using Colyseus.Schema;
-#if UNITY_5_3_OR_NEWER
 using UnityEngine.Scripting;
-#endif
 
-public partial class RestartInfo : Schema {
+namespace Game.Scripts.Multiplayer.Generated
+{
+	public partial class RestartInfo : Schema {
 #if UNITY_5_3_OR_NEWER
-[Preserve]
+		[Preserve]
 #endif
-public RestartInfo() { }
-	[Type(0, "string")]
-	public string playerId = default(string);
+		public RestartInfo() { }
+		[Type(0, "string")]
+		public string playerId = default(string);
 
-	[Type(1, "ref", typeof(Player))]
-	public Player player = null;
+		[Type(1, "ref", typeof(Player))]
+		public Player player = null;
+	}
 }
 

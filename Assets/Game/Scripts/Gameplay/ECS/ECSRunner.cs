@@ -1,16 +1,15 @@
 ﻿using System;
-using Core.Scripts.Loggers;
 using Game.Scripts.Gameplay.ECS.Camera;
-using Game.Scripts.Gameplay.ECS.Character;
 using Game.Scripts.Gameplay.ECS.Common;
 using Game.Scripts.Gameplay.ECS.Destroy;
 using Game.Scripts.Gameplay.ECS.EntityConvert;
 using Game.Scripts.Gameplay.ECS.Input;
 using Game.Scripts.Gameplay.ECS.KinematicCharacter;
-using Game.Scripts.Gameplay.ECS.Ore;
 using Game.Scripts.Gameplay.ECS.Pickaxe;
 using Game.Scripts.Gameplay.ECS.Pickup;
 using Game.Scripts.Gameplay.ECS.RigidBody;
+using Game.Scripts.Gameplay.ECS.Spawn;
+using Game.Scripts.Infrastructure.Loggers;
 using Game.Scripts.KinematicCharacterController.ExampleCharacter.Scripts;
 using Leopotam.EcsProto;
 using UnityEngine;
@@ -43,26 +42,24 @@ namespace Game.Scripts.Gameplay.ECS
       };
       
       var inputModule = new InputModule();
-      var characterModule = new CharacterModule();
+      var spawnModule = new SpawnModule();
       var cameraModule = new CameraModule();
       var moveModule = new KinematicCharacterModule();
       var rigidbodyModule = new RigidbodyModule();
       var convertEntityModule = new ConvertEntityModule();
       var pickaxeModule = new PickaxeModule();
-      var oreModule = new OreModule();
       var pickupModule = new PickupModule();
       var destroyModule = new DestroyModule();
       
       _mainAspect = new MainAspect();
       _mainAspect.AddAspects(GetCommonAspects());
       _mainAspect.AddAspects(inputModule.Aspects());
-      _mainAspect.AddAspects(characterModule.Aspects());
+      _mainAspect.AddAspects(spawnModule.Aspects());
       _mainAspect.AddAspects(cameraModule.Aspects());
       _mainAspect.AddAspects(moveModule.Aspects());
       _mainAspect.AddAspects(rigidbodyModule.Aspects());
       _mainAspect.AddAspects(convertEntityModule.Aspects());
       _mainAspect.AddAspects(pickaxeModule.Aspects());
-      _mainAspect.AddAspects(oreModule.Aspects());
       _mainAspect.AddAspects(pickupModule.Aspects());
       _mainAspect.AddAspects(destroyModule.Aspects());
       
@@ -78,10 +75,9 @@ namespace Game.Scripts.Gameplay.ECS
         .AddService(inputActions, typeof(InputActions))
         .AddModule(convertEntityModule)
         .AddModule(inputModule)
-        .AddModule(characterModule)
+        .AddModule(spawnModule)
         .AddModule(moveModule)
         .AddModule(pickaxeModule)
-        .AddModule(oreModule)
         .AddModule(pickupModule)
         .AddModule(destroyModule)
         .Init();

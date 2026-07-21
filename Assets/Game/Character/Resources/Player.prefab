@@ -321,10 +321,10 @@ PrefabInstance:
       addedObject: {fileID: 3354804898829014788}
     - targetCorrespondingSourceObject: {fileID: 6500311980659525006, guid: d56338f25892e6d4094e5f2efdc6397d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3833567398266509498}
+      addedObject: {fileID: 1369284756585989055}
     - targetCorrespondingSourceObject: {fileID: 6500311980659525006, guid: d56338f25892e6d4094e5f2efdc6397d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1369284756585989055}
+      addedObject: {fileID: 8980864829932943808}
   m_SourcePrefab: {fileID: 100100000, guid: d56338f25892e6d4094e5f2efdc6397d, type: 3}
 --- !u!1 &406409807060078107 stripped
 GameObject:
@@ -547,18 +547,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.ECS.EntityConvert.Converters.MoveAnimatorConverter
   animator: {fileID: 4952450507872264844}
---- !u!114 &3833567398266509498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 406409807060078107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4a4c89e1de2435b9dcbe496d8668748, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.ECS.EntityConvert.Converters.CharacterConverter
 --- !u!114 &1369284756585989055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,6 +560,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.ECS.Pickup.Converters.PickupOreCollectorConverter
   pickupDistance: 1
+--- !u!114 &8980864829932943808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406409807060078107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3225beedaeda46a2acc8f2ede22b1eb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.ECS.Spawn.Converters.CharacterConverter
 --- !u!95 &451014135572743698 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6472858117986979207, guid: d56338f25892e6d4094e5f2efdc6397d, type: 3}

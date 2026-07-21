@@ -1,15 +1,14 @@
 #if !NO_UNITY
-using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 using YG;
-
 #if UNITY_IOS
 using System.Runtime.InteropServices;
 #endif
 
-namespace BitGames.Bits
+namespace Game.Scripts.Infrastructure
 {
   public struct PlatformStoreID
   {

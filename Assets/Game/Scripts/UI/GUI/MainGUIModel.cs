@@ -1,7 +1,7 @@
-﻿using BitGames.Bits;
-using Game.Scripts.Infrastructure;
+﻿using Game.Scripts.Infrastructure;
 using Game.Scripts.Infrastructure.Extensions;
 using Game.Scripts.Infrastructure.Services;
+using Game.Scripts.Infrastructure.UI;
 using Game.Scripts.UI.Popups.Collection;
 using UniRx;
 

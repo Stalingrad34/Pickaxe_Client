@@ -6,19 +6,20 @@
 // 
 
 using Colyseus.Schema;
-#if UNITY_5_3_OR_NEWER
 using UnityEngine.Scripting;
-#endif
 
-public partial class Vector2Float : Schema {
+namespace Game.Scripts.Multiplayer.Generated
+{
+	public partial class Vector2Float : Schema {
 #if UNITY_5_3_OR_NEWER
-[Preserve]
+		[Preserve]
 #endif
-public Vector2Float() { }
-	[Type(0, "number")]
-	public float x = default(float);
+		public Vector2Float() { }
+		[Type(0, "number")]
+		public float x = default(float);
 
-	[Type(1, "number")]
-	public float z = default(float);
+		[Type(1, "number")]
+		public float z = default(float);
+	}
 }
 

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Game.Scripts.Infrastructure.Services;
-using Game.Scripts.Infrastructure.Services.Database;
 using PrimeTween;
 using UniRx;
 using UnityEngine;

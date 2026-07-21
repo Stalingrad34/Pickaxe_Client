@@ -1,6 +1,6 @@
-﻿using Game.Scripts.Gameplay.ECS.Ore.Aspects;
-using Game.Scripts.Gameplay.ECS.Pickaxe.Aspects;
+﻿using Game.Scripts.Gameplay.ECS.Pickaxe.Aspects;
 using Game.Scripts.Gameplay.ECS.Pickaxe.Components;
+using Game.Scripts.Gameplay.ECS.Spawn;
 using Leopotam.EcsProto;
 
 namespace Game.Scripts.Gameplay.ECS.Pickaxe.Systems
@@ -8,14 +8,14 @@ namespace Game.Scripts.Gameplay.ECS.Pickaxe.Systems
   public class PickaxesPunchSystem : IProtoInitSystem, IProtoRunSystem
   {
     private PickaxeAspect _pickaxeAspect;
-    private OreAspect _oreAspect;
+    private SpawnAspect _spawnAspect;
     private ProtoIt _eventEntities;
     private ProtoIt _pickaxeMineEntities;
     
     public void Init(IProtoSystems systems)
     {
       _pickaxeAspect = systems.GetAspect<PickaxeAspect>();
-      _oreAspect = systems.GetAspect<OreAspect>();
+      _spawnAspect = systems.GetAspect<SpawnAspect>();
       _eventEntities = Entities.ProtoIt<PickaxesPunchEvent>(systems.World());
       _pickaxeMineEntities = Entities.ProtoIt<PickaxeMineComponent>(systems.World());
     }
@@ -24,7 +24,7 @@ namespace Game.Scripts.Gameplay.ECS.Pickaxe.Systems
     {
       foreach (var eventEntity in _eventEntities)
       {
-        if (_oreAspect.OrePool.Len() > 150)
+        if (_spawnAspect.OrePool.Len() > 150)
           continue;
        
         var ownerId = _pickaxeAspect.PickaxesPunchEvents.Get(eventEntity).OwnerId;

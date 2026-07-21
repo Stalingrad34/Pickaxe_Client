@@ -4,7 +4,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Core.Scripts.Loggers
+namespace Game.Scripts.Infrastructure.Loggers
 {
     public class LoggerView : MonoBehaviour
     {

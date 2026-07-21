@@ -1,6 +1,6 @@
 ﻿using Game.Scripts.Gameplay.Pickaxe;
 using Game.Scripts.Infrastructure.Custom;
-using Game.Scripts.Widgets;
+using Game.Scripts.Infrastructure.Widgets;
 using UniRx;
 using UnityEngine;
 

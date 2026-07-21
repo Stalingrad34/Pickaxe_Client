@@ -1,7 +1,7 @@
 using System.Text;
 using UniRx;
 
-namespace Core.Scripts.Loggers
+namespace Game.Scripts.Infrastructure.Loggers
 {
     public class LoggerModel
     {

@@ -1,8 +1,6 @@
-﻿using BitGames.Bits;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Game.Scripts.Infrastructure.Services;
 using Game.Scripts.Infrastructure.Services.Storage;
-using Game.Scripts.Infrastructure.States;
 using Game.Scripts.Multiplayer;
 using Game.Scripts.States;
 using UnityEngine;
@@ -71,8 +69,8 @@ namespace Game.Scripts.Infrastructure
             
             AudioController.Instance.Init();
             
-            StateMachine.Init();
-            StateMachine.EnterAsync<GameState>().Forget();
+            StateMachine.StateMachine.Init();
+            StateMachine.StateMachine.EnterAsync<GameState>().Forget();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using UniRx;
 
-namespace Game.Scripts.Widgets.ToggleGroup
+namespace Game.Scripts.Infrastructure.Widgets.ToggleGroup
 {
   public class ToggleGroupModel<T> where T : Enum
   {

@@ -12,13 +12,5 @@ namespace Game.Scripts.Gameplay.Ore
         setupComponent.Setup(data);
       }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-      if (other.CompareTag("Player"))
-      {
-        
-      }
-    }
   }
 }

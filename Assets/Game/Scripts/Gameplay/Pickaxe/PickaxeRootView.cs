@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using Game.Scripts.Gameplay.Chest;
 using UnityEngine;
 
 namespace Game.Scripts.Gameplay.Pickaxe
@@ -28,7 +29,7 @@ namespace Game.Scripts.Gameplay.Pickaxe
       return _view;
     }
 
-    public async UniTaskVoid Punch()
+    public async UniTaskVoid PunchOre()
     {
       if (_isEmpty)
         return;
@@ -40,6 +41,20 @@ namespace Game.Scripts.Gameplay.Pickaxe
         return;
     
       _view.SpawnOre();
+    }
+    
+    public async UniTaskVoid PunchChest(ChestConfig chestConfig)
+    {
+      if (_isEmpty)
+        return;
+      
+      var token = destroyCancellationToken;
+      
+      await _view.PlayPunchAnimation(token);
+      if (token.IsCancellationRequested)
+        return;
+    
+      _view.SpawnChest(chestConfig);
     }
 
     public bool IsEmpty()

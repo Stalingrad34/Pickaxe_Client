@@ -1,10 +1,9 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using Game.Scripts.Infrastructure;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.Scripts.Widgets
+namespace Game.Scripts.Infrastructure.Widgets
 {
   public class ImageUrlWidget : MonoBehaviour
   {

@@ -1,6 +1,6 @@
 ﻿using Game.Scripts.Infrastructure.Custom;
 using Game.Scripts.Infrastructure.Extensions;
-using Game.Scripts.Widgets;
+using Game.Scripts.Infrastructure.Widgets;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;

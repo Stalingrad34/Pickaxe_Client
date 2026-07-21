@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Game.Scripts.Infrastructure;
-using Game.Scripts.Widgets;
+using Game.Scripts.Infrastructure.Widgets;
 using PrimeTween;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-namespace Game.Scripts.UI
+namespace Game.Scripts.Infrastructure.UI
 {
     public class UIManager : MonoBehaviour
     {

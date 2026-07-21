@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEditor.UI;
 
-namespace Game.Scripts.Editor
+namespace Game.Scripts.Infrastructure.Editor
 {
     [CustomEditor(typeof(CustomButton))]
     public class CustomButtonEditor : ButtonEditor

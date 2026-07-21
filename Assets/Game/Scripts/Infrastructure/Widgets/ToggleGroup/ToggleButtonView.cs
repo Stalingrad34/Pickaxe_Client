@@ -4,7 +4,7 @@ using Game.Scripts.Infrastructure.Extensions;
 using UniRx;
 using UnityEngine;
 
-namespace Game.Scripts.Widgets.ToggleGroup
+namespace Game.Scripts.Infrastructure.Widgets.ToggleGroup
 {
   public abstract class ToggleButtonView<T> : MonoBehaviour where T : Enum
   {

@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using Game.Scripts.Infrastructure.Custom;
 using Game.Scripts.Infrastructure.Extensions;
+using Game.Scripts.Infrastructure.UI;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -18,6 +19,7 @@ namespace Game.Scripts.UI.GUI
     [SerializeField] private AnimationCurve pickupTextAlphaCurve;
     [SerializeField] private CustomButton collectionBtn;
     [SerializeField] private TextMeshProUGUI collectedPickaxesCount;
+    [SerializeField] private ChestInfoWidget chestInfoWidget;
     [SerializeField] private float pickupTextDuration;
 
     private int _collectedMaxCount;

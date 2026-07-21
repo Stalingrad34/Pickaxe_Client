@@ -6,34 +6,35 @@
 // 
 
 using Colyseus.Schema;
-#if UNITY_5_3_OR_NEWER
 using UnityEngine.Scripting;
-#endif
 
-public partial class Player : Schema {
+namespace Game.Scripts.Multiplayer.Generated
+{
+	public partial class Player : Schema {
 #if UNITY_5_3_OR_NEWER
-[Preserve]
+		[Preserve]
 #endif
-public Player() { }
-	[Type(0, "ref", typeof(Vector3Float))]
-	public Vector3Float position = null;
+		public Player() { }
+		[Type(0, "ref", typeof(Vector3Float))]
+		public Vector3Float position = null;
 
-	[Type(1, "number")]
-	public float rotationY = default(float);
+		[Type(1, "number")]
+		public float rotationY = default(float);
 
-	[Type(2, "number")]
-	public float speed = default(float);
+		[Type(2, "number")]
+		public float speed = default(float);
 
-	[Type(3, "string")]
-	public string weapon = default(string);
+		[Type(3, "string")]
+		public string weapon = default(string);
 
-	[Type(4, "string")]
-	public string body = default(string);
+		[Type(4, "string")]
+		public string body = default(string);
 
-	[Type(5, "string")]
-	public string face = default(string);
+		[Type(5, "string")]
+		public string face = default(string);
 
-	[Type(6, "string")]
-	public string name = default(string);
+		[Type(6, "string")]
+		public string name = default(string);
+	}
 }
 

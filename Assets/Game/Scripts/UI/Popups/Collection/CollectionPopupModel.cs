@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Game.Scripts.Infrastructure;
 using Game.Scripts.Infrastructure.Services;
+using Game.Scripts.Infrastructure.UI;
 using UniRx;
 
 namespace Game.Scripts.UI.Popups.Collection

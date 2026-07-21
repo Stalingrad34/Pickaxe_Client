@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Game.Scripts.Infrastructure.Services.Storage;
 using Game.Scripts.Infrastructure.Services.Storage.Data;
 using Game.Scripts.Multiplayer;
 using Newtonsoft.Json;
-using Sirenix.Utilities;
 using UnityEngine;
 
-namespace Game.Scripts.Infrastructure.Services.Database
+namespace Game.Scripts.Infrastructure.Services.Storage
 {
   public class MySqlStorageRepository : IStorageRepository
   {

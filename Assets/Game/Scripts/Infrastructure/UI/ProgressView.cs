@@ -3,7 +3,7 @@ using PrimeTween;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.Scripts.UI
+namespace Game.Scripts.Infrastructure.UI
 {
   public class ProgressView : MonoBehaviour
   {

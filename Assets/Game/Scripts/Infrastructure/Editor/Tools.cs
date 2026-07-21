@@ -1,9 +1,8 @@
-﻿using Game.Scripts.Infrastructure.Editor;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace Game.Scripts.Editor
+namespace Game.Scripts.Infrastructure.Editor
 {
   public class Tools
   {

@@ -6,7 +6,7 @@ using Colyseus.Schema;
 using Cysharp.Threading.Tasks;
 using Game.Scripts.Infrastructure;
 using Game.Scripts.Infrastructure.Services;
-using Game.Scripts.Infrastructure.Services.Database;
+using Game.Scripts.Multiplayer.Generated;
 using UniRx;
 using UnityEngine;
 using Random = UnityEngine.Random;

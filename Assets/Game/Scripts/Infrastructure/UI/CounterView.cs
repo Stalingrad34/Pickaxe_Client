@@ -3,7 +3,7 @@ using PrimeTween;
 using TMPro;
 using UnityEngine;
 
-namespace Game.Scripts.UI
+namespace Game.Scripts.Infrastructure.UI
 {
   public class CounterView : MonoBehaviour
   {

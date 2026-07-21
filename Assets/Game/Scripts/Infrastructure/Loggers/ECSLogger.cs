@@ -3,7 +3,7 @@ using System.Text;
 using Leopotam.EcsProto;
 using UnityEngine;
 
-namespace Core.Scripts.Loggers
+namespace Game.Scripts.Infrastructure.Loggers
 {
     public static class ECSLogger
     {

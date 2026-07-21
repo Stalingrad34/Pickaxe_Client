@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace Core.Scripts.Loggers
+namespace Game.Scripts.Infrastructure.Loggers
 {
     public class LimitStack<T> : IEnumerable<T>
     {

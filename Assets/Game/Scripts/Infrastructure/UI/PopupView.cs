@@ -1,4 +1,4 @@
-﻿namespace Game.Scripts.UI
+﻿namespace Game.Scripts.Infrastructure.UI
 {
     public abstract class PopupView<T>: PopupViewBase where T: PopupModel
     {

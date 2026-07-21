@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Scripts.Multiplayer.Generated;
 
 namespace Game.Scripts.Multiplayer
 {

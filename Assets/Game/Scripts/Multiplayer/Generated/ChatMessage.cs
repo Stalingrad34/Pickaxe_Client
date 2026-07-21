@@ -6,19 +6,20 @@
 // 
 
 using Colyseus.Schema;
-#if UNITY_5_3_OR_NEWER
 using UnityEngine.Scripting;
-#endif
 
-public partial class ChatMessage : Schema {
+namespace Game.Scripts.Multiplayer.Generated
+{
+	public partial class ChatMessage : Schema {
 #if UNITY_5_3_OR_NEWER
-[Preserve]
+		[Preserve]
 #endif
-public ChatMessage() { }
-	[Type(0, "string")]
-	public string name = default(string);
+		public ChatMessage() { }
+		[Type(0, "string")]
+		public string name = default(string);
 
-	[Type(1, "string")]
-	public string message = default(string);
+		[Type(1, "string")]
+		public string message = default(string);
+	}
 }
 

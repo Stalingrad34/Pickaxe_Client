@@ -3,7 +3,7 @@ using TMPro;
 using UnityEditor;
 using TextEditor = UnityEditor.UI.TextEditor;
 
-namespace Game.Scripts.Editor
+namespace Game.Scripts.Infrastructure.Editor
 {
   public class CustomTextEditor : TextEditor
   {

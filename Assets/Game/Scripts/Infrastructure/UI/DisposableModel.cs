@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Game.Scripts.UI
+namespace Game.Scripts.Infrastructure.UI
 {
     public class DisposableModel : IDisposable
     {

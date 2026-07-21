@@ -1,8 +1,7 @@
-﻿using System;
-using Game.Scripts.Infrastructure.Custom;
+﻿using Game.Scripts.Infrastructure.Custom;
 using UnityEngine;
 
-namespace Game.Scripts.UI
+namespace Game.Scripts.Infrastructure.UI
 {
   public class LocalizableText : MonoBehaviour
   {

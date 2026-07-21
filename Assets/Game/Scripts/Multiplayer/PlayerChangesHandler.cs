@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Colyseus.Schema;
+using Game.Scripts.Multiplayer.Generated;
 
 namespace Game.Scripts.Multiplayer
 {

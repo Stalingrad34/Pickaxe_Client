@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Game.Scripts.Infrastructure.UI;
 using Game.Scripts.States;
-using Game.Scripts.UI;
 using UnityEngine;
 
-namespace Game.Scripts.Infrastructure.States
+namespace Game.Scripts.Infrastructure.StateMachine
 {
     public static class StateMachine
     {

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Game.Scripts.Gameplay.Chest;
+using Game.Scripts.Infrastructure;
 using UnityEngine;
 
 namespace Game.Scripts.Gameplay.Pickaxe
@@ -7,6 +9,8 @@ namespace Game.Scripts.Gameplay.Pickaxe
   public class PickaxesFloorView : MonoBehaviour
   {
     [SerializeField] private List<PickaxeRootView> pickaxeRoots;
+    [SerializeField] private List<ChestConfig> chests;
+    [SerializeField] private float chestChance;
 
     public bool IsFull()
     {
@@ -50,8 +54,34 @@ namespace Game.Scripts.Gameplay.Pickaxe
         if (root.IsEmpty())
           continue;
 
-        root.Punch().Forget();
+        if (TryGetChest(out var chest))
+          root.PunchChest(chest).Forget();
+        else 
+          root.PunchOre().Forget();
       }
+    }
+
+    private bool TryGetChest(out ChestConfig chest)
+    {
+      if (chests.Count == 0 || Random.value > chestChance)
+      {
+        chest = null;
+        return false;
+      }
+
+      chest = GetRandomChest();
+      return true;
+    }
+
+    private ChestConfig GetRandomChest()
+    {
+      var weights = new List<WeightedItem<ChestConfig>>();
+      foreach (var chestConfig in chests)
+      {
+        weights.Add(new WeightedItem<ChestConfig>(chestConfig, chestConfig.Weight));
+      }
+
+      return weights.GetWeightedRandom();
     }
   }
 }

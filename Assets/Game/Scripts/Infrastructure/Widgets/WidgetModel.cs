@@ -1,6 +1,6 @@
-﻿using Game.Scripts.UI;
+﻿using Game.Scripts.Infrastructure.UI;
 
-namespace Game.Scripts.Widgets
+namespace Game.Scripts.Infrastructure.Widgets
 {
   public class WidgetModel : DisposableModel
   {

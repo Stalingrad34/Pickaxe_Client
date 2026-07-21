@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Game.Scripts.Infrastructure.Services.Database;
 using UnityEngine;
 using YG;
 

@@ -1,7 +1,7 @@
 ﻿using Game.Scripts.Infrastructure.Extensions;
 using UniRx;
 
-namespace Game.Scripts.UI
+namespace Game.Scripts.Infrastructure.UI
 {
     public abstract class GUIView<T> : GUIViewBase where T : GUIModel
     {

@@ -1,7 +1,7 @@
 ﻿using System;
-using BitGames.Bits;
 using Game.Scripts.Gameplay.ECS.Input.Aspects;
 using Game.Scripts.Gameplay.ECS.Input.Systems;
+using Game.Scripts.Infrastructure;
 using Leopotam.EcsProto;
 
 namespace Game.Scripts.Gameplay.ECS.Input
