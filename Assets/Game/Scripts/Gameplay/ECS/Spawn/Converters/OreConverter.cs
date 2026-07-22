@@ -8,12 +8,14 @@ namespace Game.Scripts.Gameplay.ECS.Spawn.Converters
 {
   public class OreConverter : MonoBehaviour, IEntityConverter, IOreSetup
   {
+    [SerializeField] private OreView oreView;
     private Vector3 _startForce;
     
     public void Convert(ProtoEntity entity, IProtoSystems systems)
     {
       var oreAspect = systems.GetAspect<SpawnAspect>();
-      oreAspect.OrePool.Add(entity);
+      ref var component = ref oreAspect.OrePool.Add(entity);
+      component.OreView = oreView;
 
       var rigidbodyAspect = systems.GetAspect<RigidbodyAspect>();
       ref var forceEvent = ref rigidbodyAspect.AddForceEvents.Add(entity);

@@ -6,6 +6,8 @@ using Game.Scripts.Gameplay.ECS.Spawn;
 using Game.Scripts.Gameplay.Ore;
 using Game.Scripts.Gameplay.Pickaxe;
 using Game.Scripts.Gameplay.Units;
+using Game.Scripts.States;
+using Game.Scripts.UI.GUI;
 using Leopotam.EcsProto;
 using UnityEngine;
 
@@ -22,6 +24,13 @@ namespace Game.Scripts.Gameplay.ECS
       _spawnAspect = world.GetAspect<SpawnAspect>();
       _pickaxeAspect = world.GetAspect<PickaxeAspect>();
       _entityConvert = world.GetAspect<EntityConvertAspect>();
+    }
+
+    public void CreateGameSession(GameState gameState, MainGUIModel guiModel)
+    {
+      ref var component = ref _spawnAspect.GameSessionPool.NewEntity(out _);
+      component.GameState = gameState;
+      component.MainGUIModel = guiModel;
     }
 
     public void SpawnCharacter(UnitData unitData, string prefabName)

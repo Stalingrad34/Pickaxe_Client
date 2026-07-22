@@ -42,6 +42,7 @@ namespace Game.Scripts.Gameplay.ECS.Spawn.Systems
         }
         
         var characterView = AssetProvider.GetCharacterView(spawnEvent.PrefabPath);
+        spawnEvent.Data.Collector = characterView;
         characterView.Setup(spawnEvent.Data, _mainCamera);
       }
     }

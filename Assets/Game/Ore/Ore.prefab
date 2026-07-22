@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7981990586264218759}
   - component: {fileID: 4927531620753504222}
   - component: {fileID: 7472275039202288352}
+  - component: {fileID: 5292388116763540883}
   - component: {fileID: 2580983447831628493}
   m_Layer: 7
   m_Name: Ore
@@ -148,6 +149,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f850100bfa4680b512a65abae1493e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.ECS.EntityConvert.Converters.OreConverter
+  oreView: {fileID: 8329959835157879768}
+--- !u!114 &5292388116763540883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3945323887985450310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1aa0d08df4047b8ab43146f3e1936d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Scripts.Gameplay.ECS.Pickup.Converters.PickupItemConverter
 --- !u!114 &2580983447831628493
 MonoBehaviour:
   m_ObjectHideFlags: 0

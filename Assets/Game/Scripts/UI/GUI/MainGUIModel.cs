@@ -1,4 +1,6 @@
-﻿using Game.Scripts.Infrastructure;
+﻿using Game.Scripts.Gameplay.Chest;
+using Game.Scripts.Gameplay.ECS.Pickup.Interfaces;
+using Game.Scripts.Infrastructure;
 using Game.Scripts.Infrastructure.Extensions;
 using Game.Scripts.Infrastructure.Services;
 using Game.Scripts.Infrastructure.UI;
@@ -14,6 +16,7 @@ namespace Game.Scripts.UI.GUI
     public readonly ReactiveProperty<bool> ShowJoystick = new ();
     public readonly ReactiveProperty<int> CollectedPickaxesMaxCount = new ();
     public readonly ReactiveProperty<int> CollectedPickaxesCurrentCount = new ();
+    public readonly ReactiveProperty<ChestInfoModel> ChestInfo = new ();
     public readonly ReactiveCommand<PickupTextData> PickupTextCommand;
 
     public MainGUIModel(EconomyService economy)
@@ -35,6 +38,16 @@ namespace Game.Scripts.UI.GUI
     private void CollectedPickaxesCountChanged(int count)
     {
       CollectedPickaxesCurrentCount.Value = count;
+    }
+
+    public void ShowChestInfo(IPickupCollector collector, ChestConfig chestConfig)
+    {
+      ChestInfo.Value = new ChestInfoModel(collector, chestConfig, this);
+    }
+
+    public void HideChestInfo()
+    {
+      ChestInfo.Value = null;
     }
   }
 }

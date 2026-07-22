@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Gameplay.ECS.Spawn.Components;
+﻿using Game.Scripts.Gameplay.ECS.Common.Components;
+using Game.Scripts.Gameplay.ECS.Spawn.Components;
 using Leopotam.EcsProto;
 
 namespace Game.Scripts.Gameplay.ECS.Spawn
@@ -9,6 +10,7 @@ namespace Game.Scripts.Gameplay.ECS.Spawn
     public ProtoPool<SpawnOreEvent> SpawnOrePool;
     public ProtoPool<SpawnChestEvent> SpawnChestPool;
 
+    public ProtoPool<GameSessionComponent> GameSessionPool;
     public ProtoPool<CharacterComponent> CharacterPool;
     public ProtoPool<OreComponent> OrePool;
     public ProtoPool<ChestComponent> ChestPool;
@@ -19,6 +21,9 @@ namespace Game.Scripts.Gameplay.ECS.Spawn
     {
       _world = world;
       _world.AddAspect(this);
+      
+      GameSessionPool = new ProtoPool<GameSessionComponent>();
+      _world.AddPool(GameSessionPool);
 
       SpawnCharacterPool = new ProtoPool<SpawnCharacterEvent>();
       _world.AddPool(SpawnCharacterPool);

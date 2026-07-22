@@ -5,7 +5,8 @@ namespace Game.Scripts.Gameplay.ECS.Destroy
 {
   public class DestroyAspect : IProtoAspect
   {
-    public ProtoPool<DestroyEvent> DestroyPool;
+    public ProtoPool<DestroyEntityEvent> DestroyEntitiesPool;
+    public ProtoPool<DestroyGameObjectEvent> DestroyGameObjectsPool;
 
     private ProtoWorld _world;
 
@@ -14,8 +15,11 @@ namespace Game.Scripts.Gameplay.ECS.Destroy
       _world = world;
       _world.AddAspect(this);
 
-      DestroyPool = new ProtoPool<DestroyEvent>();
-      _world.AddPool(DestroyPool);
+      DestroyEntitiesPool = new ProtoPool<DestroyEntityEvent>();
+      _world.AddPool(DestroyEntitiesPool);
+      
+      DestroyGameObjectsPool = new ProtoPool<DestroyGameObjectEvent>();
+      _world.AddPool(DestroyGameObjectsPool);
     }
 
     public void PostInit()

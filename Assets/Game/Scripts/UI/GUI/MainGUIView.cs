@@ -33,6 +33,7 @@ namespace Game.Scripts.UI.GUI
       model.PickupTextCommand.Subscribe(PickupTextHandler).AddTo(gameObject);
       model.CollectedPickaxesMaxCount.Subscribe(CollectedPickaxesMaxChanged).AddTo(gameObject);
       model.CollectedPickaxesCurrentCount.Subscribe(CollectedPickaxesCurrentChanged).AddTo(gameObject);
+      model.ChestInfo.Subscribe(ChestInfoChanged).AddTo(gameObject);
 
       collectionBtn.OnClick(model.OpenCollection).AddTo(gameObject);
     }
@@ -85,6 +86,18 @@ namespace Game.Scripts.UI.GUI
       var y = Random.Range(-halfHeight, halfHeight);
       
       return new Vector2(x, y);
+    }
+
+    private void ChestInfoChanged(ChestInfoModel chestInfoModel)
+    {
+      if (chestInfoModel == null)
+      {
+        chestInfoWidget.gameObject.SetActive(false);
+        return;
+      }
+      
+      chestInfoWidget.gameObject.SetActive(true);
+      chestInfoWidget.Init(chestInfoModel);
     }
   }
 }

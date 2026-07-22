@@ -5,5 +5,6 @@ namespace Game.Scripts.Gameplay.Chest
   public struct ChestData
   {
     public Vector3 StartForce;
+    public ChestConfig Config;
   }
 }

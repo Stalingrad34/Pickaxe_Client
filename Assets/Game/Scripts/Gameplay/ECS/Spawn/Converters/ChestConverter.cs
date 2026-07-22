@@ -8,12 +8,17 @@ namespace Game.Scripts.Gameplay.ECS.Spawn.Converters
 {
   public class ChestConverter : MonoBehaviour, IEntityConverter, IChestSetup
   {
+    [SerializeField] private ChestView view;
+    
+    private ChestConfig _chestConfig;
     private Vector3 _startForce;
 
     public void Convert(ProtoEntity entity, IProtoSystems systems)
     {
       var aspect = systems.GetAspect<SpawnAspect>();
-      aspect.CharacterPool.Add(entity);
+      ref var component = ref aspect.ChestPool.Add(entity);
+      component.ChestConfig = _chestConfig;
+      component.ChestView = view;
       
       var rigidbodyAspect = systems.GetAspect<RigidbodyAspect>();
       ref var forceEvent = ref rigidbodyAspect.AddForceEvents.Add(entity);
@@ -22,6 +27,7 @@ namespace Game.Scripts.Gameplay.ECS.Spawn.Converters
 
     public void Setup(ChestData chestData)
     {
+      _chestConfig = chestData.Config;
       _startForce = chestData.StartForce;
     }
   }

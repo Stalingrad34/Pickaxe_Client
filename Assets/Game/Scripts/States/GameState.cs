@@ -20,14 +20,14 @@ namespace Game.Scripts.States
       UIManager.SetCameraStack(Camera.main);
 
       var economy = ServiceProvider.Get<EconomyService>();
-      UIManager.ShowGUI<MainGUIView, MainGUIModel>(new MainGUIModel(economy));
+      var model = new MainGUIModel(economy);
+      UIManager.ShowGUI<MainGUIView, MainGUIModel>(model);
+      
+      ECSRunner.EcsEventWriter.CreateGameSession(this, model);
       
       var data = new UnitData()
       {
         Id = "player",
-        Speed = 2,
-        //PlayerSpeed = ServiceProvider.Get<ConfigProvider>().Game.Speed,
-        //JumpForce = ServiceProvider.Get<ConfigProvider>().Game.JumpForce,
         PlayerName = "Player"
       };
       

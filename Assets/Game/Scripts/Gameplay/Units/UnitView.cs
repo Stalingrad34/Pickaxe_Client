@@ -1,16 +1,19 @@
-﻿using Game.Scripts.KinematicCharacterController.ExampleCharacter.Scripts;
+﻿using Game.Scripts.Gameplay.ECS.Pickup.Interfaces;
+using Game.Scripts.KinematicCharacterController.ExampleCharacter.Scripts;
 using TMPro;
 using UnityEngine;
 
 namespace Game.Scripts.Gameplay.Units
 {
-  public abstract class UnitView : MonoBehaviour
+  public abstract class UnitView : MonoBehaviour, IPickupCollector
   {
+    [SerializeField] private Animator animator;
+    [SerializeField] protected Transform pickupRoot;
     [SerializeField] protected TextMeshProUGUI nameText;
     [SerializeField] protected Canvas canvas;
 
     private ExampleCharacterCamera _camera;
-    private GameObject _weapon;
+    private IPickupItem _item;
     
     public void Setup(UnitData data, ExampleCharacterCamera playerCamera)
     {
@@ -38,6 +41,27 @@ namespace Game.Scripts.Gameplay.Units
       
       var directionToCamera = _camera.Camera.transform.position - transform.position;
       canvas.transform.rotation = Quaternion.LookRotation(-directionToCamera);
+    }
+
+    public bool CanTake()
+    {
+      return _item == null;
+    }
+
+    public void Take(IPickupItem item)
+    {
+      _item = item;
+      animator.SetBool("Take", true);
+      item.Transform.SetParent(pickupRoot);
+      item.Transform.localPosition = Vector3.zero;
+      item.Pickup();
+    }
+
+    public void Discard()
+    {
+      Destroy(_item.Transform.gameObject);
+      _item = null;
+      animator.SetBool("Take", false);
     }
   }
 }

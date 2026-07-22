@@ -24,7 +24,8 @@ namespace Game.Scripts.Gameplay.ECS.Spawn.Systems
         var oreView = Object.Instantiate(spawnEvent.Config.Prefab, spawnEvent.Position, Quaternion.identity);
         var oreData = new ChestData()
         {
-          StartForce = spawnEvent.Direction
+          StartForce = spawnEvent.Direction,
+          Config = spawnEvent.Config
         };
         oreView.Init(oreData);
       }

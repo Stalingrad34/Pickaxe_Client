@@ -5,8 +5,10 @@ namespace Game.Scripts.Gameplay.ECS.Pickup
 {
   public class PickupAspect : IProtoAspect
   {
-    public ProtoPool<PickupOreItemComponent> PickupOreItemsPool;
-    public ProtoPool<PickupOreCollectorComponent> PickupOreCollectorsPool;
+    public ProtoPool<PickupCollectorComponent> PickupCollectorsPool;
+    public ProtoPool<PickupItemComponent> PickupItemsPool;
+    public ProtoPool<OreRewardComponent> PickupOreRewardsPool;
+    public ProtoPool<PickupEvent> PickupEventsPool;
 
     private ProtoWorld _world;
 
@@ -14,12 +16,18 @@ namespace Game.Scripts.Gameplay.ECS.Pickup
     {
       _world = world;
       _world.AddAspect(this);
-
-      PickupOreItemsPool = new ProtoPool<PickupOreItemComponent>();
-      _world.AddPool(PickupOreItemsPool);
       
-      PickupOreCollectorsPool = new ProtoPool<PickupOreCollectorComponent>();
-      _world.AddPool(PickupOreCollectorsPool);
+      PickupCollectorsPool = new ProtoPool<PickupCollectorComponent>();
+      _world.AddPool(PickupCollectorsPool);
+
+      PickupItemsPool = new ProtoPool<PickupItemComponent>();
+      _world.AddPool(PickupItemsPool);
+      
+      PickupOreRewardsPool = new ProtoPool<OreRewardComponent>();
+      _world.AddPool(PickupOreRewardsPool);
+      
+      PickupEventsPool = new ProtoPool<PickupEvent>();
+      _world.AddPool(PickupEventsPool);
     }
 
     public void PostInit()

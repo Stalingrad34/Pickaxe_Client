@@ -1,5 +1,7 @@
 ﻿using Game.Scripts.Infrastructure.Custom;
+using Game.Scripts.Infrastructure.Extensions;
 using Game.Scripts.Infrastructure.Widgets;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +19,7 @@ namespace Game.Scripts.UI.GUI
     
     protected override void SetModel(ChestInfoModel model)
     {
-      
+      discard.OnClick(model.Discard).AddTo(Disposables);
     }
   }
 }

@@ -9,6 +9,7 @@ namespace Game.Scripts.Gameplay.ECS.Destroy
     public void Init(IProtoSystems systems)
     {
       systems
+        .AddSystem(new DestroyEntitySystem())
         .AddSystem(new DestroyGameObjectSystem());
     }
 
