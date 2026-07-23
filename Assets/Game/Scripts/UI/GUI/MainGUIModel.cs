@@ -13,16 +13,18 @@ namespace Game.Scripts.UI.GUI
   {
     public readonly ReactiveProperty<ulong> Money;
     public readonly ReactiveProperty<ulong> Ore;
+    public readonly ReactiveProperty<ulong> Pickaxes;
     public readonly ReactiveProperty<bool> ShowJoystick = new ();
     public readonly ReactiveProperty<int> CollectedPickaxesMaxCount = new ();
     public readonly ReactiveProperty<int> CollectedPickaxesCurrentCount = new ();
     public readonly ReactiveProperty<ChestInfoModel> ChestInfo = new ();
     public readonly ReactiveCommand<PickupTextData> PickupTextCommand;
 
-    public MainGUIModel(EconomyService economy)
+    public MainGUIModel(EconomyService economy, PickaxesService pickaxesService)
     {
       Money = economy.Money;
       Ore = economy.Ore;
+      Pickaxes = pickaxesService.PickaxesNominal;
       ShowJoystick.Value = Platform.IsMobileWebGL();
       PickupTextCommand = economy.PickupTextCommand;
       CollectedPickaxesMaxCount.Value = AssetProvider.GetAllPickaxes().Count;

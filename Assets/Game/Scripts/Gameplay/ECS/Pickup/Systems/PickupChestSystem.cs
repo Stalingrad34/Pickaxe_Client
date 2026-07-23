@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Gameplay.ECS.Destroy;
+﻿using Game.Scripts.Gameplay.ECS.Common.Components;
+using Game.Scripts.Gameplay.ECS.Destroy;
 using Game.Scripts.Gameplay.ECS.Pickup.Components;
 using Game.Scripts.Gameplay.ECS.Spawn;
 using Game.Scripts.Gameplay.ECS.Spawn.Components;
@@ -12,6 +13,7 @@ namespace Game.Scripts.Gameplay.ECS.Pickup.Systems
     private SpawnAspect _spawnAspect;
     private DestroyAspect _destroyAspect;
     private ProtoIt _chestEntities;
+    private ProtoIt _gameSessionEntities;
 
     public void Init(IProtoSystems systems)
     {
@@ -19,6 +21,7 @@ namespace Game.Scripts.Gameplay.ECS.Pickup.Systems
       _spawnAspect = systems.GetAspect<SpawnAspect>();
       _destroyAspect = systems.GetAspect<DestroyAspect>();
       _chestEntities = Entities.ProtoIt<ChestComponent, PickupEvent>(systems.World());
+      _gameSessionEntities = Entities.ProtoIt<GameSessionComponent>(systems.World());
     }
 
     public void Run()
@@ -35,7 +38,10 @@ namespace Game.Scripts.Gameplay.ECS.Pickup.Systems
         
         _destroyAspect.DestroyEntitiesPool.Add(chestEntity);
         
-        var entity = _spawnAspect.GameSessionPool.Entities()[0];
+        var (entity, success) = _gameSessionEntities.FirstSlow();
+        if (!success)
+          continue;
+        
         ref var gameSession = ref _spawnAspect.GameSessionPool.Get(entity);
         gameSession.MainGUIModel.ShowChestInfo(collector, chest.ChestConfig);
       }

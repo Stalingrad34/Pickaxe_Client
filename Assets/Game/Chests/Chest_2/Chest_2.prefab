@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 4463389291625656681}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9045f84cab7714b449aa0ca919a27ea6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9045f84cab7714b449aa0ca919a27ea6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9045f84cab7714b449aa0ca919a27ea6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9045f84cab7714b449aa0ca919a27ea6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -48,6 +60,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9045f84cab7714b449aa0ca919a27ea6, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 9045f84cab7714b449aa0ca919a27ea6, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -76,15 +92,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 520439190731399113, guid: 811d02881aa69f0408dcc4df823bd046, type: 3}
       propertyPath: m_Size.x
-      value: 1.7157923
+      value: 1.1702845
+      objectReference: {fileID: 0}
+    - target: {fileID: 520439190731399113, guid: 811d02881aa69f0408dcc4df823bd046, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7430486
       objectReference: {fileID: 0}
     - target: {fileID: 520439190731399113, guid: 811d02881aa69f0408dcc4df823bd046, type: 3}
       propertyPath: m_Center.x
-      value: 0
+      value: 0.040471554
       objectReference: {fileID: 0}
     - target: {fileID: 520439190731399113, guid: 811d02881aa69f0408dcc4df823bd046, type: 3}
       propertyPath: m_Center.y
-      value: -0.27999997
+      value: -0.15152428
       objectReference: {fileID: 0}
     - target: {fileID: 1887797953009923935, guid: 811d02881aa69f0408dcc4df823bd046, type: 3}
       propertyPath: m_LocalPosition.x

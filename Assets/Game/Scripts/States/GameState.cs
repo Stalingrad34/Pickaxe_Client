@@ -18,9 +18,8 @@ namespace Game.Scripts.States
     {
       await SceneManager.LoadSceneAsync("Game/Scenes/Game");
       UIManager.SetCameraStack(Camera.main);
-
-      var economy = ServiceProvider.Get<EconomyService>();
-      var model = new MainGUIModel(economy);
+      
+      var model = new MainGUIModel(ServiceProvider.Get<EconomyService>(), ServiceProvider.Get<PickaxesService>());
       UIManager.ShowGUI<MainGUIView, MainGUIModel>(model);
       
       ECSRunner.EcsEventWriter.CreateGameSession(this, model);

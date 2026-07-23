@@ -12,6 +12,7 @@ namespace Game.Scripts.UI.GUI
   {
     [SerializeField] private TextMeshProUGUI moneyText;
     [SerializeField] private TextMeshProUGUI oreText;
+    [SerializeField] private CustomText pickaxesCountText;
     [SerializeField] private GameObject joystick;
     [SerializeField] private RectTransform pickupTextArea;
     [SerializeField] private RectTransform pickupTextTarget;
@@ -29,6 +30,7 @@ namespace Game.Scripts.UI.GUI
     {
       model.Money.SubscribeMoney(moneyText).AddTo(gameObject);
       model.Ore.SubscribeOre(oreText).AddTo(gameObject);
+      model.Pickaxes.Subscribe(PickaxesCountChanged).AddTo(gameObject);
       model.ShowJoystick.Subscribe(joystick.SetActive).AddTo(gameObject);
       model.PickupTextCommand.Subscribe(PickupTextHandler).AddTo(gameObject);
       model.CollectedPickaxesMaxCount.Subscribe(CollectedPickaxesMaxChanged).AddTo(gameObject);
@@ -48,6 +50,11 @@ namespace Game.Scripts.UI.GUI
     {
       _collectedCurrentCount = count;
       collectedPickaxesCount.text = $"{_collectedCurrentCount} / {_collectedMaxCount}";
+    }
+
+    private void PickaxesCountChanged(ulong count)
+    {
+      pickaxesCountText.SetText(new TextData("pickaxes_count", count.ToString()));
     }
 
     private void PickupTextHandler(PickupTextData data)
@@ -93,6 +100,7 @@ namespace Game.Scripts.UI.GUI
       if (chestInfoModel == null)
       {
         chestInfoWidget.gameObject.SetActive(false);
+        chestInfoWidget.Clear();
         return;
       }
       

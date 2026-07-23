@@ -15,5 +15,12 @@ MonoBehaviour:
   Prefab: {fileID: 3211751643212501489, guid: 3d542733c38d27e4991940eefb9b48d9, type: 3}
   ChestName: chest_2
   ChestIcon: {fileID: 21300000, guid: 62e2613e5838f644f9fd4dacac19c0f1, type: 3}
+  Color: {r: 0.43137258, g: 0.6666667, b: 0.48235297, a: 0.5882353}
   Weight: 30
-  Variants: []
+  Variants:
+  - pickaxeConfig: {fileID: 11400000, guid: ba5fc8eb966af9a48b4cf89b03c7b950, type: 2}
+    Chance: 75
+  - pickaxeConfig: {fileID: 11400000, guid: 131cee27dc282dd428e5c8d16129a0da, type: 2}
+    Chance: 20
+  - pickaxeConfig: {fileID: 11400000, guid: e3abfbb9d529689449975756f1510354, type: 2}
+    Chance: 5

@@ -11,8 +11,10 @@ namespace Game.Scripts.Gameplay.Chest
     public ChestView Prefab;
     public string ChestName;
     public Sprite ChestIcon;
+    public Color Color;
     public int Weight;
     public List<PickaxeVariant> Variants;
+    
   }
 
   [Serializable]
