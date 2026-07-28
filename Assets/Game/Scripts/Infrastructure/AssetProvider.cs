@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Game.Scripts.Gameplay.Chest;
 using Game.Scripts.Gameplay.Pickaxe;
 using Game.Scripts.Gameplay.Units;
 using Game.Scripts.Infrastructure.Custom;
 using Game.Scripts.Infrastructure.UI;
-using Game.Scripts.Multiplayer;
-using Game.Scripts.UI;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -17,19 +16,9 @@ namespace Game.Scripts.Infrastructure
         private const string GUI_PATH = "GUI";
         private const string POPUPS_PATH = "Popups";
         private const string SOUNDS_PATH = "Sounds";
-        private const string UNITS_PATH = "Units";
         private const string PICKAXES_PATH = "Configs/Pickaxes";
+        private const string CHESTS_PATH = "Configs/Chests";
         private static readonly Dictionary<Type, MonoBehaviour> Assets = new();
-        
-        public static PlayerView GetPlayerView(string prefabPath)
-        {
-            return GetResource<PlayerView>($"{UNITS_PATH}/{prefabPath}");
-        }
-        
-        public static EnemyView GetEnemyView(string prefabPath)
-        {
-            return GetResource<EnemyView>($"{UNITS_PATH}/{prefabPath}");
-        }
         
         public static PickaxeConfig GetPickaxeData(PickaxeType type)
         {
@@ -39,6 +28,11 @@ namespace Game.Scripts.Infrastructure
         public static UnitView GetCharacterView(string prefabPath)
         {
             return GetResource<UnitView>(prefabPath);
+        }
+        
+        public static ChestConfig GetChest(string path)
+        {
+            return GetResource<ChestConfig>($"{CHESTS_PATH}/{path}");
         }
         
         public static T GetPopup<T, U>() where T : PopupView<U> where U : PopupModel

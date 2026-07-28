@@ -8,8 +8,10 @@ namespace Game.Scripts.Gameplay.Chest
   [CreateAssetMenu(menuName = "Data/ChestConfig")]
   public class ChestConfig : ScriptableObject
   {
+    public ChestType Type;
     public ChestView Prefab;
     public string ChestName;
+    public string InApp;
     public Sprite ChestIcon;
     public Color Color;
     public int Weight;

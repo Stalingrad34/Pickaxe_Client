@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Game.Scripts.Gameplay;
 using Game.Scripts.Gameplay.Chest;
 using Game.Scripts.Infrastructure.Custom;
 using Game.Scripts.Infrastructure.Extensions;
@@ -6,6 +7,7 @@ using Game.Scripts.Infrastructure.Widgets;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 namespace Game.Scripts.UI.GUI
 {
@@ -17,6 +19,9 @@ namespace Game.Scripts.UI.GUI
     [SerializeField] private Image chestBackground;
     [SerializeField] private PickaxeVariantView pickaxeVariant;
     [SerializeField] private RectTransform pickaxeVariantsRoot;
+    [SerializeField] private GameObject inAppRoot;
+    [SerializeField] private CustomText inAppPrice;
+    [SerializeField] private ImageLoadYG inAppIcon;
     [SerializeField] private CustomButton open;
     [SerializeField] private CustomButton discard;
 
@@ -28,6 +33,10 @@ namespace Game.Scripts.UI.GUI
       model.ChestIcon.SubscribeToImageSprite(chestIcon).AddTo(gameObject);
       model.BackgroundColor.SubscribeColor(chestBackground).AddTo(gameObject);
       model.PickaxeVariants.SubscribeAdd(PickaxeVariantAdded).AddTo(gameObject);
+      model.Cost.Subscribe(CostChanged).AddTo(gameObject);
+      model.ShowInApp.Subscribe(inAppRoot.gameObject.SetActive).AddTo(gameObject);
+      model.InAppPrice.SubscribeToTMP(inAppPrice).AddTo(gameObject);
+      model.InAppIcon.Subscribe(PriceCostImageChanged).AddTo(gameObject);
 
       open.OnClick(model.Open).AddTo(Disposables);
       discard.OnClick(model.Discard).AddTo(Disposables);
@@ -39,12 +48,22 @@ namespace Game.Scripts.UI.GUI
       _variantViews.Clear();
     }
 
+    private void CostChanged(long chestCost)
+    {
+      cost.text = $"${MoneyFormatter.Format(chestCost)}";
+    }
+
     private void PickaxeVariantAdded(PickaxeVariant variant, int index)
     {
       var view = Instantiate(pickaxeVariant, pickaxeVariantsRoot);
       view.gameObject.SetActive(true);
       view.Init(variant);
       _variantViews.Add(view);
+    }
+    
+    private void PriceCostImageChanged(string icon)
+    {
+      inAppIcon.Load(icon);
     }
   }
 }

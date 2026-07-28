@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Networking;
 using System;
+using Cysharp.Threading.Tasks;
 
 namespace YG
 {
@@ -48,7 +49,7 @@ namespace YG
             if (existingTexture)
                 SetTexture(existingTexture);
             else
-                StartCoroutine(LoadTexture(url));
+                LoadTexture(url).Forget();
         }
         public void Load() => Load(urlImage);
 
@@ -83,41 +84,39 @@ namespace YG
                 loadAnimObj.SetActive(false);
         }
 
-        IEnumerator LoadTexture(string url)
+        async UniTaskVoid LoadTexture(string url)
         {
             if (loadAnimObj)
                 loadAnimObj.SetActive(true);
 
-            using (UnityWebRequest webRequest = UnityWebRequestTexture.GetTexture(url))
+            using UnityWebRequest webRequest = UnityWebRequestTexture.GetTexture(url);
+            await webRequest.SendWebRequest();
+
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
+                webRequest.result == UnityWebRequest.Result.DataProcessingError)
             {
-                yield return webRequest.SendWebRequest();
+                if (log)
+                    Debug.LogError("ImageLoadYG Error: " + webRequest.error);
+            }
+            else
+            {
+                DownloadHandlerTexture handlerTexture = webRequest.downloadHandler as DownloadHandlerTexture;
 
-                if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
-                    webRequest.result == UnityWebRequest.Result.DataProcessingError)
+                if (handlerTexture.isDone)
                 {
-                    if (log)
-                        Debug.LogError("ImageLoadYG Error: " + webRequest.error);
-                }
-                else
-                {
-                    DownloadHandlerTexture handlerTexture = webRequest.downloadHandler as DownloadHandlerTexture;
-
-                    if (handlerTexture.isDone)
+                    Texture2D existingTexture = ExistingTexture(url);
+                    if (existingTexture)
                     {
-                        Texture2D existingTexture = ExistingTexture(url);
-                        if (existingTexture)
+                        SetTexture(existingTexture);
+                    }
+                    else
+                    {
+                        SetTexture(handlerTexture.texture);
+                        saveTextures.Add(new LoadTextures
                         {
-                            SetTexture(existingTexture);
-                        }
-                        else
-                        {
-                            SetTexture(handlerTexture.texture);
-                            saveTextures.Add(new LoadTextures
-                            {
-                                link = url,
-                                texture = handlerTexture.texture
-                            });
-                        }
+                            link = url,
+                            texture = handlerTexture.texture
+                        });
                     }
                 }
             }

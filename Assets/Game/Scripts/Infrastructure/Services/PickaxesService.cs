@@ -59,8 +59,13 @@ namespace Game.Scripts.Infrastructure.Services
         return;
       
       database.Money.Value -= cost;
+      AddPickaxe(PickaxeType.Wood, count, autoMerge);
+    }
+
+    public void AddPickaxe(PickaxeType type, int count, bool autoMerge)
+    {
       PickaxesNominal.Value += (ulong)count;
-      AddPickaxe(PickaxeType.Wood, count);
+      AddPickaxe(type, count);
 
       if (autoMerge || PickaxesCount() > 100)
         TryMergeAll();

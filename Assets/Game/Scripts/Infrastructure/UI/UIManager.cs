@@ -82,6 +82,17 @@ namespace Game.Scripts.Infrastructure.UI
 
             return view;
         }
+        
+        public static T GetGUI<T>() where T : GUIModel
+        {
+            foreach (var model in _instance._gui.Keys)
+            {
+                if (model is T result)
+                    return result;
+            }
+
+            return null;
+        }
 
         public static bool ShowPopup<TView, TModel>(TModel model)
             where TView : PopupView<TModel> where TModel : PopupModel

@@ -1,5 +1,6 @@
 ﻿using Game.Scripts.Gameplay.Chest;
 using Game.Scripts.Gameplay.ECS.Pickup.Interfaces;
+using Game.Scripts.Gameplay.Pickaxe;
 using Game.Scripts.Infrastructure;
 using Game.Scripts.Infrastructure.Extensions;
 using Game.Scripts.Infrastructure.Services;
@@ -19,6 +20,7 @@ namespace Game.Scripts.UI.GUI
     public readonly ReactiveProperty<int> CollectedPickaxesCurrentCount = new ();
     public readonly ReactiveProperty<ChestInfoModel> ChestInfo = new ();
     public readonly ReactiveCommand<PickupTextData> PickupTextCommand;
+    public readonly ReactiveCommand<PickaxeConfig> ShowOpenVFX = new ();
 
     public MainGUIModel(EconomyService economy, PickaxesService pickaxesService)
     {

@@ -1,4 +1,6 @@
 ﻿using DG.Tweening;
+using Game.Scripts.Gameplay.Pickaxe;
+using Game.Scripts.Gameplay.VFX;
 using Game.Scripts.Infrastructure.Custom;
 using Game.Scripts.Infrastructure.Extensions;
 using Game.Scripts.Infrastructure.UI;
@@ -21,6 +23,7 @@ namespace Game.Scripts.UI.GUI
     [SerializeField] private CustomButton collectionBtn;
     [SerializeField] private TextMeshProUGUI collectedPickaxesCount;
     [SerializeField] private ChestInfoWidget chestInfoWidget;
+    [SerializeField] private OpenChestVFX openVFX;
     [SerializeField] private float pickupTextDuration;
 
     private int _collectedMaxCount;
@@ -36,6 +39,7 @@ namespace Game.Scripts.UI.GUI
       model.CollectedPickaxesMaxCount.Subscribe(CollectedPickaxesMaxChanged).AddTo(gameObject);
       model.CollectedPickaxesCurrentCount.Subscribe(CollectedPickaxesCurrentChanged).AddTo(gameObject);
       model.ChestInfo.Subscribe(ChestInfoChanged).AddTo(gameObject);
+      model.ShowOpenVFX.Subscribe(ShowOpenVFX).AddTo(gameObject);
 
       collectionBtn.OnClick(model.OpenCollection).AddTo(gameObject);
     }
@@ -106,6 +110,11 @@ namespace Game.Scripts.UI.GUI
       
       chestInfoWidget.gameObject.SetActive(true);
       chestInfoWidget.Init(chestInfoModel);
+    }
+    
+    private void ShowOpenVFX(PickaxeConfig pickaxeConfig)
+    {
+      openVFX.ShowPickaxe(pickaxeConfig);
     }
   }
 }
