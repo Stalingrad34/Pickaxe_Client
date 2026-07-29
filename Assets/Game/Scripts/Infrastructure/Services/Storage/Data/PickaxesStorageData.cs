@@ -11,5 +11,6 @@ namespace Game.Scripts.Infrastructure.Services.Storage.Data
     public Dictionary<PickaxeType, int> Pickaxes = new();
     public long PickaxesPunchLastTime;
     public List<PickaxeType> CollectedPickaxes = new();
+    public PickaxeType BestPickaxeType = PickaxeType.Wood;
   }
 }

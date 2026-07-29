@@ -4,6 +4,7 @@ using Game.Scripts.Gameplay.Pickaxe;
 using Game.Scripts.Infrastructure;
 using Game.Scripts.Infrastructure.Extensions;
 using Game.Scripts.Infrastructure.Services;
+using Game.Scripts.Infrastructure.Services.InApp;
 using Game.Scripts.Infrastructure.UI;
 using Game.Scripts.UI.Popups.Collection;
 using UniRx;
@@ -21,6 +22,7 @@ namespace Game.Scripts.UI.GUI
     public readonly ReactiveProperty<ChestInfoModel> ChestInfo = new ();
     public readonly ReactiveCommand<PickupTextData> PickupTextCommand;
     public readonly ReactiveCommand<PickaxeConfig> ShowOpenVFX = new ();
+    public readonly ReactiveCollection<MoneyInAppModel> MoneyInApps = new();
 
     public MainGUIModel(EconomyService economy, PickaxesService pickaxesService)
     {
@@ -31,6 +33,10 @@ namespace Game.Scripts.UI.GUI
       PickupTextCommand = economy.PickupTextCommand;
       CollectedPickaxesMaxCount.Value = AssetProvider.GetAllPickaxes().Count;
       ServiceProvider.Get<PickaxesService>().CollectedPickaxes.SubscribeCount(CollectedPickaxesCountChanged).AddTo(disposables);
+      
+      MoneyInApps.Add(new MoneyInAppModel("add_money_1", AddMoneyGrade.Grade1));
+      MoneyInApps.Add(new MoneyInAppModel("add_money_2", AddMoneyGrade.Grade2));
+      MoneyInApps.Add(new MoneyInAppModel("add_money_3", AddMoneyGrade.Grade3));
     }
 
     public void OpenCollection()

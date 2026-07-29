@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System.Collections.Generic;
+using DG.Tweening;
 using Game.Scripts.Gameplay.Pickaxe;
 using Game.Scripts.Gameplay.VFX;
 using Game.Scripts.Infrastructure.Custom;
@@ -24,6 +25,7 @@ namespace Game.Scripts.UI.GUI
     [SerializeField] private TextMeshProUGUI collectedPickaxesCount;
     [SerializeField] private ChestInfoWidget chestInfoWidget;
     [SerializeField] private OpenChestVFX openVFX;
+    [SerializeField] private List<MoneyInAppView> moneyInApps;
     [SerializeField] private float pickupTextDuration;
 
     private int _collectedMaxCount;
@@ -40,6 +42,7 @@ namespace Game.Scripts.UI.GUI
       model.CollectedPickaxesCurrentCount.Subscribe(CollectedPickaxesCurrentChanged).AddTo(gameObject);
       model.ChestInfo.Subscribe(ChestInfoChanged).AddTo(gameObject);
       model.ShowOpenVFX.Subscribe(ShowOpenVFX).AddTo(gameObject);
+      model.MoneyInApps.SubscribeAdd(MoneyInAppsChanged).AddTo(gameObject);
 
       collectionBtn.OnClick(model.OpenCollection).AddTo(gameObject);
     }
@@ -110,6 +113,14 @@ namespace Game.Scripts.UI.GUI
       
       chestInfoWidget.gameObject.SetActive(true);
       chestInfoWidget.Init(chestInfoModel);
+    }
+
+    private void MoneyInAppsChanged(MoneyInAppModel model, int index)
+    {
+      if (index > moneyInApps.Count - 1)
+        return;
+      
+      moneyInApps[index].Init(model);
     }
     
     private void ShowOpenVFX(PickaxeConfig pickaxeConfig)

@@ -16,6 +16,7 @@ namespace Game.Scripts.Infrastructure.Services
     public readonly ReactiveProperty<ulong> PickaxesNominal = new();
     public readonly ReactiveProperty<bool> CanMerge = new();
     public readonly ReactiveProperty<long> PickaxesPunchLastTime = new();
+    public readonly ReactiveProperty<PickaxeType> BestPickaxeType = new();
     public ReactiveCollection<PickaxeType> CollectedPickaxes = new();
     
     private Dictionary<PickaxeType, int> _pickaxes = new();
@@ -82,6 +83,9 @@ namespace Game.Scripts.Infrastructure.Services
       {
         if(!CollectedPickaxes.Contains(type))
           CollectedPickaxes.Add(type);
+
+        if (type > BestPickaxeType.Value)
+          BestPickaxeType.Value = type;
       }
     }
 
@@ -164,6 +168,7 @@ namespace Game.Scripts.Infrastructure.Services
       data.Pickaxes.Pickaxes = _pickaxes;
       data.Pickaxes.PickaxesPunchLastTime = PickaxesPunchLastTime.Value;
       data.Pickaxes.CollectedPickaxes = new List<PickaxeType>(CollectedPickaxes);
+      data.Pickaxes.BestPickaxeType = BestPickaxeType.Value;
       
       IsDirty = false;
     }
@@ -174,7 +179,8 @@ namespace Game.Scripts.Infrastructure.Services
       _pickaxes = data.Pickaxes.Pickaxes;
       PickaxesPunchLastTime.Value = data.Pickaxes.PickaxesPunchLastTime;
       CollectedPickaxes = new ReactiveCollection<PickaxeType>(data.Pickaxes.CollectedPickaxes);
-      
+      BestPickaxeType.Value = data.Pickaxes.BestPickaxeType;
+
       Subscribe();
     }
     

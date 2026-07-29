@@ -33,15 +33,6 @@ namespace Game.Scripts.Infrastructure
                 Screen.autorotateToLandscapeRight = true;
                 Screen.orientation = ScreenOrientation.AutoRotation;
             }
-            
-            //multiplayerManager.Init(connectConfig);
-            
-            /*
-            ServiceProvider.Register(multiplayerManager);
-            
-            ServiceProvider.Register(new RatingService(connectConfig));
-            ServiceProvider.Register(new AnalyticsService());
-            ServiceProvider.Register(new ConfigProvider(connectConfig));*/
 
             var storageService = new StorageService();
             var playerService = new PlayerService();
