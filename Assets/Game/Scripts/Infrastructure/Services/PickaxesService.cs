@@ -6,6 +6,7 @@ using Game.Scripts.Gameplay.Pickaxe;
 using Game.Scripts.Infrastructure.Extensions;
 using Game.Scripts.Infrastructure.Services.Storage;
 using Game.Scripts.Infrastructure.Services.Storage.Data;
+using Sirenix.Utilities;
 using UniRx;
 
 namespace Game.Scripts.Infrastructure.Services
@@ -17,7 +18,7 @@ namespace Game.Scripts.Infrastructure.Services
     public readonly ReactiveProperty<bool> CanMerge = new();
     public readonly ReactiveProperty<long> PickaxesPunchLastTime = new();
     public readonly ReactiveProperty<PickaxeType> BestPickaxeType = new();
-    public ReactiveCollection<PickaxeType> CollectedPickaxes = new();
+    public readonly ReactiveCollection<PickaxeType> CollectedPickaxes = new();
     
     private Dictionary<PickaxeType, int> _pickaxes = new();
     private IDisposable _pickaxesTimer;
@@ -81,7 +82,7 @@ namespace Game.Scripts.Infrastructure.Services
     {
       foreach (var type in _pickaxes.Keys)
       {
-        if(!CollectedPickaxes.Contains(type))
+        if (!CollectedPickaxes.Contains(type))
           CollectedPickaxes.Add(type);
 
         if (type > BestPickaxeType.Value)
@@ -178,7 +179,7 @@ namespace Game.Scripts.Infrastructure.Services
       PickaxesNominal.Value = data.Pickaxes.PickaxesNominal;
       _pickaxes = data.Pickaxes.Pickaxes;
       PickaxesPunchLastTime.Value = data.Pickaxes.PickaxesPunchLastTime;
-      CollectedPickaxes = new ReactiveCollection<PickaxeType>(data.Pickaxes.CollectedPickaxes);
+      CollectedPickaxes.AddRange(data.Pickaxes.CollectedPickaxes);
       BestPickaxeType.Value = data.Pickaxes.BestPickaxeType;
 
       Subscribe();

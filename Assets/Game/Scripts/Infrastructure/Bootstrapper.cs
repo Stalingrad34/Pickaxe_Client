@@ -6,6 +6,7 @@ using Game.Scripts.Infrastructure.States;
 using Game.Scripts.Multiplayer;
 using Game.Scripts.States;
 using UnityEngine;
+using TimeProvider = Game.Scripts.Infrastructure.Services.TimeProvider;
 
 namespace Game.Scripts.Infrastructure
 {

@@ -25,6 +25,7 @@ namespace Game.Scripts.UI.GUI
     [SerializeField] private TextMeshProUGUI collectedPickaxesCount;
     [SerializeField] private ChestInfoWidget chestInfoWidget;
     [SerializeField] private OpenChestVFX openVFX;
+    [SerializeField] private NewPickaxeVFX newPickaxeVFX;
     [SerializeField] private List<MoneyInAppView> moneyInApps;
     [SerializeField] private float pickupTextDuration;
 
@@ -42,6 +43,7 @@ namespace Game.Scripts.UI.GUI
       model.CollectedPickaxesCurrentCount.Subscribe(CollectedPickaxesCurrentChanged).AddTo(gameObject);
       model.ChestInfo.Subscribe(ChestInfoChanged).AddTo(gameObject);
       model.ShowOpenVFX.Subscribe(ShowOpenVFX).AddTo(gameObject);
+      model.NewPickaxeVFX.Subscribe(ShowNewPickaxeVFX).AddTo(gameObject);
       model.MoneyInApps.SubscribeAdd(MoneyInAppsChanged).AddTo(gameObject);
 
       collectionBtn.OnClick(model.OpenCollection).AddTo(gameObject);
@@ -126,6 +128,11 @@ namespace Game.Scripts.UI.GUI
     private void ShowOpenVFX(PickaxeConfig pickaxeConfig)
     {
       openVFX.ShowPickaxe(pickaxeConfig);
+    }
+    
+    private void ShowNewPickaxeVFX(PickaxeConfig pickaxeConfig)
+    {
+      newPickaxeVFX.ShowVFX(pickaxeConfig);
     }
   }
 }

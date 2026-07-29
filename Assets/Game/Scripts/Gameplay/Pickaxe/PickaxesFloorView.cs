@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using Game.Scripts.Gameplay.Chest;
 using Game.Scripts.Infrastructure;
 using UnityEngine;

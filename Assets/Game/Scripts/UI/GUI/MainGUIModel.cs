@@ -22,6 +22,7 @@ namespace Game.Scripts.UI.GUI
     public readonly ReactiveProperty<ChestInfoModel> ChestInfo = new ();
     public readonly ReactiveCommand<PickupTextData> PickupTextCommand;
     public readonly ReactiveCommand<PickaxeConfig> ShowOpenVFX = new ();
+    public readonly ReactiveCommand<PickaxeConfig> NewPickaxeVFX = new ();
     public readonly ReactiveCollection<MoneyInAppModel> MoneyInApps = new();
 
     public MainGUIModel(EconomyService economy, PickaxesService pickaxesService)
@@ -33,6 +34,7 @@ namespace Game.Scripts.UI.GUI
       PickupTextCommand = economy.PickupTextCommand;
       CollectedPickaxesMaxCount.Value = AssetProvider.GetAllPickaxes().Count;
       ServiceProvider.Get<PickaxesService>().CollectedPickaxes.SubscribeCount(CollectedPickaxesCountChanged).AddTo(disposables);
+      ServiceProvider.Get<PickaxesService>().CollectedPickaxes.SubscribeAdd(CollectedPickaxesAdded).AddTo(disposables);
       
       MoneyInApps.Add(new MoneyInAppModel("add_money_1", AddMoneyGrade.Grade1));
       MoneyInApps.Add(new MoneyInAppModel("add_money_2", AddMoneyGrade.Grade2));
@@ -48,6 +50,12 @@ namespace Game.Scripts.UI.GUI
     private void CollectedPickaxesCountChanged(int count)
     {
       CollectedPickaxesCurrentCount.Value = count;
+    }
+
+    private void CollectedPickaxesAdded(PickaxeType pickaxeType, int index)
+    {
+      var config = AssetProvider.GetPickaxeData(pickaxeType);
+      NewPickaxeVFX.Execute(config);
     }
 
     public void ShowChestInfo(IPickupCollector collector, ChestConfig chestConfig)
