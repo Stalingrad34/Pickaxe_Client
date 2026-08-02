@@ -35,7 +35,7 @@ namespace Game.Scripts.Gameplay.Units
       nameText.text = playerName;
     }
 
-    private void LateUpdate()
+    protected virtual void LateUpdate()
     {
       if (_camera?.Camera == null) return;
       

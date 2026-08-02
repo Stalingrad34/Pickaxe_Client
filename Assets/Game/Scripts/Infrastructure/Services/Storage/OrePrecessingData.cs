@@ -1,4 +1,4 @@
-﻿namespace Game.Scripts.Infrastructure.Services.Storage.Data
+﻿namespace Game.Scripts.Infrastructure.Services.Storage
 {
   public struct OrePrecessingData
   {

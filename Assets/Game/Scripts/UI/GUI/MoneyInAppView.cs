@@ -21,7 +21,7 @@ namespace Game.Scripts.UI.GUI
 
     private void MoneyChanged(ulong money)
     {
-      moneyText.text = MoneyFormatter.Format((long)money);
+      moneyText.text = $"+{MoneyFormatter.Format((long)money)}";
     }
   }
 }

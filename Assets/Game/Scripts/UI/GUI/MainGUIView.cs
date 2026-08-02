@@ -8,6 +8,7 @@ using Game.Scripts.Infrastructure.UI;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game.Scripts.UI.GUI
 {
@@ -27,11 +28,12 @@ namespace Game.Scripts.UI.GUI
     [SerializeField] private OpenChestVFX openVFX;
     [SerializeField] private NewPickaxeVFX newPickaxeVFX;
     [SerializeField] private List<MoneyInAppView> moneyInApps;
+    [SerializeField] private CustomText tutorialText;
     [SerializeField] private float pickupTextDuration;
 
     private int _collectedMaxCount;
     private int _collectedCurrentCount;
-    
+
     protected override void SetModel(MainGUIModel model)
     {
       model.Money.SubscribeMoney(moneyText).AddTo(gameObject);
@@ -133,6 +135,16 @@ namespace Game.Scripts.UI.GUI
     private void ShowNewPickaxeVFX(PickaxeConfig pickaxeConfig)
     {
       newPickaxeVFX.ShowVFX(pickaxeConfig);
+    }
+
+    public void ShowTutorialText(TextData text)
+    {
+      tutorialText.SetText(text);
+    }
+
+    public void HideTutorialText()
+    {
+      tutorialText.SetText(string.Empty);
     }
   }
 }

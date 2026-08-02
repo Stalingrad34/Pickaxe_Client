@@ -1,5 +1,4 @@
-﻿using System;
-using Game.Scripts.Infrastructure.Services;
+﻿using Game.Scripts.Infrastructure.Services;
 using UniRx;
 using UnityEngine;
 

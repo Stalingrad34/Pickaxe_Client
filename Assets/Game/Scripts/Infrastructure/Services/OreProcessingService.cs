@@ -1,13 +1,12 @@
 ﻿using System;
 using Game.Scripts.Infrastructure.Services.Storage;
-using Game.Scripts.Infrastructure.Services.Storage.Data;
 using UniRx;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Game.Scripts.Infrastructure.Services
 {
-  public class OreProcessingService : IService, IStorageProcessor, IDisposable
+  public class OreProcessingService : IService, IDisposable
   {
     public bool IsDirty { get; private set; }
     
@@ -30,16 +29,16 @@ namespace Game.Scripts.Infrastructure.Services
       _economy.ProcessingOre.Value += (ulong)(_economy.Ore.Value * (double)ProcessingMultiplier.Value);
       _economy.Ore.Value = 0;
 
-      StartTimers();
+      if (_processTimer == null)
+        StartProcessTimer();
     }
 
     public void StartTimers()
     {
-      if (_processTimer == null)
+      if (_economy.ProcessingOre.Value > 0)
         StartProcessTimer();
 
-      if (_multiplierTimer == null)
-        StartMultiplierTimer();
+      StartMultiplierTimer();
     }
     
     public OrePrecessingData GetOrePrecessingData(int stage)
@@ -99,6 +98,7 @@ namespace Game.Scripts.Infrastructure.Services
     
     private void StartMultiplierTimer()
     {
+      ProcessingMultiplier.Value = GetMultiplier();
       MultiplierTimerSeconds.Value = 30;
       _multiplierTimer = Observable.Interval(TimeSpan.FromSeconds(1)).Subscribe(_ =>
       {
@@ -120,25 +120,6 @@ namespace Game.Scripts.Infrastructure.Services
     {
       var random = Random.Range(0.5f, 1.5f);
       return (float)Math.Round(random, 1);
-    }
-    
-    public void Save(SaveData data)
-    {
-      data.Processing.ProcessingMultiplier = ProcessingMultiplier.Value;
-
-      IsDirty = false;
-    }
-
-    public void Load(SaveData data)
-    {
-      ProcessingMultiplier.Value = data.Processing.ProcessingMultiplier > 0 ? data.Processing.ProcessingMultiplier : GetMultiplier();
-      
-      Subscribe();
-    }
-    
-    private void Subscribe()
-    {
-      ProcessingMultiplier.Subscribe(_ => IsDirty = true);
     }
 
     public void Dispose()
