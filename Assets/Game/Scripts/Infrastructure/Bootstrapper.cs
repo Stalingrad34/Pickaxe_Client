@@ -40,7 +40,7 @@ namespace Game.Scripts.Infrastructure
             var economyService = new EconomyService();
             var pickaxesService = new PickaxesService();
             var localizationService = new LocalizationService();
-            var oreProcessingService = new OreProcessingService(economyService);
+            var oreProcessingService = new OreProcessingService(economyService, pickaxesService);
             var tutorialService = new TutorialService();
             
             storageService

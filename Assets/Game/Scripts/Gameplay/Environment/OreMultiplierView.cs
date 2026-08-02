@@ -1,6 +1,5 @@
 ﻿using Game.Scripts.Infrastructure.Custom;
 using Game.Scripts.Infrastructure.Services;
-using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +17,7 @@ namespace Game.Scripts.Gameplay.Environment
       var service = ServiceProvider.Get<OreProcessingService>();
       service.ProcessingMultiplier.Subscribe(MultiplierChanged).AddTo(gameObject);
       service.MultiplierTimerSeconds.Subscribe(MultiplierTimerChanged).AddTo(gameObject);
+      service.MultiplierEnabled.Subscribe(gameObject.SetActive).AddTo(gameObject);
     }
 
     private void MultiplierChanged(float multiplier)
