@@ -38,6 +38,7 @@ namespace Game.Scripts.States
       pickaxeService.CheckRestOre();
       
       ServiceProvider.Get<OreProcessingService>().StartTimers();
+      ServiceProvider.Get<AdsService>().StartAdsTimer();
       ServiceProvider.Get<TutorialService>().StartTutorials().Forget();
     }
 

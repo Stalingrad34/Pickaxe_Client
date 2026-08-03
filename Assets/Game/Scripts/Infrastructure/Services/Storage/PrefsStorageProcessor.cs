@@ -11,6 +11,7 @@ namespace Game.Scripts.Infrastructure.Services.Storage
     private string ECONOMY_DATA_KEY = "economy_data";
     private string PICKAXES_DATA_KEY = "pickaxes_data";
     private string TUTORIALS_DATA_KEY = "tutorials_data";
+    private string ADS_DATA_KEY = "ads_data";
 
     public async UniTask<SaveData> Load()
     {
@@ -18,6 +19,7 @@ namespace Game.Scripts.Infrastructure.Services.Storage
       var economyData = PlayerPrefs.GetString(ECONOMY_DATA_KEY);
       var pickaxesData = PlayerPrefs.GetString(PICKAXES_DATA_KEY);
       var tutorialsData = PlayerPrefs.GetString(TUTORIALS_DATA_KEY);
+      var adsData = PlayerPrefs.GetString(ADS_DATA_KEY);
 
       var data = new SaveData
       {
@@ -36,6 +38,10 @@ namespace Game.Scripts.Infrastructure.Services.Storage
         Tutorials = !string.IsNullOrEmpty(tutorialsData)
           ? JsonConvert.DeserializeObject<TutorialsStorageData>(tutorialsData)
           : new TutorialsStorageData(),
+        
+        Ads = !string.IsNullOrEmpty(adsData)
+          ? JsonConvert.DeserializeObject<AdsStorageData>(adsData)
+          : new AdsStorageData(),
       };
 
       await UniTask.Yield();
@@ -48,6 +54,7 @@ namespace Game.Scripts.Infrastructure.Services.Storage
       PlayerPrefs.SetString(ECONOMY_DATA_KEY, JsonConvert.SerializeObject(database.Economy));
       PlayerPrefs.SetString(PICKAXES_DATA_KEY, JsonConvert.SerializeObject(database.Pickaxes));
       PlayerPrefs.SetString(TUTORIALS_DATA_KEY, JsonConvert.SerializeObject(database.Tutorials));
+      PlayerPrefs.SetString(ADS_DATA_KEY, JsonConvert.SerializeObject(database.Ads));
 
       await UniTask.Yield();
     }

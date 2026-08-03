@@ -71,6 +71,7 @@ namespace Game.Scripts.Infrastructure.Services.InApp
         new AddMoneyPaymentProcessor("add_money_1", AddMoneyGrade.Grade1),
         new AddMoneyPaymentProcessor("add_money_2", AddMoneyGrade.Grade2),
         new AddMoneyPaymentProcessor("add_money_3", AddMoneyGrade.Grade3),
+        new NoAdsPaymentProcessor("no_ads"),
       };
     }
   }

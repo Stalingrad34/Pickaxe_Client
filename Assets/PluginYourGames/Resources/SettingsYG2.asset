@@ -190,7 +190,16 @@ MonoBehaviour:
   Payments:
     durationPayPanel: 1
     testBuyFail: 0
-    purshases: []
+    purshases:
+    - id: no_ads
+      title: 
+      description: 
+      imageURI: 
+      price: 99
+      priceValue: 99
+      priceCurrencyCode: 
+      currencyImageURL: 
+      consumed: 0
   RewardedAdv:
     skipInterAdvAfterReward: 0
     labelAdvSimLabel: 0
