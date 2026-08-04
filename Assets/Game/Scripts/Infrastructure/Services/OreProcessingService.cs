@@ -139,6 +139,19 @@ namespace Game.Scripts.Infrastructure.Services
       var random = Random.Range(0.5f, 1.5f);
       return (float)Math.Round(random, 1);
     }
+    
+    public void InstantProcessOreByAds()
+    {
+      ServiceProvider.Get<AdsService>().ShowRewarded("instant_process_ore", InstantProcessOre);
+    }
+
+    private void InstantProcessOre()
+    {
+      _economy.ProcessingMoney.Value += _economy.ProcessingOre.Value;
+      _economy.ProcessingOre.Value = 0;
+      _processTimer?.Dispose();
+      _processTimer = null;
+    }
 
     public void Dispose()
     {
