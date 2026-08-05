@@ -62,6 +62,7 @@ namespace Game.Scripts.Infrastructure.Services
       
       database.Money.Value -= cost;
       AddPickaxe(PickaxeType.Wood, count, autoMerge);
+      ServiceProvider.Get<AnalyticsService>().MetricaSend("add_pickaxes", "Count", count.ToString());
     }
 
     public void AddPickaxe(PickaxeType type, int count, bool autoMerge)
@@ -139,6 +140,8 @@ namespace Game.Scripts.Infrastructure.Services
       RebuildPickaxes("player");
       CollectPickaxes();
       CanMerge.Value = false;
+      
+      ServiceProvider.Get<AnalyticsService>().MetricaSend("merge", "WoodCount", _pickaxes[PickaxeType.Wood].ToString());
     }
 
     private void TryMerge(PickaxeType from, PickaxeType to)

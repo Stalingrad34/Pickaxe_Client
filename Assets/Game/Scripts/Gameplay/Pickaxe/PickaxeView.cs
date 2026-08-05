@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using Game.Scripts.Gameplay.Chest;
 using Game.Scripts.Gameplay.ECS;
 using Game.Scripts.Infrastructure.Custom;
+using Game.Scripts.Infrastructure.Services;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -51,6 +52,7 @@ namespace Game.Scripts.Gameplay.Pickaxe
     
     public void SpawnChest(ChestConfig chestConfig)
     {
+      ServiceProvider.Get<AnalyticsService>().MetricaSend("chest", "Spawn", chestConfig.Type.ToString());
       ECSRunner.EcsEventWriter.SpawnChest(oreSpawnPoint.position, transform.position - oreSpawnPoint.position, chestConfig);
     }
   }

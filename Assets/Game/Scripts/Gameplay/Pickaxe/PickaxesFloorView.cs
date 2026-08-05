@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Cysharp.Threading.Tasks;
 using Game.Scripts.Gameplay.Chest;
 using Game.Scripts.Infrastructure;
 using UnityEngine;
@@ -11,7 +10,13 @@ namespace Game.Scripts.Gameplay.Pickaxe
   {
     [SerializeField] private List<PickaxeRootView> pickaxeRoots;
     [SerializeField] private List<ChestConfig> chests;
-    [SerializeField] private float chestChance;
+    [SerializeField] private bool canSpawnChest;
+    private float _chestChance;
+
+    public void SetChestChance(float chestChance)
+    {
+      _chestChance = chestChance;
+    }
 
     public bool IsFull()
     {
@@ -64,7 +69,7 @@ namespace Game.Scripts.Gameplay.Pickaxe
 
     private bool TryGetChest(out ChestConfig chest)
     {
-      if (chests.Count == 0 || Random.value > chestChance)
+      if (chests.Count == 0 || Random.value > _chestChance || !canSpawnChest)
       {
         chest = null;
         return false;

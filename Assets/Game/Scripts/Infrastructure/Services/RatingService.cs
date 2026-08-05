@@ -37,6 +37,8 @@ namespace Game.Scripts.Infrastructure.Services
       
       if (_playerService.IsAuthorized.Value)
         YG2.SetLeaderboard("pickaxes", (int)score);
+      
+      YG2.GetLeaderboard("pickaxes", 10, 1);
     }
 
     private void OnGetLeaderBoardHandler(LBData data)

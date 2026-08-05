@@ -3,6 +3,7 @@ using Game.Scripts.Gameplay.ECS.Destroy;
 using Game.Scripts.Gameplay.ECS.Pickup.Components;
 using Game.Scripts.Gameplay.ECS.Spawn;
 using Game.Scripts.Gameplay.ECS.Spawn.Components;
+using Game.Scripts.Infrastructure.Services;
 using Leopotam.EcsProto;
 
 namespace Game.Scripts.Gameplay.ECS.Pickup.Systems
@@ -35,6 +36,7 @@ namespace Game.Scripts.Gameplay.ECS.Pickup.Systems
           continue;
        
         collector.Take(chest.ChestView);
+        ServiceProvider.Get<AnalyticsService>().MetricaSend("chest", "Pickup", chest.ChestConfig.Type.ToString());
         
         _destroyAspect.DestroyEntitiesPool.Add(chestEntity);
         

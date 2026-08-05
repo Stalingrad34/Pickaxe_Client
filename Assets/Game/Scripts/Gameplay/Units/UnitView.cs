@@ -59,7 +59,7 @@ namespace Game.Scripts.Gameplay.Units
 
     public void Discard()
     {
-      Destroy(_item.Transform.gameObject);
+      _item.Discarded();
       _item = null;
       animator.SetBool("Take", false);
     }

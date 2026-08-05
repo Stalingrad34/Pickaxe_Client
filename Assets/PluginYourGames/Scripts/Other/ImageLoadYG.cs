@@ -86,14 +86,19 @@ namespace YG
 
         async UniTaskVoid LoadTexture(string url)
         {
-            if (!url.StartsWith("http"))
-                return;
-            
             if (loadAnimObj)
                 loadAnimObj.SetActive(true);
 
             using UnityWebRequest webRequest = UnityWebRequestTexture.GetTexture(url);
-            await webRequest.SendWebRequest();
+            try
+            {
+                await webRequest.SendWebRequest();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+                throw;
+            }
 
             if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
                 webRequest.result == UnityWebRequest.Result.DataProcessingError)

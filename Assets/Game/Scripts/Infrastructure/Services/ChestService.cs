@@ -72,7 +72,7 @@ namespace Game.Scripts.Infrastructure.Services
         ServiceProvider.Get<InAppService>().BuyInApp(chestConfig.InApp);
     }
     
-    public void OpenChest(ChestConfig chestConfig)
+    public void OpenChest(ChestConfig chestConfig, bool byInApp = false)
     {
       var pickaxeConfig = GetRandomPickaxeConfig(chestConfig);
       ServiceProvider.Get<PickaxesService>().AddPickaxe(pickaxeConfig.pickaxeType, 1, true);
@@ -80,6 +80,12 @@ namespace Game.Scripts.Infrastructure.Services
       var guiModel = UIManager.GetGUI<MainGUIModel>();
       guiModel?.ShowOpenVFX.Execute(pickaxeConfig);
       guiModel?.ChestInfo?.Value.Discard();
+
+      var chestType = chestConfig.Type.ToString();
+      if (byInApp)
+        ServiceProvider.Get<AnalyticsService>().MetricaSend("inapp", "Chest", chestType);
+      else
+        ServiceProvider.Get<AnalyticsService>().MetricaSend("chest", "Open", chestType);
     }
     
     private PickaxeConfig GetRandomPickaxeConfig(ChestConfig chestConfig)

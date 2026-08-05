@@ -37,12 +37,16 @@ namespace Game.Scripts.Infrastructure.Services
 
     public void ConvertRestOre()
     {
+      var restOreText = MoneyFormatter.Format((long)RestOre.Value);
+      ServiceProvider.Get<AnalyticsService>().MetricaSend("offline", "OreCount", restOreText);
       AddOre(RestOre.Value, Color.greenYellow);
       RestOre.Value = 0;
     }
     
     public void CollectMoney()
     {
+      var moneyText = MoneyFormatter.Format((long)ProcessingMoney.Value);
+      ServiceProvider.Get<AnalyticsService>().MetricaSend("collect", "Money", moneyText);
       Money.Value += ProcessingMoney.Value;
       ProcessingMoney.Value = 0;
     }
@@ -54,6 +58,7 @@ namespace Game.Scripts.Infrastructure.Services
       
       Money.Value -= cost;
       ProcessingStage.Value++;
+      ServiceProvider.Get<AnalyticsService>().MetricaSend("stage", "NewStage", ProcessingStage.Value.ToString());
     }
 
     public void Save(SaveData data)

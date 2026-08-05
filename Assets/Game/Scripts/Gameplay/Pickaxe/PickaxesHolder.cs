@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Game.Scripts.Infrastructure;
+using Game.Scripts.Infrastructure.Services;
+using Game.Scripts.Infrastructure.Services.Config;
 using UnityEngine;
 
 namespace Game.Scripts.Gameplay.Pickaxe
@@ -11,7 +14,13 @@ namespace Game.Scripts.Gameplay.Pickaxe
     [SerializeField] private List<PickaxesFloorView> floorViews;
 
     private readonly Dictionary<PickaxeType, Queue<PickaxeView>> _views = new();
-    
+
+    private void Awake()
+    {
+      var chestChance = ServiceProvider.Get<ConfigProvider>().ChestChance;
+      floorViews.ForEach(v => v.SetChestChance(chestChance));
+    }
+
     public void RebuildPickaxes(Dictionary<PickaxeType, int> pickaxes)
     {
       ClearPickaxes();

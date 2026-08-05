@@ -18,7 +18,7 @@ namespace Game.Scripts.Infrastructure.Services.InApp.PaymentProcessors
       if (_inApp != inApp)
         return false;
       
-      ServiceProvider.Get<ChestService>().OpenChest(_chestConfig);
+      ServiceProvider.Get<ChestService>().OpenChest(_chestConfig, true);
 
       return true;
     }

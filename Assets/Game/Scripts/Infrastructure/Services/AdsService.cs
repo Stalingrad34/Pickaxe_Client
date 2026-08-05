@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Scripts.Infrastructure.Services.Config;
 using Game.Scripts.Infrastructure.Services.Storage;
 using Game.Scripts.Infrastructure.Services.Storage.Data;
 using Game.Scripts.Infrastructure.UI;
@@ -19,10 +20,11 @@ namespace Game.Scripts.Infrastructure.Services
     {
       if (NoAds.Value)
         return;
-      
+
+      var adsCooldown = ServiceProvider.Get<ConfigProvider>().AdsCooldown;
       _timer?.Dispose();
       _timer = Observable
-        .Timer(TimeSpan.FromMinutes(1))
+        .Timer(TimeSpan.FromSeconds(adsCooldown))
         .Subscribe(_ => ShowAdsPopup());
     }
     

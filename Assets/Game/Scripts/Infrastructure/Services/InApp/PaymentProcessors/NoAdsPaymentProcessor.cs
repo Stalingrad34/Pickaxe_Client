@@ -15,6 +15,7 @@
         return false;
 
       ServiceProvider.Get<AdsService>().NoAds.Value = true;
+      ServiceProvider.Get<AnalyticsService>().MetricaSend("inapp", "Ads","NoAds");
       return true;
     }
   }

@@ -18,6 +18,7 @@
       
       var money = ServiceProvider.Get<InAppService>().GetMoneyCountByGrade(_grade);
       ServiceProvider.Get<EconomyService>().Money.Value += money;
+      ServiceProvider.Get<AnalyticsService>().MetricaSend("inapp", "Money", _grade.ToString());
       
       return true;
     }

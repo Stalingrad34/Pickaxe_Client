@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Scripts.Gameplay;
 using Game.Scripts.Infrastructure.Services.Storage;
 using UniRx;
 using UnityEngine;
@@ -30,6 +31,8 @@ namespace Game.Scripts.Infrastructure.Services
     
     public void ProcessOre()
     {
+      var oreText = MoneyFormatter.Format((long)_economy.Ore.Value);
+      ServiceProvider.Get<AnalyticsService>().MetricaSend("process", "OreCount", oreText);
       var multiplier = MultiplierEnabled.Value ? (double)ProcessingMultiplier.Value : 1;
       _economy.ProcessingOre.Value += (ulong)(_economy.Ore.Value * multiplier);
       _economy.Ore.Value = 0;
@@ -147,6 +150,8 @@ namespace Game.Scripts.Infrastructure.Services
 
     private void InstantProcessOre()
     {
+      var oreText = MoneyFormatter.Format((long) _economy.ProcessingOre.Value);
+      ServiceProvider.Get<AnalyticsService>().MetricaSend("reward_ads", "ProcessingOre", oreText);
       _economy.ProcessingMoney.Value += _economy.ProcessingOre.Value;
       _economy.ProcessingOre.Value = 0;
       _processTimer?.Dispose();

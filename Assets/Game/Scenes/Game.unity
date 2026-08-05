@@ -1569,7 +1569,7 @@ MonoBehaviour:
   - {fileID: 2032883437}
   - {fileID: 450673127}
   chests: []
-  chestChance: 0
+  canSpawnChest: 0
 --- !u!1 &91886350 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8252801030378869798, guid: 713f354d7a42a5e4dac79147f42522a8, type: 3}
@@ -2267,7 +2267,7 @@ MonoBehaviour:
   - {fileID: 591005172}
   - {fileID: 482721442}
   chests: []
-  chestChance: 0
+  canSpawnChest: 0
 --- !u!1 &114450938
 GameObject:
   m_ObjectHideFlags: 0
@@ -5131,7 +5131,7 @@ MonoBehaviour:
   - {fileID: 745706699}
   - {fileID: 2060835177}
   chests: []
-  chestChance: 0
+  canSpawnChest: 0
 --- !u!1 &266070711
 GameObject:
   m_ObjectHideFlags: 0
@@ -5579,7 +5579,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cb04f2e276055ee44875b8b31f54a558, type: 2}
   - {fileID: 11400000, guid: b5196c2a60003644aae12d0bb2de6137, type: 2}
   - {fileID: 11400000, guid: 4a9cb6a6abfc1a543a2ce865b3346061, type: 2}
-  chestChance: 0.1
+  canSpawnChest: 1
 --- !u!1 &294935688
 GameObject:
   m_ObjectHideFlags: 0
@@ -6139,7 +6139,7 @@ MonoBehaviour:
   - {fileID: 1218285171}
   - {fileID: 864644439}
   chests: []
-  chestChance: 0
+  canSpawnChest: 0
 --- !u!43 &327012065
 Mesh:
   m_ObjectHideFlags: 0
@@ -21553,7 +21553,7 @@ MonoBehaviour:
   - {fileID: 565802400}
   - {fileID: 944806311}
   chests: []
-  chestChance: 0
+  canSpawnChest: 0
 --- !u!1 &877571971
 GameObject:
   m_ObjectHideFlags: 0
@@ -24295,7 +24295,7 @@ MonoBehaviour:
   - {fileID: 1336287126}
   - {fileID: 629103610}
   chests: []
-  chestChance: 0
+  canSpawnChest: 0
 --- !u!1 &979496818
 GameObject:
   m_ObjectHideFlags: 0
@@ -25885,7 +25885,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 5.12, y: 5.12}
+  m_Size: {x: 5.12, y: 6.1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -40197,7 +40197,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 5.2, y: 3.94}
+  m_Size: {x: 5.2, y: 4.57}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -40283,7 +40283,7 @@ MonoBehaviour:
   - {fileID: 1933396728}
   - {fileID: 791975264}
   chests: []
-  chestChance: 0
+  canSpawnChest: 0
 --- !u!1 &1697329201
 GameObject:
   m_ObjectHideFlags: 0
@@ -49010,7 +49010,7 @@ MonoBehaviour:
   - {fileID: 655598886}
   - {fileID: 1503378445}
   chests: []
-  chestChance: 0
+  canSpawnChest: 0
 --- !u!1 &2010067495
 GameObject:
   m_ObjectHideFlags: 0
@@ -52904,7 +52904,7 @@ MonoBehaviour:
   - {fileID: 1044308758}
   - {fileID: 884603972}
   chests: []
-  chestChance: 0
+  canSpawnChest: 0
 --- !u!43 &2142818411
 Mesh:
   m_ObjectHideFlags: 0

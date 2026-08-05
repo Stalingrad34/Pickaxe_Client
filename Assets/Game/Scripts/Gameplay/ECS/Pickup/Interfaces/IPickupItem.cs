@@ -6,5 +6,6 @@ namespace Game.Scripts.Gameplay.ECS.Pickup.Interfaces
   {
     public Transform  Transform { get; }
     void Pickup();
+    void Discarded();
   }
 }

@@ -3,6 +3,7 @@ using Game.Scripts.Infrastructure.Services;
 using Game.Scripts.Infrastructure.Services.InApp;
 using Game.Scripts.Infrastructure.UI;
 using UniRx;
+using UnityEngine;
 
 namespace Game.Scripts.UI.Popups.Ads
 {
@@ -21,6 +22,7 @@ namespace Game.Scripts.UI.Popups.Ads
       ShowNoAds = ServiceProvider.Get<AdsService>().NoAds;
       NoAdsPrice.Value = ServiceProvider.Get<InAppService>().GetPrice("no_ads", out var icon);
       NoAdsIcon.Value = icon;
+      Debug.Log($"Price icon {icon}");
     }
 
     public void StartCountdown()

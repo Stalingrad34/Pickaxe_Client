@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using Game.Scripts.Infrastructure.Services;
+using Game.Scripts.Infrastructure.Services.Config;
 using Game.Scripts.Infrastructure.Services.InApp;
 using Game.Scripts.Infrastructure.Services.Storage;
 using Game.Scripts.Infrastructure.States;
@@ -57,14 +58,16 @@ namespace Game.Scripts.Infrastructure
             ServiceProvider.Register(economyService);
             ServiceProvider.Register(pickaxesService);
             ServiceProvider.Register(localizationService);
-            ServiceProvider.Register(new SettingsProvider());
             ServiceProvider.Register(oreProcessingService);
-            ServiceProvider.Register(new ChestService());
-            ServiceProvider.Register(new TimeProvider());
-            ServiceProvider.Register(new InAppService());
             ServiceProvider.Register(tutorialService);
             ServiceProvider.Register(ratingService);
             ServiceProvider.Register(adsService);
+            ServiceProvider.Register(new SettingsProvider());
+            ServiceProvider.Register(new ChestService());
+            ServiceProvider.Register(new TimeProvider());
+            ServiceProvider.Register(new InAppService());
+            ServiceProvider.Register(new AnalyticsService());
+            ServiceProvider.Register(new ConfigProvider());
             
             await ServiceProvider.InitServices();
             
