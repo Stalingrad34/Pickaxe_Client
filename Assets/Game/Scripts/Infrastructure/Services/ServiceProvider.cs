@@ -15,9 +15,14 @@ namespace Game.Scripts.Infrastructure.Services
       var tasks = new List<UniTask>();
       foreach (var service in Container)
       {
-        if (service is IInitializableService initializedService)
+        switch (service)
         {
-          tasks.Add(initializedService.Init(CancellationToken.Token));
+          case IInitializableServiceAsync initializedService:
+            tasks.Add(initializedService.Init(CancellationToken.Token));
+            break;
+          case IInitializableService initializableService:
+            initializableService.Init();
+            break;
         }
       }
       

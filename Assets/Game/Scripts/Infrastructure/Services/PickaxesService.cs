@@ -76,6 +76,8 @@ namespace Game.Scripts.Infrastructure.Services
       
       CollectPickaxes();
       CheckCanMarge();
+      
+      ServiceProvider.Get<RatingService>().SetPlayerScore(PickaxesNominal.Value);
     }
 
     private void CollectPickaxes()

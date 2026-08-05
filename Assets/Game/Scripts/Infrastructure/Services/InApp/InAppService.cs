@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using Cysharp.Threading.Tasks;
 using Game.Scripts.Infrastructure.Services.InApp.PaymentProcessors;
 using YG;
 
@@ -12,14 +10,12 @@ namespace Game.Scripts.Infrastructure.Services.InApp
     private const ulong BASE_MONEY_MULTIPLIER = 75; 
     private List<IPaymentProcessor> _paymentProcessors;
     
-    public async UniTask Init(CancellationToken token)
+    public void Init()
     {
       YG2.onPurchaseSuccess += PurchaseSuccess;
       YG2.ConsumePurchases();
       
       _paymentProcessors = GetPaymentProcessors();
-      
-      await UniTask.Yield(token).SuppressCancellationThrow();
     }
 
     public void BuyInApp(string inApp)

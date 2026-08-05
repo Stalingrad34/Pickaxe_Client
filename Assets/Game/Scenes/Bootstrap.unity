@@ -175,9 +175,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6550068034954090625, guid: 604c81969211b2e4ea5ce1507617ffe2, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550068034954090625, guid: 604c81969211b2e4ea5ce1507617ffe2, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 54716410750134626, guid: 604c81969211b2e4ea5ce1507617ffe2, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7589150036173305239, guid: 604c81969211b2e4ea5ce1507617ffe2, type: 3}
+    - {fileID: 3279462460325905059, guid: 604c81969211b2e4ea5ce1507617ffe2, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 604c81969211b2e4ea5ce1507617ffe2, type: 3}

@@ -16,7 +16,7 @@ namespace Game.Scripts.Infrastructure.Services
     private bool _canSave;
     private CancellationTokenSource _saveTokenSource;
     
-    public async UniTask Init(CancellationToken token)
+    public void Init()
     {
       SoundValue.Value = PlayerPrefs.GetFloat(SOUND_KEY, 1);
       SensitivityValue.Value = PlayerPrefs.GetFloat(SENSITIVITY_KEY, 1);
@@ -25,7 +25,6 @@ namespace Game.Scripts.Infrastructure.Services
       SensitivityValue.Subscribe(_ => _canSave = true);
       
       StartSaveProcessor().Forget();
-      await UniTask.Yield(cancellationToken:token).SuppressCancellationThrow();
     }
 
     private void Save()

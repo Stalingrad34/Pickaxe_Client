@@ -20,11 +20,9 @@ namespace Game.Scripts.Infrastructure.Services
     private readonly CancellationTokenSource _token = new();
     private AbstractTutorial _currentTutorial;
 
-    public async UniTask Init(CancellationToken token)
+    public void Init()
     {
       _tutorials.Add(new StartingTutorial());
-      
-      await UniTask.Yield(cancellationToken:token).SuppressCancellationThrow();
     }
 
     public void RegisterTarget<T>(T target) where T: MonoBehaviour

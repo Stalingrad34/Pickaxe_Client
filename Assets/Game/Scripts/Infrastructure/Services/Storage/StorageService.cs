@@ -6,7 +6,7 @@ using Game.Scripts.Infrastructure.Services.Storage.Data;
 
 namespace Game.Scripts.Infrastructure.Services.Storage
 {
-  public class StorageService : IInitializableService
+  public class StorageService : IInitializableServiceAsync
   {
     private readonly List<IStorageProcessor> _processors = new();
     private readonly IStorageRepository _repository;

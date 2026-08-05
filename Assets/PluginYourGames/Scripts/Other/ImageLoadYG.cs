@@ -86,6 +86,9 @@ namespace YG
 
         async UniTaskVoid LoadTexture(string url)
         {
+            if (!url.StartsWith("http"))
+                return;
+            
             if (loadAnimObj)
                 loadAnimObj.SetActive(true);
 

@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Infrastructure.Services
 {
-  public class LocalizationService : IInitializableService, IStorageProcessor
+  public class LocalizationService : IInitializableServiceAsync, IStorageProcessor
   {
     public bool IsDirty { get; private set; }
     public readonly ReactiveCommand LanguageChanged = new();

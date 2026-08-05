@@ -1,31 +1,41 @@
-﻿using Game.Scripts.Infrastructure.Services.Storage;
-using Game.Scripts.Infrastructure.Services.Storage.Data;
+﻿using System;
 using UniRx;
+using YG;
 
 namespace Game.Scripts.Infrastructure.Services
 {
-  public class PlayerService : IService, IStorageProcessor
+  public class PlayerService : IInitializableService, IDisposable
   {
-    public bool IsDirty { get; private set; }
     public readonly ReactiveProperty<string> PlayerName = new();
+    public readonly ReactiveProperty<string> PlayerAvatar = new();
+    public readonly ReactiveProperty<bool> IsAuthorized = new();
     
-    public void Save(SaveData data)
+    public void Init()
     {
-      data.Player.PlayerName = PlayerName.Value;
-
-      IsDirty = false;
+      RefreshPlayerData();
+      YG2.onGetSDKData += OnGetSDK;
     }
 
-    public void Load(SaveData data)
+    public void OpenAuthDialogue()
     {
-      PlayerName.Value = data.Player.PlayerName;
-      
-      Subscribe();
+      YG2.OpenAuthDialog();
     }
-    
-    private void Subscribe()
+
+    private void RefreshPlayerData()
     {
-      PlayerName.Subscribe(_ => IsDirty = true);
+      PlayerName.Value = YG2.player.name;
+      PlayerAvatar.Value = YG2.player.photo;
+      IsAuthorized.Value = YG2.player.auth;
+    }
+
+    private void OnGetSDK()
+    {
+      RefreshPlayerData();
+    }
+
+    public void Dispose()
+    {
+      YG2.onGetSDKData -= OnGetSDK;
     }
   }
 }

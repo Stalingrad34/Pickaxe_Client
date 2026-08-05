@@ -4,7 +4,6 @@ using Cysharp.Threading.Tasks;
 using Game.Scripts.Infrastructure.Widgets;
 using PrimeTween;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 namespace Game.Scripts.Infrastructure.UI
 {
@@ -13,14 +12,10 @@ namespace Game.Scripts.Infrastructure.UI
         public static Camera GameCamera => _instance._gameCamera; 
         private static UIManager _instance;
         
-        private static readonly Vector3 CharacterRawPos = new (1.13f, -1.22f, 4.1f);
-        
         [SerializeField] private Canvas guiCanvas;
         [SerializeField] private Canvas loadingScreen;
         [SerializeField] private CanvasHolder canvasHolder;
         [SerializeField] private Transform popupRoot;
-        [SerializeField] private Camera uiCamera;
-        [SerializeField] private Camera guiCamera;
         [SerializeField] private CanvasGroup blackScreenFade;
         [SerializeField] private NotificationView infoMessageView;
         [SerializeField] private NotificationView warningMessageView;
@@ -169,7 +164,6 @@ namespace Game.Scripts.Infrastructure.UI
         {
             var canvas = Instantiate(_instance.canvasHolder, _instance.popupRoot);
             canvas.name = $"Canvas {_instance._popups.Count}";
-            canvas.SetCamera(_instance.uiCamera);
 
             return canvas;
         }
@@ -184,9 +178,6 @@ namespace Game.Scripts.Infrastructure.UI
         public static void SetCameraStack(Camera main)
         {
             _instance._gameCamera = main;
-            var cameraData = main.GetUniversalAdditionalCameraData();
-            cameraData.cameraStack.Add(_instance.guiCamera);
-            cameraData.cameraStack.Add(_instance.uiCamera);
         }
     }
 }

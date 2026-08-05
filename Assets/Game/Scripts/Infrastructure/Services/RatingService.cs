@@ -2,70 +2,73 @@
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Game.Scripts.Gameplay.Environment;
+using Game.Scripts.Gameplay.Environment.Rating;
 using Game.Scripts.Multiplayer;
 using Newtonsoft.Json;
 using Sirenix.Utilities;
 using UniRx;
 using UnityEngine;
+using YG;
+using YG.Utils.LB;
 
 namespace Game.Scripts.Infrastructure.Services
 {
-  public class RatingService : IService
+  public class RatingService : IInitializableService, IDisposable
   {
-    public class Response
+    public readonly ReactiveCollection<PlayerRatingModel> Players = new();
+    private readonly PlayerService _playerService;
+
+    public RatingService(PlayerService playerService)
     {
-      public bool success;
-      public string message;
-      public TopPlayer[] top10;
-    }
-    public class TopPlayer
-    {
-      public int rank;
-      public string name;
-      public int slaps;
+      _playerService = playerService;
     }
     
-    public readonly ReactiveCollection<TopPlayer> TopPlayers = new ();
-    private readonly string _ratingUri;
-    private CancellationToken _token;
-
-    public RatingService(ConnectConfig connectConfig)
+    public void Init()
     {
-      _ratingUri = connectConfig.RatingUrl;
+      YG2.onGetLeaderboard += OnGetLeaderBoardHandler;
+      YG2.GetLeaderboard("test", 10, 1);
     }
 
-    public async UniTaskVoid StartFetchRating()
+    public void SetPlayerScore(ulong score)
     {
-      var data = new Dictionary<string, string>
-      {
-        ["user_id"] = PlayerInfo.GetUserId()
-      }; 
+      if (score >= int.MaxValue)
+        score = int.MaxValue;
       
-      var result = await HttpService.Post(_ratingUri, data);
-      Response response;
-      try
-      {
-        response = JsonConvert.DeserializeObject<Response>(result);
-      }
-      catch (Exception e)
-      {
-        Debug.LogError(e);
-        return;
-      }
-
-      if (!response.success)
-      {
-        Debug.LogError(response.message);
-        return;
-      }
-      
-      Debug.Log(response.message);
-      TopPlayers.AddRange(response.top10);
+      if (_playerService.IsAuthorized.Value)
+        YG2.SetLeaderboard("pickaxes", (int)score);
     }
 
-    public void StopFetchRating()
+    private void OnGetLeaderBoardHandler(LBData data)
     {
+      Players.Clear();
+      Players.AddRange(GetPlayerModels(data.players, data.currentPlayer));
+    }
+
+    private List<PlayerRatingModel> GetPlayerModels(LBPlayerData[] players, LBCurrentPlayerData currentPlayer)
+    {
+      var result = new List<PlayerRatingModel>();
+      var hasPlayer = false;
       
+      for (int i = 0; i < players.Length; i++)
+      {
+        var player = players[i];
+        if (player.rank == currentPlayer?.rank)
+          hasPlayer = true;
+        
+        var model = i == players.Length - 1 && !hasPlayer && _playerService.IsAuthorized.Value 
+          ? new PlayerRatingModel(currentPlayer, _playerService.PlayerName.Value, _playerService.PlayerAvatar.Value) 
+          : new PlayerRatingModel(player, player.rank == currentPlayer?.rank);
+        
+        result.Add(model);
+      }
+      
+      return result;
+    }
+
+    public void Dispose()
+    {
+      YG2.onGetLeaderboard -= OnGetLeaderBoardHandler;
     }
   }
 }

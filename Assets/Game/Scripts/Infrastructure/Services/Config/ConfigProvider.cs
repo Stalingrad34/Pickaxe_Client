@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace Game.Scripts.Infrastructure.Services.Config
 {
-  public class ConfigProvider : IInitializableService
+  public class ConfigProvider : IInitializableServiceAsync
   {
     public GameConfig Game { get; private set; }
     public Dictionary<string, WeaponStats> Weapons { get; private set; }

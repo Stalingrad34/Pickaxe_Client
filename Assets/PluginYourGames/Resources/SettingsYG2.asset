@@ -118,8 +118,8 @@ MonoBehaviour:
         uniqueID: 330
         extraData: 
       currentPlayer:
-        rank: 5
-        score: 60
+        rank: 30
+        score: 1
         extraData: 
     - technoName: time
       entries: '1. Max: 7123
