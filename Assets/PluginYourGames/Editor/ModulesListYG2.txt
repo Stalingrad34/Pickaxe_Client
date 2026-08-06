@@ -6,5 +6,6 @@ Leaderboards v1.01
 Localization v1.02
 Metrica v1.02
 Payments v1.02
+Review v1.0
 RewardedAdv v1.011
 Storage v1.021

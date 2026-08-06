@@ -1,5 +1,7 @@
 ﻿using Game.Scripts.Infrastructure.Custom;
+using Game.Scripts.Infrastructure.Extensions;
 using Game.Scripts.Infrastructure.Services;
+using Game.Scripts.Tutorial;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -14,6 +16,7 @@ namespace Game.Scripts.Gameplay.FloorButtons
     [SerializeField] private GameObject offRoot;
 
     private EconomyService _economy;
+    private bool _isActive;
     private int _stage;
 
     private void Start()
@@ -21,6 +24,19 @@ namespace Game.Scripts.Gameplay.FloorButtons
       _economy = ServiceProvider.Get<EconomyService>();
       _economy.ProcessingStage.Subscribe(ProcessingStageChanged).AddTo(gameObject);
       _economy.Money.Subscribe(MoneyChanged).AddTo(gameObject);
+      CheckActivation();
+    }
+
+    private void CheckActivation()
+    {
+      var tutorialService = ServiceProvider.Get<TutorialService>();
+      if (!tutorialService.IsCompleted(TutorialType.StartingTutorial))
+      {
+        gameObject.SetActive(false);
+        tutorialService.CompletedTutorials.SubscribeAdd(CompletedTutorials).AddTo(gameObject);
+      }
+      else
+        gameObject.SetActive(true);
     }
 
     private void ProcessingStageChanged(int stage)
@@ -39,6 +55,12 @@ namespace Game.Scripts.Gameplay.FloorButtons
       var canBoost = money >= (ulong)processingData.UpgradeCost;
       onRoot.SetActive(canBoost);
       offRoot.SetActive(!canBoost);
+    }
+
+    private void CompletedTutorials(TutorialType type, int _)
+    {
+      if (type == TutorialType.StartingTutorial)
+        gameObject.SetActive(true);
     }
     
     private void OnTriggerEnter(Collider other)

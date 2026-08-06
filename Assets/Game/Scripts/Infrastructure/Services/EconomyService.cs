@@ -43,7 +43,7 @@ namespace Game.Scripts.Infrastructure.Services
       Money.Value += money;
       var pickupData = new PickupTextData()
       {
-        Text = $"-${MoneyFormatter.Format((long)money)}",
+        Text = $"+${MoneyFormatter.Format((long)money)}",
         Color = Color.green
       };
       MoneyTextCommand.Execute(pickupData);

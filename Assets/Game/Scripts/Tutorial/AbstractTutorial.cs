@@ -28,6 +28,11 @@ namespace Game.Scripts.Tutorial
       return CanStartInternal();
     }
 
+    public bool IsCompleted()
+    {
+      return _isCompleted;
+    }
+
     protected abstract bool CanStartInternal();
     protected abstract List<ITutorialStep> GetSteps();
 

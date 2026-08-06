@@ -3,6 +3,7 @@ using Game.Scripts.Infrastructure.Services.Config;
 using Game.Scripts.Infrastructure.Services.Storage;
 using Game.Scripts.Infrastructure.Services.Storage.Data;
 using Game.Scripts.Infrastructure.UI;
+using Game.Scripts.Tutorial;
 using Game.Scripts.UI.Popups.Ads;
 using UniRx;
 using YG;
@@ -40,6 +41,12 @@ namespace Game.Scripts.Infrastructure.Services
 
     private void ShowAdsPopup()
     {
+      if (!ServiceProvider.Get<TutorialService>().IsCompleted(TutorialType.StartingTutorial))
+      {
+        StartAdsTimer();
+        return;
+      }
+      
       var model = new ShowAdsModel(3);
       UIManager.ShowPopup<ShowAdsView, ShowAdsModel>(model);
       

@@ -46,12 +46,14 @@ namespace Game.Scripts.Infrastructure
             var adsService = new AdsService();
             var playerService = new PlayerService();
             var ratingService = new RatingService(playerService);
+            var reviewService = new ReviewService(tutorialService, pickaxesService);
             
             storageService
                 .AddProcessor(economyService)
                 .AddProcessor(pickaxesService)
                 .AddProcessor(localizationService)
                 .AddProcessor(tutorialService)
+                .AddProcessor(reviewService)
                 .AddProcessor(adsService);
             
             ServiceProvider.Register(storageService);
@@ -63,13 +65,14 @@ namespace Game.Scripts.Infrastructure
             ServiceProvider.Register(tutorialService);
             ServiceProvider.Register(ratingService);
             ServiceProvider.Register(adsService);
+            ServiceProvider.Register(reviewService);
             ServiceProvider.Register(new SettingsProvider());
             ServiceProvider.Register(new ChestService());
             ServiceProvider.Register(new TimeProvider());
             ServiceProvider.Register(new InAppService());
             ServiceProvider.Register(new AnalyticsService());
             ServiceProvider.Register(new ConfigProvider());
-            
+
             await ServiceProvider.InitServices();
             
             AudioController.Instance.Init();

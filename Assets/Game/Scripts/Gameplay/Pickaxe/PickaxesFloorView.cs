@@ -5,6 +5,7 @@ using Game.Scripts.Gameplay.Chest;
 using Game.Scripts.Infrastructure;
 using Game.Scripts.Infrastructure.Services;
 using Game.Scripts.Infrastructure.Services.Config;
+using Game.Scripts.Tutorial;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,11 +17,13 @@ namespace Game.Scripts.Gameplay.Pickaxe
     [SerializeField] private List<ChestConfig> chests;
     [SerializeField] private bool canSpawnChest;
     private ConfigProvider _configProvider;
+    private TutorialService _tutorialService;
     private float _chestChance;
 
     private void Awake()
     {
       _configProvider = ServiceProvider.Get<ConfigProvider>();
+      _tutorialService = ServiceProvider.Get<TutorialService>();
     }
 
     public void SetChestChance(float chestChance)
@@ -79,7 +82,7 @@ namespace Game.Scripts.Gameplay.Pickaxe
 
     private bool TryGetChest(out ChestConfig chest)
     {
-      if (chests.Count == 0 || Random.value > _chestChance || !canSpawnChest)
+      if (!CanSpawnChest())
       {
         chest = null;
         return false;
@@ -87,6 +90,17 @@ namespace Game.Scripts.Gameplay.Pickaxe
 
       chest = GetRandomChest();
       return true;
+    }
+
+    private bool CanSpawnChest()
+    {
+      var result = true;
+      result &= canSpawnChest;
+      result &= chests.Count > 0;
+      result &= Random.value < _chestChance;
+      result &= _tutorialService.IsCompleted(TutorialType.StartingTutorial);
+
+      return result;
     }
 
     private ChestConfig GetRandomChest()
