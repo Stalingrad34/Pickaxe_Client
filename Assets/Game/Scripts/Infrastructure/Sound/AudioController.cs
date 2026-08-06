@@ -34,7 +34,12 @@ namespace Game.Scripts.Infrastructure.Sound
         public void Init()
         {
             musicSource.volume = musicPower;
-            ServiceProvider.Get<SettingsProvider>().SoundValue.Subscribe(SoundValueChanged).AddTo(gameObject);
+            ServiceProvider.Get<SettingsProvider>().SoundDisabled.Subscribe(SoundDisabledChanged).AddTo(gameObject);
+        }
+
+        private void SoundDisabledChanged(bool isDisabled)
+        {
+            SoundValueChanged(isDisabled ? 0 : 1);
         }
 
         private void OnMusicOffChanged(bool off)
@@ -52,6 +57,9 @@ namespace Game.Scripts.Infrastructure.Sound
             if (string.IsNullOrEmpty(sound))
                 return;
 
+            if (ServiceProvider.Get<SettingsProvider>().SoundDisabled.Value)
+                return;
+            
             if (!_soundMap.ContainsKey(sound))
             {
                 Debug.LogError("SoundMap not contains " + sound);
