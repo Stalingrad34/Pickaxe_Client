@@ -2,14 +2,14 @@
   "SaveData": {
     "Player": {
       "PlayerName": null,
-      "Language": "ru"
+      "Language": "br"
     },
     "Economy": {
       "Money": 1,
-      "Ore": 5,
-      "ProcessingMoney": 59,
-      "ProcessingOre": 11520,
-      "RestOre": 0,
+      "Ore": 97,
+      "ProcessingMoney": 92,
+      "ProcessingOre": 11487,
+      "RestOre": 38220,
       "ProcessingStage": 0
     },
     "Pickaxes": {
@@ -18,7 +18,7 @@
         "Wood": 2,
         "Iron": 1
       },
-      "PickaxesPunchLastTime": 1786027673,
+      "PickaxesPunchLastTime": 1786029807,
       "CollectedPickaxes": [
         1,
         4
@@ -46,5 +46,5 @@
     false,
     false
   ],
-  "idSave": 85
+  "idSave": 133
 }

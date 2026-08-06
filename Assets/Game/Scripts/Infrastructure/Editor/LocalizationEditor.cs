@@ -24,7 +24,14 @@ namespace Game.Scripts.Infrastructure.Editor
       
       foreach (var (key, language) in localization)
       {
-        var locale = new KeyValueLocale() {Key = key, Russian = language["ru"], English = language["en"]};
+        var locale = new KeyValueLocale()
+        {
+          Key = key, 
+          Russian = language["ru"], 
+          English = language["en"],
+          Turkish = language["tr"],
+          Brazilian = language["br"]
+        };
         LocaleList.Add(locale);
       }
     }
@@ -38,7 +45,9 @@ namespace Game.Scripts.Infrastructure.Editor
         var language = new Dictionary<string, string>
         {
           ["ru"] = locale.Russian,
-          ["en"] = locale.English
+          ["en"] = locale.English,
+          ["tr"] = locale.Turkish,
+          ["br"] = locale.Brazilian
         };
         
         localization.Add(locale.Key, language);
@@ -62,6 +71,8 @@ namespace Game.Scripts.Infrastructure.Editor
       public string Key;
       public string Russian;
       public string English;
+      public string Turkish;
+      public string Brazilian;
     }
 
     public static void OpenWindow()

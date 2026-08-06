@@ -48,6 +48,28 @@ namespace Game.Scripts.Infrastructure.Editor
       
       ServiceProvider.Get<LocalizationService>().ChangeLanguage("en");
     }
+    
+    [HorizontalGroup("LangButtons")]
+    [Button("Tr", ButtonSizes.Medium)]
+    [GUIColor(nameof(GetTrButtonColor))]
+    private void SelectTr()
+    {
+      if (!ServiceProvider.Has<LocalizationService>())
+        return;
+      
+      ServiceProvider.Get<LocalizationService>().ChangeLanguage("tr");
+    }
+    
+    [HorizontalGroup("LangButtons")]
+    [Button("Br", ButtonSizes.Medium)]
+    [GUIColor(nameof(GetBrButtonColor))]
+    private void SelectBr()
+    {
+      if (!ServiceProvider.Has<LocalizationService>())
+        return;
+      
+      ServiceProvider.Get<LocalizationService>().ChangeLanguage("br");
+    }
 
     private Color GetRuButtonColor()
     {
@@ -65,6 +87,26 @@ namespace Game.Scripts.Infrastructure.Editor
         return Color.white;
       
       return ServiceProvider.Get<LocalizationService>().CurrentLanguage == "en"
+        ? Color.green
+        : Color.white;
+    }
+    
+    private Color GetTrButtonColor()
+    {
+      if (!ServiceProvider.Has<LocalizationService>())
+        return Color.white;
+      
+      return ServiceProvider.Get<LocalizationService>().CurrentLanguage == "tr"
+        ? Color.green
+        : Color.white;
+    }
+    
+    private Color GetBrButtonColor()
+    {
+      if (!ServiceProvider.Has<LocalizationService>())
+        return Color.white;
+      
+      return ServiceProvider.Get<LocalizationService>().CurrentLanguage == "br"
         ? Color.green
         : Color.white;
     }
