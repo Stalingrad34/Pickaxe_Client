@@ -65,7 +65,7 @@ namespace Game.Scripts.Infrastructure.Services
       if (CanOpen(chestConfig))
       {
         var cost = GetChestCost(chestConfig.Type);
-        ServiceProvider.Get<EconomyService>().Money.Value -= cost;
+        ServiceProvider.Get<EconomyService>().DecreaseMoney(cost);
         OpenChest(chestConfig);
       }
       else if (chestConfig.CanAds)

@@ -1,4 +1,5 @@
 ﻿using Game.Scripts.Gameplay.ECS.Pickup.Interfaces;
+using Game.Scripts.Infrastructure.Sound;
 using Game.Scripts.KinematicCharacterController.ExampleCharacter.Scripts;
 using TMPro;
 using UnityEngine;
@@ -55,6 +56,7 @@ namespace Game.Scripts.Gameplay.Units
       item.Transform.SetParent(pickupRoot);
       item.Transform.localPosition = Vector3.zero;
       item.Pickup();
+      AudioController.Instance.PlayAudioClipFromSoundMap("pickup_chest");
     }
 
     public void Discard()

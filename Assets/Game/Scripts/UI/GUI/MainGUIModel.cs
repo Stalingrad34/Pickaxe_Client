@@ -21,6 +21,7 @@ namespace Game.Scripts.UI.GUI
     public readonly ReactiveProperty<int> CollectedPickaxesCurrentCount = new ();
     public readonly ReactiveProperty<ChestInfoModel> ChestInfo = new ();
     public readonly ReactiveCommand<PickupTextData> PickupTextCommand;
+    public readonly ReactiveCommand<PickupTextData> MoneyTextCommand;
     public readonly ReactiveCommand<PickaxeConfig> ShowOpenVFX = new ();
     public readonly ReactiveCommand<PickaxeConfig> NewPickaxeVFX = new ();
     public readonly ReactiveCollection<MoneyInAppModel> MoneyInApps = new();
@@ -32,6 +33,7 @@ namespace Game.Scripts.UI.GUI
       Pickaxes = pickaxesService.PickaxesNominal;
       ShowJoystick.Value = Platform.IsMobileWebGL();
       PickupTextCommand = economy.PickupTextCommand;
+      MoneyTextCommand = economy.MoneyTextCommand;
       CollectedPickaxesMaxCount.Value = AssetProvider.GetAllPickaxes().Count;
       ServiceProvider.Get<PickaxesService>().CollectedPickaxes.SubscribeCount(CollectedPickaxesCountChanged).AddTo(disposables);
       ServiceProvider.Get<PickaxesService>().CollectedPickaxes.SubscribeAdd(CollectedPickaxesAdded).AddTo(disposables);

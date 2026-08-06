@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Game.Scripts.Infrastructure.Sound;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 

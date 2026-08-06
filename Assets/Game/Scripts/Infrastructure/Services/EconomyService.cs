@@ -1,6 +1,7 @@
 ﻿using Game.Scripts.Gameplay;
 using Game.Scripts.Infrastructure.Services.Storage;
 using Game.Scripts.Infrastructure.Services.Storage.Data;
+using Game.Scripts.Infrastructure.Sound;
 using Game.Scripts.UI.GUI;
 using UniRx;
 using UnityEngine;
@@ -18,6 +19,7 @@ namespace Game.Scripts.Infrastructure.Services
     public readonly ReactiveProperty<ulong> RestOre = new();
     public readonly ReactiveProperty<int> ProcessingStage = new();
     public readonly ReactiveCommand<PickupTextData> PickupTextCommand = new();
+    public readonly ReactiveCommand<PickupTextData> MoneyTextCommand = new();
 
     public void AddOre(ulong amount, Color pickupTextColor)
     {
@@ -28,11 +30,34 @@ namespace Game.Scripts.Infrastructure.Services
         Color = pickupTextColor
       };
       PickupTextCommand.Execute(pickupData);
+      AudioController.Instance.PlayAudioClipFromSoundMap("pickup_ore");
     }
 
     public void AddRestOre(long amount)
     {
       RestOre.Value += (ulong)amount;
+    }
+    
+    public void IncreaseMoney(ulong money)
+    {
+      Money.Value += money;
+      var pickupData = new PickupTextData()
+      {
+        Text = $"-${MoneyFormatter.Format((long)money)}",
+        Color = Color.green
+      };
+      MoneyTextCommand.Execute(pickupData);
+    }
+    
+    public void DecreaseMoney(ulong cost)
+    {
+      Money.Value -= cost;
+      var pickupData = new PickupTextData()
+      {
+        Text = $"-${MoneyFormatter.Format((long)cost)}",
+        Color = Color.red
+      };
+      MoneyTextCommand.Execute(pickupData);
     }
 
     public void ConvertRestOre()
@@ -47,8 +72,9 @@ namespace Game.Scripts.Infrastructure.Services
     {
       var moneyText = MoneyFormatter.Format((long)ProcessingMoney.Value);
       ServiceProvider.Get<AnalyticsService>().MetricaSend("collect", "Money", moneyText);
-      Money.Value += ProcessingMoney.Value;
+      IncreaseMoney(ProcessingMoney.Value);
       ProcessingMoney.Value = 0;
+      AudioController.Instance.PlayAudioClipFromSoundMap("collect");
     }
     
     public void IncreaseStage(ulong cost)
@@ -56,9 +82,10 @@ namespace Game.Scripts.Infrastructure.Services
       if (cost > Money.Value)
         return;
       
-      Money.Value -= cost;
+      DecreaseMoney(cost);
       ProcessingStage.Value++;
       ServiceProvider.Get<AnalyticsService>().MetricaSend("stage", "NewStage", ProcessingStage.Value.ToString());
+      AudioController.Instance.PlayAudioClipFromSoundMap("stage");
     }
 
     public void Save(SaveData data)

@@ -1,6 +1,7 @@
 ﻿using System;
 using Game.Scripts.Gameplay;
 using Game.Scripts.Infrastructure.Services.Storage;
+using Game.Scripts.Infrastructure.Sound;
 using UniRx;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -31,11 +32,15 @@ namespace Game.Scripts.Infrastructure.Services
     
     public void ProcessOre()
     {
+      if (_economy.Ore.Value == 0)
+        return;
+      
       var oreText = MoneyFormatter.Format((long)_economy.Ore.Value);
       ServiceProvider.Get<AnalyticsService>().MetricaSend("process", "OreCount", oreText);
       var multiplier = MultiplierEnabled.Value ? (double)ProcessingMultiplier.Value : 1;
       _economy.ProcessingOre.Value += (ulong)(_economy.Ore.Value * multiplier);
       _economy.Ore.Value = 0;
+      AudioController.Instance.PlayAudioClipFromSoundMap("add_process");
 
       if (_processTimer == null)
         StartProcessTimer();
@@ -98,6 +103,7 @@ namespace Game.Scripts.Infrastructure.Services
           var processedOre = Math.Min((ulong)GetOrePerSecond(_processingStage), _economy.ProcessingOre.Value);
           _economy.ProcessingOre.Value -= processedOre;
           _economy.ProcessingMoney.Value += processedOre;
+          AudioController.Instance.PlayAudioClipFromSoundMap("process");
         }
         else
         {

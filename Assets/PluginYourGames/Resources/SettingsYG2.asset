@@ -24,9 +24,15 @@ MonoBehaviour:
     - name: ads_cooldown
       value: 60
     - name: chest_chance
-      value: 0.5
+      value: 0.05
     - name: enable_rewarded
-      value: true
+      value: false
+    - name: chest_chance_wood
+      value: 75
+    - name: chest_chance_shiny
+      value: 20
+    - name: chest_chance_rare
+      value: 5
   InterstitialAdv:
     showFirstAdv: 0
     interAdvInterval: 60

@@ -6,7 +6,7 @@ using PrimeTween;
 using UniRx;
 using UnityEngine;
 
-namespace Game.Scripts.Infrastructure
+namespace Game.Scripts.Infrastructure.Sound
 {
     public class AudioController : MonoBehaviour
     {
@@ -21,6 +21,7 @@ namespace Game.Scripts.Infrastructure
     
         private Dictionary<string, AudioClip> _soundMap;
         private Dictionary<string, float> _soundTimes = new();
+        private Dictionary<string, WorldAudioSource> _worldSources = new();
         private readonly CompositeDisposable _compositeDisposable = new CompositeDisposable();
 
         private void Awake()
@@ -62,14 +63,19 @@ namespace Game.Scripts.Infrastructure
             else if (volumeRatio < 0)
                 volumeRatio = 0;
 
-            if (_soundTimes.TryGetValue(sound, out var time) && Time.realtimeSinceStartup - time < 0.1f)
+            if (_worldSources.TryGetValue(sound, out var worldSource))
             {
+                worldSource.PlaySound(_soundMap[sound]);
                 return;
             }
+
+            if (_soundTimes.TryGetValue(sound, out var time) && Time.realtimeSinceStartup - time < 0.1f)
+                return;
+           
             _soundTimes[sound] = Time.realtimeSinceStartup;
 
             var freeSoundSource = soundSources.FirstOrDefault(src => !src.isPlaying);
-            if (freeSoundSource == default)
+            if (freeSoundSource == null)
             {
                 Debug.LogWarning("All AudioSources is busy for " + sound);
                 return;
@@ -210,6 +216,11 @@ namespace Game.Scripts.Infrastructure
             }
 
             return result;
+        }
+
+        public void RegisterWorldSource(string key, WorldAudioSource worldAudioSource)
+        {
+            _worldSources[key] = worldAudioSource;
         }
     }
 }

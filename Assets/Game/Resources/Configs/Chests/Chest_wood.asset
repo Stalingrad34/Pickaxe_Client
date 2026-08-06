@@ -19,7 +19,7 @@ MonoBehaviour:
   CanAds: 1
   ChestIcon: {fileID: 21300000, guid: 5e8b6ffbd61c66246aa43a82e45d6f4d, type: 3}
   Color: {r: 0.6117647, g: 0.5529412, b: 0.48627454, a: 0.5882353}
-  Weight: 30
+  Weight: 75
   Variants:
   - pickaxeConfig: {fileID: 11400000, guid: 5e265625aef4507438f277900d6bb282, type: 2}
     Chance: 75

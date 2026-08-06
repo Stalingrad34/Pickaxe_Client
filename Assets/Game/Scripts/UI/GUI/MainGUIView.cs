@@ -30,6 +30,8 @@ namespace Game.Scripts.UI.GUI
     [SerializeField] private List<MoneyInAppView> moneyInApps;
     [SerializeField] private CustomText tutorialText;
     [SerializeField] private float pickupTextDuration;
+    [SerializeField] private TextAnimationView pickupTextAnimation;
+    [SerializeField] private TextAnimationView decreaseTextAnimation;
 
     private int _collectedMaxCount;
     private int _collectedCurrentCount;
@@ -40,7 +42,8 @@ namespace Game.Scripts.UI.GUI
       model.Ore.SubscribeOre(oreText).AddTo(gameObject);
       model.Pickaxes.Subscribe(PickaxesCountChanged).AddTo(gameObject);
       model.ShowJoystick.Subscribe(joystick.SetActive).AddTo(gameObject);
-      model.PickupTextCommand.Subscribe(PickupTextHandler).AddTo(gameObject);
+      model.PickupTextCommand.Subscribe(pickupTextAnimation.PickupTextHandler).AddTo(gameObject);
+      model.MoneyTextCommand.Subscribe(decreaseTextAnimation.PickupTextHandler).AddTo(gameObject);
       model.CollectedPickaxesMaxCount.Subscribe(CollectedPickaxesMaxChanged).AddTo(gameObject);
       model.CollectedPickaxesCurrentCount.Subscribe(CollectedPickaxesCurrentChanged).AddTo(gameObject);
       model.ChestInfo.Subscribe(ChestInfoChanged).AddTo(gameObject);
@@ -68,43 +71,7 @@ namespace Game.Scripts.UI.GUI
       pickaxesCountText.SetText(new TextData("pickaxes_count", count.ToString()));
     }
 
-    private void PickupTextHandler(PickupTextData data)
-    {
-      var view = Instantiate(pickupTextView, pickupTextArea.transform);
-      view.rectTransform.anchoredPosition = GetPickupTextPosition();
-      view.text = data.Text;
-      view.color = data.Color;
-      view.gameObject.SetActive(true);
-      
-      var sequence = DOTween.Sequence();
-      sequence
-        .Join(GetPickupTextMoveTween(view.rectTransform))
-        .Join(GetPickupTextAlphaTween(view, data.Color))
-        .OnComplete(() => Destroy(view.gameObject))
-        .SetLink(gameObject);
-    }
-
-    private Tween GetPickupTextMoveTween(RectTransform rectTransform)
-    {
-      return rectTransform.DOAnchorPos(pickupTextTarget.anchoredPosition, pickupTextDuration).SetEase(Ease.InBack);
-    }
     
-    private Tween GetPickupTextAlphaTween(TextMeshProUGUI text, Color color)
-    {
-      color.a = 0;
-      return text.DOColor(color, pickupTextDuration).SetEase(pickupTextAlphaCurve);
-    }
-
-    private Vector2 GetPickupTextPosition()
-    {
-      var halfWidth = pickupTextArea.rect.width / 2;
-      var halfHeight = pickupTextArea.rect.height / 2;
-      
-      var x = Random.Range(-halfWidth, halfWidth);
-      var y = Random.Range(-halfHeight, halfHeight);
-      
-      return new Vector2(x, y);
-    }
 
     private void ChestInfoChanged(ChestInfoModel chestInfoModel)
     {

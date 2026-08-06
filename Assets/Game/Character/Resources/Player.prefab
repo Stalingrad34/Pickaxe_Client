@@ -471,6 +471,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6500311980659525006, guid: d56338f25892e6d4094e5f2efdc6397d, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4624248726862691205}
+    - targetCorrespondingSourceObject: {fileID: 6500311980659525006, guid: d56338f25892e6d4094e5f2efdc6397d, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 5202868108506875954}
     - targetCorrespondingSourceObject: {fileID: 6500311980659525006, guid: d56338f25892e6d4094e5f2efdc6397d, type: 3}
       insertIndex: -1
@@ -517,6 +520,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6500311980659525006, guid: d56338f25892e6d4094e5f2efdc6397d, type: 3}
   m_PrefabInstance: {fileID: 6887803587429157781}
   m_PrefabAsset: {fileID: 0}
+--- !u!81 &4624248726862691205
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406409807060078107}
+  m_Enabled: 1
 --- !u!136 &5202868108506875954
 CapsuleCollider:
   m_ObjectHideFlags: 8

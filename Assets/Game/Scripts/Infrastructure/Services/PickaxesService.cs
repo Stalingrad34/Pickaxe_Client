@@ -6,6 +6,7 @@ using Game.Scripts.Gameplay.Pickaxe;
 using Game.Scripts.Infrastructure.Extensions;
 using Game.Scripts.Infrastructure.Services.Storage;
 using Game.Scripts.Infrastructure.Services.Storage.Data;
+using Game.Scripts.Infrastructure.Sound;
 using Sirenix.Utilities;
 using UniRx;
 
@@ -55,12 +56,13 @@ namespace Game.Scripts.Infrastructure.Services
     
     public void TryAddPickaxes(int count, bool autoMerge)
     {
-      var database = ServiceProvider.Get<EconomyService>();
+      var economy = ServiceProvider.Get<EconomyService>();
       var cost = GetPickaxeCost() * (ulong)count;
-      if (cost > database.Money.Value)
+      if (cost > economy.Money.Value)
         return;
       
-      database.Money.Value -= cost;
+      AudioController.Instance.PlayAudioClipFromSoundMap("buy");
+      economy.DecreaseMoney(cost);
       AddPickaxe(PickaxeType.Wood, count, autoMerge);
       ServiceProvider.Get<AnalyticsService>().MetricaSend("add_pickaxes", "Count", count.ToString());
     }
@@ -69,6 +71,7 @@ namespace Game.Scripts.Infrastructure.Services
     {
       PickaxesNominal.Value += (ulong)count;
       AddPickaxe(type, count);
+      CheckCanMarge();
 
       if (autoMerge || PickaxesCount() > 100)
         TryMergeAll();
@@ -76,7 +79,6 @@ namespace Game.Scripts.Infrastructure.Services
         RebuildPickaxes("player");
       
       CollectPickaxes();
-      CheckCanMarge();
       
       ServiceProvider.Get<RatingService>().SetPlayerScore(PickaxesNominal.Value);
     }
@@ -86,7 +88,10 @@ namespace Game.Scripts.Infrastructure.Services
       foreach (var type in _pickaxes.Keys)
       {
         if (!CollectedPickaxes.Contains(type))
+        {
           CollectedPickaxes.Add(type);
+          AudioController.Instance.PlayAudioClipFromSoundMap("new_pickaxe");
+        }
 
         if (type > BestPickaxeType.Value)
           BestPickaxeType.Value = type;
@@ -125,6 +130,9 @@ namespace Game.Scripts.Infrastructure.Services
 
     public void TryMergeAll()
     {
+      if (!CanMerge.Value)
+        return;
+      
       TryMerge(PickaxeType.Wood, PickaxeType.Stone);
       TryMerge(PickaxeType.Stone, PickaxeType.Copper);
       TryMerge(PickaxeType.Copper, PickaxeType.Iron);
@@ -141,6 +149,7 @@ namespace Game.Scripts.Infrastructure.Services
       CollectPickaxes();
       CanMerge.Value = false;
       
+      AudioController.Instance.PlayAudioClipFromSoundMap("merge");
       ServiceProvider.Get<AnalyticsService>().MetricaSend("merge", "WoodCount", _pickaxes[PickaxeType.Wood].ToString());
     }
 

@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Game.Scripts.Gameplay.Chest;
 using Game.Scripts.Infrastructure;
+using Game.Scripts.Infrastructure.Services;
+using Game.Scripts.Infrastructure.Services.Config;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game.Scripts.Gameplay.Pickaxe
 {
@@ -11,7 +15,13 @@ namespace Game.Scripts.Gameplay.Pickaxe
     [SerializeField] private List<PickaxeRootView> pickaxeRoots;
     [SerializeField] private List<ChestConfig> chests;
     [SerializeField] private bool canSpawnChest;
+    private ConfigProvider _configProvider;
     private float _chestChance;
+
+    private void Awake()
+    {
+      _configProvider = ServiceProvider.Get<ConfigProvider>();
+    }
 
     public void SetChestChance(float chestChance)
     {
@@ -84,7 +94,7 @@ namespace Game.Scripts.Gameplay.Pickaxe
       var weights = new List<WeightedItem<ChestConfig>>();
       foreach (var chestConfig in chests)
       {
-        weights.Add(new WeightedItem<ChestConfig>(chestConfig, chestConfig.Weight));
+        weights.Add(new WeightedItem<ChestConfig>(chestConfig, _configProvider.ChestChances[chestConfig.Type]));
       }
 
       return weights.GetWeightedRandom();

@@ -3,6 +3,7 @@ using Game.Scripts.Infrastructure.Services;
 using Game.Scripts.Infrastructure.Services.Config;
 using Game.Scripts.Infrastructure.Services.InApp;
 using Game.Scripts.Infrastructure.Services.Storage;
+using Game.Scripts.Infrastructure.Sound;
 using Game.Scripts.Infrastructure.States;
 using Game.Scripts.Multiplayer;
 using Game.Scripts.States;
