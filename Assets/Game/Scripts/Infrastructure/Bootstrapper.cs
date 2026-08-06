@@ -51,7 +51,6 @@ namespace Game.Scripts.Infrastructure
             storageService
                 .AddProcessor(economyService)
                 .AddProcessor(pickaxesService)
-                .AddProcessor(localizationService)
                 .AddProcessor(tutorialService)
                 .AddProcessor(reviewService)
                 .AddProcessor(adsService);

@@ -30,7 +30,7 @@ namespace Game.Scripts.Infrastructure.Editor
           Russian = language["ru"], 
           English = language["en"],
           Turkish = language["tr"],
-          Brazilian = language["br"]
+          Portugues = language["pt"]
         };
         LocaleList.Add(locale);
       }
@@ -47,7 +47,7 @@ namespace Game.Scripts.Infrastructure.Editor
           ["ru"] = locale.Russian,
           ["en"] = locale.English,
           ["tr"] = locale.Turkish,
-          ["br"] = locale.Brazilian
+          ["pt"] = locale.Portugues
         };
         
         localization.Add(locale.Key, language);
@@ -72,7 +72,7 @@ namespace Game.Scripts.Infrastructure.Editor
       public string Russian;
       public string English;
       public string Turkish;
-      public string Brazilian;
+      public string Portugues;
     }
 
     public static void OpenWindow()

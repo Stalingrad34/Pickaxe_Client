@@ -61,14 +61,14 @@ namespace Game.Scripts.Infrastructure.Editor
     }
     
     [HorizontalGroup("LangButtons")]
-    [Button("Br", ButtonSizes.Medium)]
-    [GUIColor(nameof(GetBrButtonColor))]
+    [Button("Pt", ButtonSizes.Medium)]
+    [GUIColor(nameof(GetPtButtonColor))]
     private void SelectBr()
     {
       if (!ServiceProvider.Has<LocalizationService>())
         return;
       
-      ServiceProvider.Get<LocalizationService>().ChangeLanguage("br");
+      ServiceProvider.Get<LocalizationService>().ChangeLanguage("pt");
     }
 
     private Color GetRuButtonColor()
@@ -101,7 +101,7 @@ namespace Game.Scripts.Infrastructure.Editor
         : Color.white;
     }
     
-    private Color GetBrButtonColor()
+    private Color GetPtButtonColor()
     {
       if (!ServiceProvider.Has<LocalizationService>())
         return Color.white;

@@ -7,10 +7,11 @@ using Game.Scripts.Infrastructure.Services.Storage.Data;
 using Newtonsoft.Json;
 using UniRx;
 using UnityEngine;
+using YG;
 
 namespace Game.Scripts.Infrastructure.Services
 {
-  public class LocalizationService : IInitializableServiceAsync, IStorageProcessor
+  public class LocalizationService : IInitializableServiceAsync
   {
     public bool IsDirty { get; private set; }
     public readonly ReactiveCommand LanguageChanged = new();
@@ -24,6 +25,9 @@ namespace Game.Scripts.Infrastructure.Services
     {
       var json = await Resources.LoadAsync<TextAsset>("Localization") as TextAsset;
       _localizations = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(json.text);
+      
+      var hasLocale = _localizations.FirstOrDefault().Value.ContainsKey(YG2.lang);
+      _currentLanguage = hasLocale ? YG2.lang : "en";
     }
     
     public void ChangeLanguage(string locale)
@@ -36,17 +40,6 @@ namespace Game.Scripts.Infrastructure.Services
     public string GetLocalizedText(string text)
     {
       return _localizations.TryGetValue(text, out var localizations) ? localizations[_currentLanguage] : text;
-    }
-    
-    public void Save(SaveData data)
-    {
-      data.Player.Language = _currentLanguage;
-      IsDirty = false;
-    }
-
-    public void Load(SaveData data)
-    {
-      _currentLanguage = data.Player.Language;
     }
   }
 }
