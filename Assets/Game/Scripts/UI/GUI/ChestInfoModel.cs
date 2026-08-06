@@ -18,6 +18,7 @@ namespace Game.Scripts.UI.GUI
     public readonly ReactiveCollection<PickaxeVariant> PickaxeVariants = new ();
     public readonly ReactiveProperty<long> Cost = new ();
     public readonly ReactiveProperty<bool> ShowInApp = new ();
+    public readonly ReactiveProperty<bool> ShowAds = new ();
     public readonly ReactiveProperty<string> InAppPrice = new ();
     public readonly ReactiveProperty<string> InAppIcon = new ();
     
@@ -35,7 +36,8 @@ namespace Game.Scripts.UI.GUI
       BackgroundColor.Value = chestConfig.Color;
       PickaxeVariants.AddRange(chestConfig.Variants);
       Cost.Value = (long)ServiceProvider.Get<ChestService>().GetChestCost(chestConfig.Type);
-      ShowInApp.Value = !ServiceProvider.Get<ChestService>().CanOpen(chestConfig);
+      ShowInApp.Value = !ServiceProvider.Get<ChestService>().CanOpen(chestConfig) && !chestConfig.CanAds;
+      ShowAds.Value = !ServiceProvider.Get<ChestService>().CanOpen(chestConfig) && chestConfig.CanAds;
 
       var price = ServiceProvider.Get<InAppService>().GetPrice(chestConfig.InApp, out var icon);
       InAppPrice.Value = price;

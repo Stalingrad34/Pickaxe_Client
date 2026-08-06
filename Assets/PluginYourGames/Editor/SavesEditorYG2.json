@@ -5,30 +5,32 @@
       "Language": "ru"
     },
     "Economy": {
-      "Money": 5,
-      "Ore": 2,
-      "ProcessingMoney": 0,
-      "ProcessingOre": 0,
-      "RestOre": 6,
+      "Money": 1,
+      "Ore": 5,
+      "ProcessingMoney": 59,
+      "ProcessingOre": 11520,
+      "RestOre": 0,
       "ProcessingStage": 0
     },
     "Pickaxes": {
-      "PickaxesNominal": 1,
+      "PickaxesNominal": 3,
       "Pickaxes": {
-        "Wood": 1
+        "Wood": 2,
+        "Iron": 1
       },
-      "PickaxesPunchLastTime": 1785969891,
+      "PickaxesPunchLastTime": 1786027673,
       "CollectedPickaxes": [
-        1
+        1,
+        4
       ],
-      "BestPickaxeType": 1
+      "BestPickaxeType": 4
     },
     "Tutorials": {
       "CurrentTutorialType": 1,
       "Data": {
         "StartingTutorial": {
-          "CurrentStep": 1,
-          "IsCompleted": false
+          "CurrentStep": 6,
+          "IsCompleted": true
         }
       }
     },
@@ -44,5 +46,5 @@
     false,
     false
   ],
-  "idSave": 9
+  "idSave": 85
 }

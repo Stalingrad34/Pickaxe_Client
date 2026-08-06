@@ -19,6 +19,14 @@ MonoBehaviour:
     uniqueID: 000
     playerPhoto: demo image
     payingStatus: 0
+  Flags:
+    flags:
+    - name: ads_cooldown
+      value: 60
+    - name: chest_chance
+      value: 0.5
+    - name: enable_rewarded
+      value: true
   InterstitialAdv:
     showFirstAdv: 0
     interAdvInterval: 60
@@ -191,14 +199,32 @@ MonoBehaviour:
     durationPayPanel: 1
     testBuyFail: 0
     purshases:
-    - id: no_ads
+    - id: open_chest_wood
       title: 
       description: 
       imageURI: 
       price: 99
       priceValue: 99
       priceCurrencyCode: 
-      currencyImageURL: 
+      currencyImageURL: //yastatic.net/s3/games-static/static-data/images/payments/sdk/rub/currency-icon-m.png
+      consumed: 0
+    - id: open_chest_shiny
+      title: 
+      description: 
+      imageURI: 
+      price: 49
+      priceValue: 49
+      priceCurrencyCode: 
+      currencyImageURL: //yastatic.net/s3/games-static/static-data/images/payments/sdk/rub/currency-icon-m.png
+      consumed: 0
+    - id: open_chest_rare
+      title: 
+      description: 
+      imageURI: 
+      price: 99
+      priceValue: 99
+      priceCurrencyCode: 
+      currencyImageURL: //yastatic.net/s3/games-static/static-data/images/payments/sdk/rub/currency-icon-m.png
       consumed: 0
   RewardedAdv:
     skipInterAdvAfterReward: 0

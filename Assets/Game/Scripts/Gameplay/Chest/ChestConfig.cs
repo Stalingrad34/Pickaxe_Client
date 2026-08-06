@@ -12,6 +12,7 @@ namespace Game.Scripts.Gameplay.Chest
     public ChestView Prefab;
     public string ChestName;
     public string InApp;
+    public bool CanAds;
     public Sprite ChestIcon;
     public Color Color;
     public int Weight;

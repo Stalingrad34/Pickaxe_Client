@@ -68,6 +68,8 @@ namespace Game.Scripts.Infrastructure.Services
         ServiceProvider.Get<EconomyService>().Money.Value -= cost;
         OpenChest(chestConfig);
       }
+      else if (chestConfig.CanAds)
+        ServiceProvider.Get<AdsService>().ShowRewarded("open_chest", () => OpenChest(chestConfig));
       else
         ServiceProvider.Get<InAppService>().BuyInApp(chestConfig.InApp);
     }

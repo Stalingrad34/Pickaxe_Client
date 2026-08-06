@@ -20,6 +20,7 @@ namespace Game.Scripts.UI.GUI
     [SerializeField] private PickaxeVariantView pickaxeVariant;
     [SerializeField] private RectTransform pickaxeVariantsRoot;
     [SerializeField] private GameObject inAppRoot;
+    [SerializeField] private GameObject adsRoot;
     [SerializeField] private CustomText inAppPrice;
     [SerializeField] private ImageLoadYG inAppIcon;
     [SerializeField] private CustomButton open;
@@ -35,6 +36,7 @@ namespace Game.Scripts.UI.GUI
       model.PickaxeVariants.SubscribeAdd(PickaxeVariantAdded).AddTo(gameObject);
       model.Cost.Subscribe(CostChanged).AddTo(gameObject);
       model.ShowInApp.Subscribe(inAppRoot.gameObject.SetActive).AddTo(gameObject);
+      model.ShowAds.Subscribe(adsRoot.gameObject.SetActive).AddTo(gameObject);
       model.InAppPrice.SubscribeToTMP(inAppPrice).AddTo(gameObject);
       model.InAppIcon.Subscribe(PriceCostImageChanged).AddTo(gameObject);
 
