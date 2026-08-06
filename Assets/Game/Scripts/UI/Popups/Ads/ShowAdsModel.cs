@@ -22,7 +22,6 @@ namespace Game.Scripts.UI.Popups.Ads
       ShowNoAds = ServiceProvider.Get<AdsService>().NoAds;
       NoAdsPrice.Value = ServiceProvider.Get<InAppService>().GetPrice("no_ads", out var icon);
       NoAdsIcon.Value = icon;
-      Debug.Log($"Price icon {icon}");
     }
 
     public void StartCountdown()

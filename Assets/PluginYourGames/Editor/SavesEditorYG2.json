@@ -1,0 +1,48 @@
+{
+  "SaveData": {
+    "Player": {
+      "PlayerName": null,
+      "Language": "ru"
+    },
+    "Economy": {
+      "Money": 5,
+      "Ore": 2,
+      "ProcessingMoney": 0,
+      "ProcessingOre": 0,
+      "RestOre": 6,
+      "ProcessingStage": 0
+    },
+    "Pickaxes": {
+      "PickaxesNominal": 1,
+      "Pickaxes": {
+        "Wood": 1
+      },
+      "PickaxesPunchLastTime": 1785969891,
+      "CollectedPickaxes": [
+        1
+      ],
+      "BestPickaxeType": 1
+    },
+    "Tutorials": {
+      "CurrentTutorialType": 1,
+      "Data": {
+        "StartingTutorial": {
+          "CurrentStep": 1,
+          "IsCompleted": false
+        }
+      }
+    },
+    "Ads": {
+      "NoAds": false
+    }
+  },
+  "intExample": 5,
+  "strExample": "Hello!",
+  "boolExample": [
+    false,
+    false,
+    false,
+    false
+  ],
+  "idSave": 9
+}

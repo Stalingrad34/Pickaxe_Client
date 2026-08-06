@@ -1,5 +1,8 @@
-﻿namespace Game.Scripts.Infrastructure.Services.Storage.Data
+﻿using System;
+
+namespace Game.Scripts.Infrastructure.Services.Storage.Data
 {
+  [Serializable]
   public class EconomyStorageData
   {
     public ulong Money = 10;

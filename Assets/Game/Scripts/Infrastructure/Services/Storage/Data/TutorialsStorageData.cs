@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Game.Scripts.Tutorial;
 
 namespace Game.Scripts.Infrastructure.Services.Storage.Data
 {
+  [Serializable]
   public class TutorialsStorageData
   {
     public TutorialType CurrentTutorialType;

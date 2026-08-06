@@ -27,7 +27,7 @@ namespace Game.Scripts.Infrastructure.Services
     public void Init()
     {
       YG2.onGetLeaderboard += OnGetLeaderBoardHandler;
-      YG2.GetLeaderboard("test", 10, 1);
+      YG2.GetLeaderboard("pickaxes", 10, 1);
     }
 
     public void SetPlayerScore(ulong score)
@@ -58,7 +58,7 @@ namespace Game.Scripts.Infrastructure.Services
         if (player.rank == currentPlayer?.rank)
           hasPlayer = true;
         
-        var model = i == players.Length - 1 && !hasPlayer && _playerService.IsAuthorized.Value 
+        var model = i == players.Length - 1 && !hasPlayer && _playerService.IsAuthorized.Value && currentPlayer != null
           ? new PlayerRatingModel(currentPlayer, _playerService.PlayerName.Value, _playerService.PlayerAvatar.Value) 
           : new PlayerRatingModel(player, player.rank == currentPlayer?.rank);
         

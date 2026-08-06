@@ -42,7 +42,7 @@ namespace YG
 
         public void Load(string url)
         {
-            if (string.IsNullOrEmpty(url) || url == "null")
+            if (!IsValidUrl(url))
                 return;
 
             Texture2D existingTexture = ExistingTexture(url);
@@ -64,6 +64,18 @@ namespace YG
             }
 
             return null;
+        }
+
+        private bool IsValidUrl(string url)
+        {
+            if (string.IsNullOrEmpty(url) || url == "null")
+                return false;
+            
+            if (url.StartsWith("//"))
+                url = "https:" + url;
+
+            return Uri.TryCreate(url, UriKind.Absolute, out Uri uri) &&
+                   (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps);
         }
 
         public void ClearTexture()
@@ -96,15 +108,22 @@ namespace YG
             }
             catch (Exception e)
             {
-                Debug.LogError(e);
-                throw;
+                if (log)
+                    Debug.LogError("ImageLoadYG Error: " + e.Message);
+
+                if (loadAnimObj)
+                    loadAnimObj.SetActive(false);
+
+                return;
             }
 
-            if (webRequest.result == UnityWebRequest.Result.ConnectionError ||
-                webRequest.result == UnityWebRequest.Result.DataProcessingError)
+            if (webRequest.result != UnityWebRequest.Result.Success)
             {
                 if (log)
                     Debug.LogError("ImageLoadYG Error: " + webRequest.error);
+
+                if (loadAnimObj)
+                    loadAnimObj.SetActive(false);
             }
             else
             {

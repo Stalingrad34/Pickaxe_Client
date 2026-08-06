@@ -34,7 +34,7 @@ namespace Game.Scripts.Infrastructure.Services.Storage
 
     private IStorageRepository GetStorageRepository()
     {
-      return new PrefsStorageProcessor();
+      return new YandexStorageProcessor();
     }
     
     private async UniTaskVoid StartSaveProcessor()
