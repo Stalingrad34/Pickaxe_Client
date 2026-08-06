@@ -1,8 +1,7 @@
 ﻿using System;
-using Game.Scripts.Infrastructure.Extensions;
+using Game.Scripts.Gameplay.Pickaxe;
 using Game.Scripts.Infrastructure.Services.Storage;
 using Game.Scripts.Infrastructure.Services.Storage.Data;
-using Game.Scripts.Tutorial;
 using UniRx;
 using YG;
 
@@ -10,23 +9,21 @@ namespace Game.Scripts.Infrastructure.Services
 {
   public class ReviewService : IInitializableService, IStorageProcessor, IDisposable
   {
-    private readonly TutorialService _tutorialService;
     private readonly PickaxesService _pickaxesService;
     public bool IsDirty { get; private set; }
     public readonly ReactiveProperty<bool> IsAvailable = new();
     private bool _isSuccess;
     private IDisposable _subscription;
 
-    public ReviewService(TutorialService tutorialService, PickaxesService pickaxesService)
+    public ReviewService(PickaxesService pickaxesService)
     {
-      _tutorialService = tutorialService;
       _pickaxesService = pickaxesService;
     }
     
     public void Init()
     {
       YG2.onReviewSent += OnReviewSent;
-      _subscription = _tutorialService.CompletedTutorials.SubscribeAdd(OnTutorialCompleted);
+      _subscription = _pickaxesService.BestPickaxeType.Subscribe(BestPickaxeChanged);
     }
     
     public void Dispose()
@@ -42,12 +39,12 @@ namespace Game.Scripts.Infrastructure.Services
 
     private bool CanShow()
     {
-      return YG2.reviewCanShow && !_isSuccess && _tutorialService.IsCompleted(TutorialType.StartingTutorial);
+      return YG2.reviewCanShow && !_isSuccess;
     }
 
-    private void OnTutorialCompleted(TutorialType tutorialType, int _)
+    private void BestPickaxeChanged(PickaxeType type)
     {
-      IsAvailable.Value = CanShow(); 
+      IsAvailable.Value = CanShow() && type >= PickaxeType.Copper; 
     }
 
     private void OnReviewSent(bool isSuccess)
@@ -57,6 +54,7 @@ namespace Game.Scripts.Infrastructure.Services
         IsDirty = true;
         IsAvailable.Value = false;
         _isSuccess = true;
+        ServiceProvider.Get<EconomyService>().IncreaseMoney(1000);
       }
     }
     
@@ -69,7 +67,6 @@ namespace Game.Scripts.Infrastructure.Services
     public void Load(SaveData data)
     {
       _isSuccess = data.Player.ReviewSuccess;
-      IsAvailable.Value = CanShow();
     }
   }
 }

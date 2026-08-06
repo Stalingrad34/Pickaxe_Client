@@ -47,6 +47,7 @@ namespace Game.Scripts.Infrastructure.Services
         Color = Color.green
       };
       MoneyTextCommand.Execute(pickupData);
+      AudioController.Instance.PlayAudioClipFromSoundMap("collect");
     }
     
     public void DecreaseMoney(ulong cost)
@@ -74,7 +75,6 @@ namespace Game.Scripts.Infrastructure.Services
       ServiceProvider.Get<AnalyticsService>().MetricaSend("collect", "Money", moneyText);
       IncreaseMoney(ProcessingMoney.Value);
       ProcessingMoney.Value = 0;
-      AudioController.Instance.PlayAudioClipFromSoundMap("collect");
     }
     
     public void IncreaseStage(ulong cost)

@@ -40,6 +40,9 @@ namespace Game.Scripts.UI.Popups.Ads
 
     public void Continue()
     {
+      if (!AdsShowed.Value)
+        return;
+      
       ServiceProvider.Get<AdsService>().StartAdsTimer();
       Close();
     }

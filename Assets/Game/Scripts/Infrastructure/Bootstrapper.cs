@@ -46,7 +46,7 @@ namespace Game.Scripts.Infrastructure
             var adsService = new AdsService();
             var playerService = new PlayerService();
             var ratingService = new RatingService(playerService);
-            var reviewService = new ReviewService(tutorialService, pickaxesService);
+            var reviewService = new ReviewService(pickaxesService);
             
             storageService
                 .AddProcessor(economyService)
