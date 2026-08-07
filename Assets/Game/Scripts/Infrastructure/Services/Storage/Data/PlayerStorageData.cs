@@ -8,5 +8,6 @@ namespace Game.Scripts.Infrastructure.Services.Storage.Data
     public string PlayerName;
     public string Language = "ru";
     public bool ReviewSuccess;
+    public bool DesktopShortcutSuccess;
   }
 }

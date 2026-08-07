@@ -45,7 +45,7 @@ namespace Game.Scripts.Gameplay.FloorButtons
     {
       if (other.gameObject.CompareTag("Player"))
       {
-        _pickaxes.TryAddPickaxes(pickaxesCount, autoMerge);
+        _pickaxes.TryAddPickaxes(pickaxesCount);
       }
     }
   }

@@ -1,11 +1,12 @@
-ф#loading-cover {
+#loading-cover {
     align-items: flex-end;
-    padding-bottom: 40px;
+    padding: 0 0 48px;
 }
 
 #unity-loading-bar {
     flex: 0 0 auto;
-    flex-direction: row;
+    flex-direction: column;
+    width: 100%;
 }
 
 #unity-logo img {
@@ -16,8 +17,11 @@
     pointer-events: none;
 }
 
-#unity-progress-bar-empty,
-#unity-progress-bar-full,
 .spinner {
+    margin: 12px auto 0;
+}
+
+#unity-progress-bar-empty,
+#unity-progress-bar-full {
     display: none !important;
 }

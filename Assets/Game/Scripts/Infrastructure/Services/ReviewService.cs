@@ -44,7 +44,7 @@ namespace Game.Scripts.Infrastructure.Services
 
     private void BestPickaxeChanged(PickaxeType type)
     {
-      IsAvailable.Value = CanShow() && type >= PickaxeType.Copper; 
+      IsAvailable.Value = CanShow() && type >= PickaxeType.Iron; 
     }
 
     private void OnReviewSent(bool isSuccess)

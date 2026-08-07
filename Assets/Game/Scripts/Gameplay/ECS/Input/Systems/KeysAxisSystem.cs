@@ -23,6 +23,7 @@ namespace Game.Scripts.Gameplay.ECS.Input.Systems
       var horizontal = _inputAction.Player.Move.ReadValue<Vector2>().x;
       var vertical = _inputAction.Player.Move.ReadValue<Vector2>().y;
       var isJump = _inputAction.Player.Jump.triggered;
+      var scroll = -_inputAction.Player.Zoom.ReadValue<Vector2>().y;
       
       foreach (var entity in _entities)
       {
@@ -33,6 +34,7 @@ namespace Game.Scripts.Gameplay.ECS.Input.Systems
         control.HorizontalAxis = horizontal;
         control.VerticalAxis = vertical;
         control.SpaceKeyDown = isJump;
+        control.MouseScroll = scroll;
       }
     }
   }

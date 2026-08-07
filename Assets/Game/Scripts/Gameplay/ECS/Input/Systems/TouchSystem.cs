@@ -35,7 +35,6 @@ namespace Game.Scripts.Gameplay.ECS.Input.Systems
           var sensitivity = 1;//ServiceProvider.Get<SettingsProvider>().SensitivityValue.Value;
           control.MouseHorizontal = joystick.RotateJoystick.delta.x * sensitivity;
           control.MouseVertical = joystick.RotateJoystick.delta.y * sensitivity;
-          control.MouseScroll = -_inputAction.Player.Zoom.ReadValue<Vector2>().y;
         }
       }
     }

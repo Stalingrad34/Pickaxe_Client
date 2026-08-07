@@ -54,7 +54,7 @@ namespace Game.Scripts.Infrastructure.Services
       _pickaxesTimer.Dispose();
     }
     
-    public void TryAddPickaxes(int count, bool autoMerge)
+    public void TryAddPickaxes(int count)
     {
       var economy = ServiceProvider.Get<EconomyService>();
       var cost = GetPickaxeCost() * (ulong)count;
@@ -63,17 +63,17 @@ namespace Game.Scripts.Infrastructure.Services
       
       AudioController.Instance.PlayAudioClipFromSoundMap("buy");
       economy.DecreaseMoney(cost);
-      AddPickaxe(PickaxeType.Wood, count, autoMerge);
+      AddPickaxe(PickaxeType.Wood, count);
       ServiceProvider.Get<AnalyticsService>().MetricaSend("add_pickaxes", "Count", count.ToString());
     }
 
-    public void AddPickaxe(PickaxeType type, int count, bool autoMerge)
+    public void AddPickaxe(PickaxeType type, int count)
     {
       PickaxesNominal.Value += (ulong)count;
-      AddPickaxe(type, count);
+      AddPickaxeStorage(type, count);
       CheckCanMarge();
 
-      if (autoMerge || PickaxesCount() > 100)
+      if (PickaxesCount() > 100)
         TryMergeAll();
       else
         RebuildPickaxes("player");
@@ -122,7 +122,7 @@ namespace Game.Scripts.Infrastructure.Services
       ECSRunner.EcsEventWriter.PickaxesPunch("player");
     }
     
-    private void AddPickaxe(PickaxeType type, int amount = 1)
+    private void AddPickaxeStorage(PickaxeType type, int amount = 1)
     {
       _pickaxes[type] = GetCount(type) + amount;
       IsDirty = true;

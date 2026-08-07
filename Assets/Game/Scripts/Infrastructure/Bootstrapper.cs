@@ -47,11 +47,13 @@ namespace Game.Scripts.Infrastructure
             var playerService = new PlayerService();
             var ratingService = new RatingService(playerService);
             var reviewService = new ReviewService(pickaxesService);
+            var desktopService = new DesktopShortcutService(pickaxesService);
             
             storageService
                 .AddProcessor(economyService)
                 .AddProcessor(pickaxesService)
                 .AddProcessor(tutorialService)
+                .AddProcessor(desktopService)
                 .AddProcessor(reviewService)
                 .AddProcessor(adsService);
             
@@ -65,6 +67,7 @@ namespace Game.Scripts.Infrastructure
             ServiceProvider.Register(ratingService);
             ServiceProvider.Register(adsService);
             ServiceProvider.Register(reviewService);
+            ServiceProvider.Register(desktopService);
             ServiceProvider.Register(new SettingsProvider());
             ServiceProvider.Register(new ChestService());
             ServiceProvider.Register(new TimeProvider());

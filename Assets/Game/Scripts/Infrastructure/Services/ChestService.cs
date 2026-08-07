@@ -77,7 +77,7 @@ namespace Game.Scripts.Infrastructure.Services
     public void OpenChest(ChestConfig chestConfig, bool byInApp = false)
     {
       var pickaxeConfig = GetRandomPickaxeConfig(chestConfig);
-      ServiceProvider.Get<PickaxesService>().AddPickaxe(pickaxeConfig.pickaxeType, 1, true);
+      ServiceProvider.Get<PickaxesService>().AddPickaxe(pickaxeConfig.pickaxeType, 1);
 
       var guiModel = UIManager.GetGUI<MainGUIModel>();
       guiModel?.ShowOpenVFX.Execute(pickaxeConfig);
