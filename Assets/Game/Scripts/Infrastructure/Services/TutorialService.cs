@@ -36,7 +36,10 @@ namespace Game.Scripts.Infrastructure.Services
     public async UniTaskVoid StartTutorials()
     {
       if (_currentTutorial?.CanStart() ?? false)
+      {
         await StartTutorial(_currentTutorial);
+        CompletedTutorials.Add(_currentTutorial.Type);
+      }
       
       while (true)
       {
