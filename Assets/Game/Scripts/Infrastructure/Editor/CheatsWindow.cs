@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Infrastructure.Services;
+﻿using Game.Scripts.Infrastructure.Custom;
+using Game.Scripts.Infrastructure.Services;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using UnityEngine;
@@ -69,6 +70,16 @@ namespace Game.Scripts.Infrastructure.Editor
         return;
       
       ServiceProvider.Get<LocalizationService>().ChangeLanguage("pt");
+    }
+    
+    [Button("HideText", ButtonSizes.Medium)]
+    private void HideText()
+    {
+      var texts = FindObjectsByType<CustomText>();
+      foreach (var text in texts)
+      {
+        text.enabled = false;
+      }
     }
 
     private Color GetRuButtonColor()

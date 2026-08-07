@@ -1,0 +1,23 @@
+ф#loading-cover {
+    align-items: flex-end;
+    padding-bottom: 40px;
+}
+
+#unity-loading-bar {
+    flex: 0 0 auto;
+    flex-direction: row;
+}
+
+#unity-logo img {
+    width: 96px;
+    height: 96px;
+    max-width: none;
+    max-height: none;
+    pointer-events: none;
+}
+
+#unity-progress-bar-empty,
+#unity-progress-bar-full,
+.spinner {
+    display: none !important;
+}

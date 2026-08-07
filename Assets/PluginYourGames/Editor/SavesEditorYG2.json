@@ -2,33 +2,41 @@
   "SaveData": {
     "Player": {
       "PlayerName": null,
-      "Language": "tr",
+      "Language": "ru",
       "ReviewSuccess": true
     },
     "Economy": {
-      "Money": 53,
-      "Ore": 0,
-      "ProcessingMoney": 3,
-      "ProcessingOre": 181283,
-      "RestOre": 2384,
+      "Money": 18015428,
+      "Ore": 1228020,
+      "ProcessingMoney": 987,
+      "ProcessingOre": 180299,
+      "RestOre": 0,
       "ProcessingStage": 0
     },
     "Pickaxes": {
-      "PickaxesNominal": 53,
+      "PickaxesNominal": 2828,
       "Pickaxes": {
-        "Wood": 2,
+        "Wood": 77,
         "Stone": 2,
         "Copper": 2,
-        "Iron": 1
+        "Iron": 2,
+        "Titan": 0,
+        "Wolfram": 2,
+        "Crystal": 0,
+        "Obsidian": 1
       },
-      "PickaxesPunchLastTime": 1786054168,
+      "PickaxesPunchLastTime": 1786095572,
       "CollectedPickaxes": [
         1,
         2,
         3,
-        4
+        4,
+        5,
+        6,
+        7,
+        8
       ],
-      "BestPickaxeType": 4
+      "BestPickaxeType": 8
     },
     "Tutorials": {
       "CurrentTutorialType": 1,
@@ -51,5 +59,5 @@
     false,
     false
   ],
-  "idSave": 169
+  "idSave": 1628
 }
