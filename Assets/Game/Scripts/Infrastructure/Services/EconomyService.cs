@@ -71,6 +71,9 @@ namespace Game.Scripts.Infrastructure.Services
     
     public void CollectMoney()
     {
+      if (ProcessingMoney.Value == 0)
+        return;
+      
       var moneyText = MoneyFormatter.Format((long)ProcessingMoney.Value);
       ServiceProvider.Get<AnalyticsService>().MetricaSend("collect", "Money", moneyText);
       IncreaseMoney(ProcessingMoney.Value);
