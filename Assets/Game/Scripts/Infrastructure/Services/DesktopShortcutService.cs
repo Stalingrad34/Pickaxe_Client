@@ -43,6 +43,7 @@ namespace Game.Scripts.Infrastructure.Services
       _isSuccess = true;
       _pickaxesService.AddPickaxe(PickaxeType.Iron, 1);
       IsDirty = true;
+      ServiceProvider.Get<AnalyticsService>().MetricaSend("desktop");
     }
 
     private void BestPickaxeChanged(PickaxeType pickaxeType)
