@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace JoystickPack.Scripts.Base
@@ -24,6 +25,7 @@ namespace JoystickPack.Scripts.Base
         public AxisOptions AxisOptions { get { return AxisOptions; } set { axisOptions = value; } }
         public bool SnapX { get { return snapX; } set { snapX = value; } }
         public bool SnapY { get { return snapY; } set { snapY = value; } }
+        public bool IsBusy;
 
         [SerializeField] private float handleRange = 1;
         [SerializeField] private float deadZone = 0;
@@ -59,7 +61,15 @@ namespace JoystickPack.Scripts.Base
 
         public virtual void OnPointerDown(PointerEventData eventData)
         {
+            IsBusy = true;
             OnDrag(eventData);
+        }
+        
+        public virtual void OnPointerUp(PointerEventData eventData)
+        {
+            IsBusy = false;
+            input = Vector2.zero;
+            handle.anchoredPosition = Vector2.zero;
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -131,12 +141,6 @@ namespace JoystickPack.Scripts.Base
                     return -1;
             }
             return 0;
-        }
-
-        public virtual void OnPointerUp(PointerEventData eventData)
-        {
-            input = Vector2.zero;
-            handle.anchoredPosition = Vector2.zero;
         }
 
         protected Vector2 ScreenPointToAnchoredPosition(Vector2 screenPosition)

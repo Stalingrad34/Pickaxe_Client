@@ -303,7 +303,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 826.6436, y: 600}
+  m_SizeDelta: {x: 694.4579, y: 503.2788}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &5898487228575536768
 CanvasRenderer:
@@ -355,6 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42844a4fccbd54746b90cade4ff70f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsBusy: 0
   handleRange: 1
   deadZone: 0
   axisOptions: 0
@@ -574,11 +575,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cc0004f55c34274b36e3dbd01370254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JoystickPack.Scripts.Joysticks.RotateJoystick
+  moveJoystick: {fileID: 7957663751944106596}
   sensitivity: 0.2
   clickThroughMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4087
   delta: {x: 0, y: 0}
+  zoom: 0
 --- !u!1 &8786966902070337872
 GameObject:
   m_ObjectHideFlags: 0

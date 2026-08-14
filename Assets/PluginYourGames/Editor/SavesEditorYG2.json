@@ -7,11 +7,11 @@
       "DesktopShortcutSuccess": false
     },
     "Economy": {
-      "Money": 0,
+      "Money": 375,
       "Ore": 4,
       "ProcessingMoney": 0,
       "ProcessingOre": 0,
-      "RestOre": 894,
+      "RestOre": 610864,
       "ProcessingStage": 5
     },
     "Pickaxes": {
@@ -20,7 +20,7 @@
         "Wood": 0,
         "Stone": 1
       },
-      "PickaxesPunchLastTime": 1786106526,
+      "PickaxesPunchLastTime": 1786716559,
       "CollectedPickaxes": [
         1,
         2
@@ -48,5 +48,5 @@
     false,
     false
   ],
-  "idSave": 42
+  "idSave": 62
 }

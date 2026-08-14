@@ -52,6 +52,12 @@ namespace Game.Scripts.Infrastructure.Services
       
       model.StartCountdown();
     }
+
+    public void SetNoAds(bool isNoAds)
+    {
+      NoAds.Value = isNoAds;
+      IsDirty = true;
+    }
     
     public void Save(SaveData data)
     {
