@@ -475,12 +475,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guiCanvas: {fileID: 6550068034954090625}
   loadingScreen: {fileID: 1030616168087276957}
-  canvasHolder: {fileID: 2401156586473955219, guid: aaed67f34d0c0e447bfd6b3aa56928d9, type: 3}
+  canvasHolder: {fileID: 2401156586473955219, guid: e1ce94732149deb42be36620c43be439, type: 3}
   popupRoot: {fileID: 2571122983118141606}
-  uiCamera: {fileID: 5543941301437381466}
-  guiCamera: {fileID: 4814837133783946524}
-  rawCamera: {fileID: 6652842730509929014}
-  gameCamera: {fileID: 0}
   blackScreenFade: {fileID: 0}
   infoMessageView: {fileID: 0}
   warningMessageView: {fileID: 0}

@@ -294,7 +294,7 @@ MonoBehaviour:
     pixelRatioValue: 1.3
     developerBuild: 0
   platformInfo:
-    ownHost: 0
+    ownHost: 1
   platformToggles:
     showFirstAdv: 0
     interAdvInterval: 0

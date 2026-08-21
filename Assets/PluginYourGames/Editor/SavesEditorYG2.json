@@ -11,7 +11,7 @@
       "Ore": 4,
       "ProcessingMoney": 0,
       "ProcessingOre": 0,
-      "RestOre": 610864,
+      "RestOre": 1194209,
       "ProcessingStage": 5
     },
     "Pickaxes": {
@@ -20,7 +20,7 @@
         "Wood": 0,
         "Stone": 1
       },
-      "PickaxesPunchLastTime": 1786716559,
+      "PickaxesPunchLastTime": 1787299922,
       "CollectedPickaxes": [
         1,
         2
@@ -48,5 +48,5 @@
     false,
     false
   ],
-  "idSave": 62
+  "idSave": 67
 }
