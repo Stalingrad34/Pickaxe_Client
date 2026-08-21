@@ -4,6 +4,7 @@ using Game.Scripts.Infrastructure.Services.InApp;
 using Game.Scripts.Infrastructure.UI;
 using UniRx;
 using UnityEngine;
+using YG;
 
 namespace Game.Scripts.UI.Popups.Ads
 {
@@ -26,8 +27,9 @@ namespace Game.Scripts.UI.Popups.Ads
 
     public void StartCountdown()
     {
+      YG2.PauseGame(true);
       _timer = Observable
-        .Timer(TimeSpan.FromSeconds(1))
+        .Timer(TimeSpan.FromSeconds(1), Scheduler.MainThreadIgnoreTimeScale)
         .Repeat()
         .Subscribe(_ =>
         {
