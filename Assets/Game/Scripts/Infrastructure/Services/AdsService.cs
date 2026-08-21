@@ -47,7 +47,7 @@ namespace Game.Scripts.Infrastructure.Services
         return;
       }
       
-      var model = new ShowAdsModel(3);
+      var model = new ShowAdsModel(2);
       UIManager.ShowPopup<ShowAdsView, ShowAdsModel>(model);
       
       model.StartCountdown();
