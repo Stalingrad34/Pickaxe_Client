@@ -9,6 +9,8 @@ namespace Game.Scripts.UI.GUI
   public class MoneyInAppModel : WidgetModel
   {
     public readonly ReactiveProperty<ulong> Money = new();
+    public readonly ReactiveProperty<string> InAppPrice = new ();
+    public readonly ReactiveProperty<string> InAppIcon = new ();
     private readonly string _inApp;
     private readonly AddMoneyGrade _grade;
 
@@ -17,6 +19,10 @@ namespace Game.Scripts.UI.GUI
       _inApp = inApp;
       _grade = grade;
       ServiceProvider.Get<PickaxesService>().BestPickaxeType.Subscribe(BestPickaxeTypeChanged).AddTo(disposables);
+      
+      var price = ServiceProvider.Get<InAppService>().GetPrice(_inApp, out var icon);
+      InAppPrice.Value = price;
+      InAppIcon.Value = icon;
     }
 
     private void BestPickaxeTypeChanged(PickaxeType pickaxeType)

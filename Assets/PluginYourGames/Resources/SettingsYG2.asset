@@ -232,6 +232,33 @@ MonoBehaviour:
       priceCurrencyCode: 
       currencyImageURL: //yastatic.net/s3/games-static/static-data/images/payments/sdk/rub/currency-icon-m.png
       consumed: 0
+    - id: add_money_1
+      title: 
+      description: 
+      imageURI: 
+      price: 79
+      priceValue: 79
+      priceCurrencyCode: 
+      currencyImageURL: //yastatic.net/s3/games-static/static-data/images/payments/sdk/rub/currency-icon-m.png
+      consumed: 0
+    - id: add_money_2
+      title: 
+      description: 
+      imageURI: 
+      price: 179
+      priceValue: 179
+      priceCurrencyCode: 
+      currencyImageURL: //yastatic.net/s3/games-static/static-data/images/payments/sdk/rub/currency-icon-m.png
+      consumed: 0
+    - id: add_money_3
+      title: 
+      description: 
+      imageURI: 
+      price: 499
+      priceValue: 499
+      priceCurrencyCode: 
+      currencyImageURL: //yastatic.net/s3/games-static/static-data/images/payments/sdk/rub/currency-icon-m.png
+      consumed: 0
   RewardedAdv:
     skipInterAdvAfterReward: 0
     labelAdvSimLabel: 0
